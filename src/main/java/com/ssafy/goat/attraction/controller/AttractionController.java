@@ -1,11 +1,5 @@
 package com.ssafy.goat.attraction.controller;
 
-import attraction.dto.AttractionDto;
-import attraction.dto.AttractionSearch;
-import attraction.dto.GugunDto;
-import attraction.dto.SidoDto;
-import attraction.service.*;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
