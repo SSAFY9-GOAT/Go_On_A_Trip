@@ -1,6 +1,6 @@
 package com.ssafy.goat.notion.repository;
 
-import notion.Notion;
+import com.ssafy.goat.notion.Notion;
 
 import java.util.List;
 import java.util.Optional;

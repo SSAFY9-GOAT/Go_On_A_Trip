@@ -1,10 +1,10 @@
 package com.ssafy.goat.notion.controller;
 
-import common.Page;
-import member.dto.LoginMember;
-import notion.dto.NotionDto;
-import notion.service.NotionService;
-import notion.service.NotionServiceImpl;
+import com.ssafy.goat.common.Page;
+import com.ssafy.goat.member.dto.LoginMember;
+import com.ssafy.goat.notion.dto.NotionDto;
+import com.ssafy.goat.notion.service.NotionService;
+import com.ssafy.goat.notion.service.NotionServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

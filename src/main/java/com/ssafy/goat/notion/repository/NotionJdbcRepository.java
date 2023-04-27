@@ -1,8 +1,8 @@
 package com.ssafy.goat.notion.repository;
 
-import member.Member;
-import notion.Notion;
-import util.DBConnectionUtil;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.notion.Notion;
+import com.ssafy.goat.util.DBConnectionUtil;
 
 import java.sql.*;
 import java.util.ArrayList;

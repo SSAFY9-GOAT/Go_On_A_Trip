@@ -1,6 +1,6 @@
 package com.ssafy.goat.notion.service;
 
-import notion.dto.NotionDto;
+import com.ssafy.goat.notion.dto.NotionDto;
 
 import java.util.List;
 
