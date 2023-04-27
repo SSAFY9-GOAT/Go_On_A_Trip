@@ -1,5 +1,11 @@
 package com.ssafy.goat.tripplan.repository;
 
+import com.ssafy.goat.tripplan.DetailPlan;
+import com.ssafy.goat.tripplan.TripPlan;
+import com.ssafy.goat.tripplan.dto.PlanListDto;
+import com.ssafy.goat.tripplan.dto.PlanSearch;
+import com.ssafy.goat.tripplan.dto.TripPlanDto;
+
 import java.util.List;
 import java.util.Optional;
 
