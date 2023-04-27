@@ -2,7 +2,7 @@ package com.ssafy.goat.member.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import member.Authority;
+import com.ssafy.goat.member.Authority;
 
 @Data
 public class MemberAddDto {

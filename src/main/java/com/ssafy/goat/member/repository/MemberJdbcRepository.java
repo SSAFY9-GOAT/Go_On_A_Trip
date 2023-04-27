@@ -1,15 +1,15 @@
 package com.ssafy.goat.member.repository;
 
-import member.Member;
-import member.dto.MemberAddDto;
-import util.DBConnectionUtil;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.dto.MemberAddDto;
+import com.ssafy.goat.util.DBConnectionUtil;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static member.Authority.ADMIN;
-import static member.Authority.CLIENT;
+import static com.ssafy.goat.member.Authority.ADMIN;
+import static com.ssafy.goat.member.Authority.CLIENT;
 
 public class MemberJdbcRepository implements MemberRepository {
 

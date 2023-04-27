@@ -1,7 +1,7 @@
 package com.ssafy.goat.member.repository;
 
-import member.Member;
-import member.dto.MemberAddDto;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.dto.MemberAddDto;
 
 import java.util.Optional;
 
