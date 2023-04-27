@@ -1,6 +1,9 @@
 package com.ssafy.goat.tripplan.service;
 
-import tripplan.dto.*;
+
+import com.ssafy.goat.tripplan.dto.PlanListDto;
+import com.ssafy.goat.tripplan.dto.PlanSearch;
+import com.ssafy.goat.tripplan.dto.TripPlanDto;
 
 import java.util.List;
 
