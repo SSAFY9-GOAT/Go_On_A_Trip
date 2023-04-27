@@ -1,8 +1,8 @@
 package com.ssafy.goat.tripplan.dto;
 
+import com.ssafy.goat.member.Member;
 import lombok.Builder;
 import lombok.Data;
-import member.Member;
 
 import java.time.LocalDateTime;
 
