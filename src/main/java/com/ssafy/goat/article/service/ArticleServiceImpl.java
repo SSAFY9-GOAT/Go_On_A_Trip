@@ -19,8 +19,7 @@ import com.ssafy.goat.member.repository.MemberRepository;
 import java.util.List;
 import java.util.Optional;
 
-import static com.ssafy.goat.common.exception.ExceptionMessage.NOT_FOUND_ARTICLE;
-import static common.exception.ExceptionMessage.*;
+import static com.ssafy.goat.common.exception.ExceptionMessage.*;
 
 public class ArticleServiceImpl implements ArticleService {
 
