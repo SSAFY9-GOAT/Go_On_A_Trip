@@ -1,14 +1,14 @@
 package com.ssafy.goat.hotplace.controller;
 
-import common.FileStore;
-import hotplace.UploadFile;
-import hotplace.dto.HotPlaceDetailDto;
-import hotplace.dto.HotPlaceDto;
-import hotplace.dto.HotPlaceListDto;
-import hotplace.dto.HotPlaceSearch;
-import hotplace.service.HotPlaceService;
-import hotplace.service.HotPlaceServiceImpl;
-import member.dto.LoginMember;
+import com.ssafy.goat.common.FileStore;
+import com.ssafy.goat.hotplace.UploadFile;
+import com.ssafy.goat.hotplace.dto.HotPlaceDetailDto;
+import com.ssafy.goat.hotplace.dto.HotPlaceDto;
+import com.ssafy.goat.hotplace.dto.HotPlaceListDto;
+import com.ssafy.goat.hotplace.dto.HotPlaceSearch;
+import com.ssafy.goat.hotplace.service.HotPlaceService;
+import com.ssafy.goat.hotplace.service.HotPlaceServiceImpl;
+import com.ssafy.goat.member.dto.LoginMember;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

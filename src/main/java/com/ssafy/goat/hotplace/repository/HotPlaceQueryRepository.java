@@ -1,8 +1,8 @@
 package com.ssafy.goat.hotplace.repository;
 
-import hotplace.dto.HotPlaceDetailDto;
-import hotplace.dto.HotPlaceListDto;
-import hotplace.dto.HotPlaceSearch;
+import com.ssafy.goat.hotplace.dto.HotPlaceDetailDto;
+import com.ssafy.goat.hotplace.dto.HotPlaceListDto;
+import com.ssafy.goat.hotplace.dto.HotPlaceSearch;
 
 import java.util.List;
 import java.util.Optional;

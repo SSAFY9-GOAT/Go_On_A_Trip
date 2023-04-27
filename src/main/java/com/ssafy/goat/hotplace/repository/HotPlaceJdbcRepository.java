@@ -1,10 +1,10 @@
 package com.ssafy.goat.hotplace.repository;
 
-import attraction.AttractionInfo;
-import hotplace.HotPlace;
-import hotplace.UploadFile;
-import member.Member;
-import util.DBConnectionUtil;
+import com.ssafy.goat.attraction.AttractionInfo;
+import com.ssafy.goat.hotplace.HotPlace;
+import com.ssafy.goat.hotplace.UploadFile;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.util.DBConnectionUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
