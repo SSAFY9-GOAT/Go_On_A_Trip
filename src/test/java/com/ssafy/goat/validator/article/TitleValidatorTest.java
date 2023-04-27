@@ -1,7 +1,7 @@
 package com.ssafy.goat.validator.article;
 
-import common.validation.dto.ArticleRequest;
-import common.validation.dto.InvalidResponse;
+import com.ssafy.goat.common.validation.dto.ArticleRequest;
+import com.ssafy.goat.common.validation.dto.InvalidResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

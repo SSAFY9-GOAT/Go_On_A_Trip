@@ -1,15 +1,15 @@
 package com.ssafy.goat.notion.repository;
 
-import member.Member;
-import member.repository.MemberJdbcRepository;
-import member.repository.MemberRepository;
-import notion.Notion;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.repository.MemberJdbcRepository;
+import com.ssafy.goat.member.repository.MemberRepository;
+import com.ssafy.goat.notion.Notion;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static member.Authority.CLIENT;
+import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class NotionRepositoryTest {

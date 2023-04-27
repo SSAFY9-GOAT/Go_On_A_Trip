@@ -1,6 +1,6 @@
 package com.ssafy.goat.member.repository;
 
-import member.Member;
+import com.ssafy.goat.member.Member;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static member.Authority.CLIENT;
+import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MemberRepositoryTest {

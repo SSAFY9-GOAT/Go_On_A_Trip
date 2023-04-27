@@ -1,9 +1,9 @@
 package com.ssafy.goat.article.repository;
 
-import article.Article;
-import member.Member;
-import member.repository.MemberJdbcRepository;
-import member.repository.MemberRepository;
+import com.ssafy.goat.article.Article;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.repository.MemberJdbcRepository;
+import com.ssafy.goat.member.repository.MemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static member.Authority.CLIENT;
+import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ArticleRepositoryTest {

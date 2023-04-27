@@ -1,7 +1,7 @@
 package com.ssafy.goat.validator.member;
 
-import common.validation.dto.InvalidResponse;
-import common.validation.dto.MemberRequest;
+import com.ssafy.goat.common.validation.dto.InvalidResponse;
+import com.ssafy.goat.common.validation.dto.MemberRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

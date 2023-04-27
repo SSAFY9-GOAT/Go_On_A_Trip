@@ -1,11 +1,11 @@
 package com.ssafy.goat.member.service;
 
-import common.exception.InformationChangeException;
-import common.exception.SignUpException;
-import member.Member;
-import member.dto.MemberAddDto;
-import member.repository.MemberJdbcRepository;
-import member.repository.MemberRepository;
+import com.ssafy.goat.common.exception.InformationChangeException;
+import com.ssafy.goat.common.exception.SignUpException;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.dto.MemberAddDto;
+import com.ssafy.goat.member.repository.MemberJdbcRepository;
+import com.ssafy.goat.member.repository.MemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static member.Authority.CLIENT;
+import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

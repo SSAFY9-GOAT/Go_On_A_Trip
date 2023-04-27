@@ -1,7 +1,7 @@
 package com.ssafy.goat.validator.hotplace;
 
-import common.validation.dto.HotPlaceRequest;
-import common.validation.dto.InvalidResponse;
+import com.ssafy.goat.common.validation.dto.HotPlaceRequest;
+import com.ssafy.goat.common.validation.dto.InvalidResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

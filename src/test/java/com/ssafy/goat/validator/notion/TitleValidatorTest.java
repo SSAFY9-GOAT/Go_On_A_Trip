@@ -1,7 +1,7 @@
 package com.ssafy.goat.validator.notion;
 
-import common.validation.dto.InvalidResponse;
-import common.validation.dto.NotionRequest;
+import com.ssafy.goat.common.validation.dto.InvalidResponse;
+import com.ssafy.goat.common.validation.dto.NotionRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

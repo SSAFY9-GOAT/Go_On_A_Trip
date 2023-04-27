@@ -1,13 +1,13 @@
 package com.ssafy.goat.repository;
 
-import attraction.AttractionInfo;
-import attraction.repository.AttractionJdbcRepository;
-import attraction.repository.AttractionRepository;
-import hotplace.HotPlace;
-import hotplace.UploadFile;
-import member.Member;
-import member.repository.MemberJdbcRepository;
-import member.repository.MemberRepository;
+import com.ssafy.goat.attraction.AttractionInfo;
+import com.ssafy.goat.attraction.repository.AttractionJdbcRepository;
+import com.ssafy.goat.attraction.repository.AttractionRepository;
+import com.ssafy.goat.hotplace.HotPlace;
+import com.ssafy.goat.hotplace.UploadFile;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.repository.MemberJdbcRepository;
+import com.ssafy.goat.member.repository.MemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
-import static member.Authority.CLIENT;
+import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class HotPlaceRepositoryTest {

@@ -1,20 +1,20 @@
 package com.ssafy.goat.notion.service;
 
-import common.exception.NotionException;
-import member.Member;
-import member.repository.MemberJdbcRepository;
-import member.repository.MemberRepository;
-import notion.Notion;
-import notion.dto.NotionDto;
-import notion.repository.NotionJdbcRepository;
-import notion.repository.NotionRepository;
+import com.ssafy.goat.common.exception.NotionException;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.repository.MemberJdbcRepository;
+import com.ssafy.goat.member.repository.MemberRepository;
+import com.ssafy.goat.notion.Notion;
+import com.ssafy.goat.notion.dto.NotionDto;
+import com.ssafy.goat.notion.repository.NotionJdbcRepository;
+import com.ssafy.goat.notion.repository.NotionRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static member.Authority.ADMIN;
-import static member.Authority.CLIENT;
+import static com.ssafy.goat.member.Authority.ADMIN;
+import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
