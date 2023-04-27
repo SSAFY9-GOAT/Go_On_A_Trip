@@ -1,23 +1,25 @@
 package com.ssafy.goat.article.service;
 
-import article.Article;
-import article.dto.ArticleDetailDto;
-import article.dto.ArticleDto;
-import article.dto.ArticleListDto;
-import article.dto.ArticleSearch;
-import article.repository.ArticleJdbcRepository;
-import article.repository.ArticleQueryJdbcRepository;
-import article.repository.ArticleQueryRepository;
-import article.repository.ArticleRepository;
-import common.exception.ArticleException;
-import member.Authority;
-import member.Member;
-import member.repository.MemberJdbcRepository;
-import member.repository.MemberRepository;
+
+import com.ssafy.goat.article.Article;
+import com.ssafy.goat.article.dto.ArticleDetailDto;
+import com.ssafy.goat.article.dto.ArticleDto;
+import com.ssafy.goat.article.dto.ArticleListDto;
+import com.ssafy.goat.article.dto.ArticleSearch;
+import com.ssafy.goat.article.repository.ArticleJdbcRepository;
+import com.ssafy.goat.article.repository.ArticleQueryJdbcRepository;
+import com.ssafy.goat.article.repository.ArticleQueryRepository;
+import com.ssafy.goat.article.repository.ArticleRepository;
+import com.ssafy.goat.common.exception.ArticleException;
+import com.ssafy.goat.member.Authority;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.repository.MemberJdbcRepository;
+import com.ssafy.goat.member.repository.MemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+import static com.ssafy.goat.common.exception.ExceptionMessage.NOT_FOUND_ARTICLE;
 import static common.exception.ExceptionMessage.*;
 
 public class ArticleServiceImpl implements ArticleService {

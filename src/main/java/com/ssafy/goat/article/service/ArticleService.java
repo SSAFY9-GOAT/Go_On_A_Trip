@@ -1,9 +1,11 @@
 package com.ssafy.goat.article.service;
 
-import article.dto.ArticleDetailDto;
-import article.dto.ArticleDto;
-import article.dto.ArticleListDto;
-import article.dto.ArticleSearch;
+
+
+import com.ssafy.goat.article.dto.ArticleDetailDto;
+import com.ssafy.goat.article.dto.ArticleDto;
+import com.ssafy.goat.article.dto.ArticleListDto;
+import com.ssafy.goat.article.dto.ArticleSearch;
 
 import java.util.List;
 

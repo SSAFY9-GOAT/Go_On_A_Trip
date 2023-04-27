@@ -1,16 +1,17 @@
 package com.ssafy.goat.article.controller;
 
-import article.dto.ArticleDetailDto;
-import article.dto.ArticleDto;
-import article.dto.ArticleListDto;
-import article.dto.ArticleSearch;
-import article.service.ArticleService;
-import article.service.ArticleServiceImpl;
-import common.Page;
-import common.validation.ArticleValidation;
-import common.validation.dto.ArticleRequest;
-import common.validation.dto.InvalidResponse;
-import member.dto.LoginMember;
+
+import com.ssafy.goat.article.dto.ArticleDetailDto;
+import com.ssafy.goat.article.dto.ArticleDto;
+import com.ssafy.goat.article.dto.ArticleListDto;
+import com.ssafy.goat.article.dto.ArticleSearch;
+import com.ssafy.goat.article.service.ArticleService;
+import com.ssafy.goat.article.service.ArticleServiceImpl;
+import com.ssafy.goat.common.Page;
+import com.ssafy.goat.common.validation.ArticleValidation;
+import com.ssafy.goat.common.validation.dto.ArticleRequest;
+import com.ssafy.goat.common.validation.dto.InvalidResponse;
+import com.ssafy.goat.member.dto.LoginMember;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

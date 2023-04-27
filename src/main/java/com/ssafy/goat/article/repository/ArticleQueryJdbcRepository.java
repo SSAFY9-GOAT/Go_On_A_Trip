@@ -1,9 +1,11 @@
 package com.ssafy.goat.article.repository;
 
-import article.dto.ArticleDetailDto;
-import article.dto.ArticleListDto;
-import article.dto.ArticleSearch;
-import util.DBConnectionUtil;
+
+
+import com.ssafy.goat.article.dto.ArticleDetailDto;
+import com.ssafy.goat.article.dto.ArticleListDto;
+import com.ssafy.goat.article.dto.ArticleSearch;
+import com.ssafy.goat.util.DBConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,6 +1,8 @@
 package com.ssafy.goat.article.repository;
 
-import article.Article;
+
+
+import com.ssafy.goat.article.Article;
 
 import java.util.List;
 import java.util.Optional;

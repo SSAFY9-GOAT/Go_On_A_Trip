@@ -1,8 +1,10 @@
 package com.ssafy.goat.article.repository;
 
-import article.Article;
-import member.Member;
-import util.DBConnectionUtil;
+
+
+import com.ssafy.goat.article.Article;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.util.DBConnectionUtil;
 
 import java.sql.*;
 import java.time.LocalDateTime;

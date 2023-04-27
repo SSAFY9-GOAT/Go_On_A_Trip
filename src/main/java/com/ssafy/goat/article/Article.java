@@ -1,10 +1,10 @@
 package com.ssafy.goat.article;
 
+import com.ssafy.goat.member.Member;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import member.Member;
 
 import java.time.LocalDateTime;
 

@@ -1,8 +1,9 @@
 package com.ssafy.goat.article.repository;
 
-import article.dto.ArticleDetailDto;
-import article.dto.ArticleListDto;
-import article.dto.ArticleSearch;
+
+import com.ssafy.goat.article.dto.ArticleDetailDto;
+import com.ssafy.goat.article.dto.ArticleListDto;
+import com.ssafy.goat.article.dto.ArticleSearch;
 
 import java.util.List;
 import java.util.Optional;
