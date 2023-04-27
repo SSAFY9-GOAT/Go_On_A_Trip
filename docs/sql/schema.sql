@@ -108,13 +108,6 @@ create table if not exists `detail_plan`
     foreign key (`content_id`) references ATTRACTION_INFO (`content_id`)
     );
 
-create table if not exists `LOGIN`
-(
-    `authentication_key` varchar(100) not null primary key,
-    `member_id` bigint not null,
-    foreign key (`member_id`) references MEMBER (`member_id`)
-    );
-
 create table if not exists `TREND`
 (
     `trend_id` bigint not null primary key auto_increment,
