@@ -1,8 +1,8 @@
 package com.ssafy.goat.common;
 
-import trend.dto.TrendViewDto;
-import trend.service.TrendService;
-import trend.service.TrendServiceImpl;
+import com.ssafy.goat.trend.dto.TrendViewDto;
+import com.ssafy.goat.trend.service.TrendService;
+import com.ssafy.goat.trend.service.TrendServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

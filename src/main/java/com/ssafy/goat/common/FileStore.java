@@ -1,6 +1,6 @@
 package com.ssafy.goat.common;
 
-import hotplace.UploadFile;
+import com.ssafy.goat.hotplace.UploadFile;
 
 import javax.servlet.http.Part;
 import java.io.IOException;
