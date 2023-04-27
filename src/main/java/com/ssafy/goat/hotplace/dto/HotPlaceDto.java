@@ -1,10 +1,10 @@
 package com.ssafy.goat.hotplace.dto;
 
-import attraction.AttractionInfo;
-import hotplace.UploadFile;
+import com.ssafy.goat.attraction.AttractionInfo;
+import com.ssafy.goat.hotplace.UploadFile;
 import lombok.Builder;
 import lombok.Data;
-import member.Member;
+import com.ssafy.goat.member.Member;
 
 @Data
 public class HotPlaceDto {

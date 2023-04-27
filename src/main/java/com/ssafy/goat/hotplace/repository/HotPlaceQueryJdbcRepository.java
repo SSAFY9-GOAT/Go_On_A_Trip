@@ -1,9 +1,9 @@
 package com.ssafy.goat.hotplace.repository;
 
-import hotplace.dto.HotPlaceDetailDto;
-import hotplace.dto.HotPlaceListDto;
-import hotplace.dto.HotPlaceSearch;
-import util.DBConnectionUtil;
+import com.ssafy.goat.hotplace.dto.HotPlaceDetailDto;
+import com.ssafy.goat.hotplace.dto.HotPlaceListDto;
+import com.ssafy.goat.hotplace.dto.HotPlaceSearch;
+import com.ssafy.goat.util.DBConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

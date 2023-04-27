@@ -1,11 +1,11 @@
 package com.ssafy.goat.hotplace;
 
-import attraction.AttractionInfo;
+import com.ssafy.goat.attraction.AttractionInfo;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import member.Member;
+import com.ssafy.goat.member.Member;
 
 import java.time.LocalDateTime;
 

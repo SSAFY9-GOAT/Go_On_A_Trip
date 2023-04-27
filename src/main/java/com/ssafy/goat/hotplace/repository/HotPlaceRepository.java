@@ -1,6 +1,6 @@
 package com.ssafy.goat.hotplace.repository;
 
-import hotplace.HotPlace;
+import com.ssafy.goat.hotplace.HotPlace;
 
 import java.util.List;
 import java.util.Optional;
