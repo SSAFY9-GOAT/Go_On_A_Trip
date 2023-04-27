@@ -1,18 +1,19 @@
 package com.ssafy.goat.tripplan.controller;
 
-import algorithm.ShortestPath;
-import attraction.AttractionInfo;
-import attraction.service.AttractionService;
-import attraction.service.AttractionServiceImpl;
-import common.Page;
-import common.exception.PlanException;
-import member.dto.LoginMember;
-import tripplan.dto.DetailPlanDto;
-import tripplan.dto.PlanListDto;
-import tripplan.dto.PlanSearch;
-import tripplan.dto.TripPlanDto;
-import tripplan.service.PlanService;
-import tripplan.service.PlanServiceImpl;
+
+import com.ssafy.goat.algorithm.ShortestPath;
+import com.ssafy.goat.attraction.AttractionInfo;
+import com.ssafy.goat.attraction.service.AttractionService;
+import com.ssafy.goat.attraction.service.AttractionServiceImpl;
+import com.ssafy.goat.common.Page;
+import com.ssafy.goat.common.exception.PlanException;
+import com.ssafy.goat.member.dto.LoginMember;
+import com.ssafy.goat.tripplan.dto.DetailPlanDto;
+import com.ssafy.goat.tripplan.dto.PlanListDto;
+import com.ssafy.goat.tripplan.dto.PlanSearch;
+import com.ssafy.goat.tripplan.dto.TripPlanDto;
+import com.ssafy.goat.tripplan.service.PlanService;
+import com.ssafy.goat.tripplan.service.PlanServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
