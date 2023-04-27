@@ -1,6 +1,7 @@
 package com.ssafy.goat.algorithm;
 
-import attraction.AttractionInfo;
+
+import com.ssafy.goat.attraction.AttractionInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
