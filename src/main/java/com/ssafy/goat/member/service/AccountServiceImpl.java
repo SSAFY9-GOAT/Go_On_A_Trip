@@ -1,16 +1,16 @@
 package com.ssafy.goat.member.service;
 
-import common.exception.AccountException;
-import common.exception.LoginException;
-import member.Member;
-import member.dto.LoginMember;
-import member.repository.MemberJdbcRepository;
-import member.repository.MemberRepository;
+import com.ssafy.goat.common.exception.AccountException;
+import com.ssafy.goat.common.exception.LoginException;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.dto.LoginMember;
+import com.ssafy.goat.member.repository.MemberJdbcRepository;
+import com.ssafy.goat.member.repository.MemberRepository;
 
 import java.util.Optional;
 
-import static common.exception.ExceptionMessage.ACCOUNT_EXCEPTION;
-import static common.exception.ExceptionMessage.LOGIN_EXCEPTION;
+import static com.ssafy.goat.common.exception.ExceptionMessage.ACCOUNT_EXCEPTION;
+import static com.ssafy.goat.common.exception.ExceptionMessage.LOGIN_EXCEPTION;
 
 public class AccountServiceImpl implements AccountService {
 

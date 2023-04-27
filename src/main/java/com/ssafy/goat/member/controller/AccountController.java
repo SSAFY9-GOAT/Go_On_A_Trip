@@ -1,8 +1,8 @@
 package com.ssafy.goat.member.controller;
 
-import member.dto.LoginMember;
-import member.service.AccountService;
-import member.service.AccountServiceImpl;
+import com.ssafy.goat.member.dto.LoginMember;
+import com.ssafy.goat.member.service.AccountService;
+import com.ssafy.goat.member.service.AccountServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

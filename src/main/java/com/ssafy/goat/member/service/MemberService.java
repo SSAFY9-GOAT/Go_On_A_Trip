@@ -1,7 +1,7 @@
 package com.ssafy.goat.member.service;
 
-import member.dto.MemberAddDto;
-import member.dto.MemberDto;
+import com.ssafy.goat.member.dto.MemberAddDto;
+import com.ssafy.goat.member.dto.MemberDto;
 
 public interface MemberService {
 

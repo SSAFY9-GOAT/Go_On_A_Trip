@@ -1,6 +1,6 @@
 package com.ssafy.goat.member.service;
 
-import member.dto.LoginMember;
+import com.ssafy.goat.member.dto.LoginMember;
 
 public interface AccountService {
 

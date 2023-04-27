@@ -1,9 +1,9 @@
 package com.ssafy.goat.attraction.service;
 
-import attraction.Gugun;
-import attraction.dto.GugunDto;
-import attraction.repository.GugunJdbcRepository;
-import attraction.repository.GugunRepository;
+import com.ssafy.goat.attraction.Gugun;
+import com.ssafy.goat.attraction.dto.GugunDto;
+import com.ssafy.goat.attraction.repository.GugunJdbcRepository;
+import com.ssafy.goat.attraction.repository.GugunRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

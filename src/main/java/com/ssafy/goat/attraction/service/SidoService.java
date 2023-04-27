@@ -1,6 +1,6 @@
 package com.ssafy.goat.attraction.service;
 
-import attraction.dto.SidoDto;
+import com.ssafy.goat.attraction.dto.SidoDto;
 
 import java.util.List;
 

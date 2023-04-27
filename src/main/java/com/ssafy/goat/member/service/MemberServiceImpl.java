@@ -1,16 +1,16 @@
 package com.ssafy.goat.member.service;
 
-import common.exception.InformationChangeException;
-import common.exception.SignUpException;
-import common.exception.WithdrawalException;
-import common.validation.MemberUpdateValidation;
-import common.validation.dto.InvalidResponse;
-import common.validation.dto.MemberRequest;
-import member.Member;
-import member.dto.MemberAddDto;
-import member.dto.MemberDto;
-import member.repository.MemberJdbcRepository;
-import member.repository.MemberRepository;
+import com.ssafy.goat.common.exception.InformationChangeException;
+import com.ssafy.goat.common.exception.SignUpException;
+import com.ssafy.goat.common.exception.WithdrawalException;
+import com.ssafy.goat.common.validation.MemberUpdateValidation;
+import com.ssafy.goat.common.validation.dto.InvalidResponse;
+import com.ssafy.goat.common.validation.dto.MemberRequest;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.dto.MemberAddDto;
+import com.ssafy.goat.member.dto.MemberDto;
+import com.ssafy.goat.member.repository.MemberJdbcRepository;
+import com.ssafy.goat.member.repository.MemberRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
