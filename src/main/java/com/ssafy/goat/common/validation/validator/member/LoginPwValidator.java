@@ -1,9 +1,9 @@
 package com.ssafy.goat.common.validation.validator.member;
 
-import common.validation.ValidationMessage;
-import common.validation.dto.InvalidResponse;
-import common.validation.dto.MemberRequest;
-import common.validation.validator.MemberValidator;
+import com.ssafy.goat.common.validation.ValidationMessage;
+import com.ssafy.goat.common.validation.dto.InvalidResponse;
+import com.ssafy.goat.common.validation.dto.MemberRequest;
+import com.ssafy.goat.common.validation.validator.MemberValidator;
 
 import java.util.Collections;
 import java.util.List;

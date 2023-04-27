@@ -1,9 +1,9 @@
 package com.ssafy.goat.common.validation.validator.notion;
 
-import common.validation.ValidationMessage;
-import common.validation.dto.InvalidResponse;
-import common.validation.dto.NotionRequest;
-import common.validation.validator.NotionValidator;
+import com.ssafy.goat.common.validation.ValidationMessage;
+import com.ssafy.goat.common.validation.dto.InvalidResponse;
+import com.ssafy.goat.common.validation.dto.NotionRequest;
+import com.ssafy.goat.common.validation.validator.NotionValidator;
 
 import java.util.Collections;
 import java.util.List;

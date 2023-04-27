@@ -1,7 +1,7 @@
 package com.ssafy.goat.common.validation.validator;
 
-import common.validation.dto.ArticleRequest;
-import common.validation.dto.InvalidResponse;
+import com.ssafy.goat.common.validation.dto.ArticleRequest;
+import com.ssafy.goat.common.validation.dto.InvalidResponse;
 
 import java.util.List;
 

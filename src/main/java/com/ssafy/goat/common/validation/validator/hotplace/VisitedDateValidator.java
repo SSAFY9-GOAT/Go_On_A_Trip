@@ -1,9 +1,9 @@
 package com.ssafy.goat.common.validation.validator.hotplace;
 
-import common.validation.ValidationMessage;
-import common.validation.dto.HotPlaceRequest;
-import common.validation.dto.InvalidResponse;
-import common.validation.validator.HotPlaceValidator;
+import com.ssafy.goat.common.validation.ValidationMessage;
+import com.ssafy.goat.common.validation.dto.HotPlaceRequest;
+import com.ssafy.goat.common.validation.dto.InvalidResponse;
+import com.ssafy.goat.common.validation.validator.HotPlaceValidator;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
