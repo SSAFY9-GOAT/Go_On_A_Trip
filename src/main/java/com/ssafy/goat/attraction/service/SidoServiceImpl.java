@@ -1,9 +1,9 @@
 package com.ssafy.goat.attraction.service;
 
-import attraction.Sido;
-import attraction.dto.SidoDto;
-import attraction.repository.SidoJdbcRepository;
-import attraction.repository.SidoRepository;
+import com.ssafy.goat.attraction.Sido;
+import com.ssafy.goat.attraction.dto.SidoDto;
+import com.ssafy.goat.attraction.repository.SidoJdbcRepository;
+import com.ssafy.goat.attraction.repository.SidoRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,6 +1,6 @@
 package com.ssafy.goat.attraction.repository;
 
-import attraction.Gugun;
+import com.ssafy.goat.attraction.Gugun;
 
 import java.util.List;
 

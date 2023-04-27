@@ -1,5 +1,11 @@
 package com.ssafy.goat.attraction.controller;
 
+import com.ssafy.goat.attraction.dto.AttractionDto;
+import com.ssafy.goat.attraction.dto.AttractionSearch;
+import com.ssafy.goat.attraction.dto.GugunDto;
+import com.ssafy.goat.attraction.dto.SidoDto;
+import com.ssafy.goat.attraction.service.*;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

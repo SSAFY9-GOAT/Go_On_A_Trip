@@ -1,7 +1,7 @@
 package com.ssafy.goat.attraction.repository;
 
-import attraction.Sido;
-import util.DBConnectionUtil;
+import com.ssafy.goat.attraction.Sido;
+import com.ssafy.goat.util.DBConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

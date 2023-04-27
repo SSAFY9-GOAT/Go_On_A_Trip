@@ -1,6 +1,6 @@
 package com.ssafy.goat.attraction.repository;
 
-import attraction.Sido;
+import com.ssafy.goat.attraction.Sido;
 
 import java.util.List;
 

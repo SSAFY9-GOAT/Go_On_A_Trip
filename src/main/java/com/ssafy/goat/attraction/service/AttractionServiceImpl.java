@@ -1,5 +1,7 @@
 package com.ssafy.goat.attraction.service;
 
+import com.ssafy.goat.attraction.repository.AttractionRepository;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

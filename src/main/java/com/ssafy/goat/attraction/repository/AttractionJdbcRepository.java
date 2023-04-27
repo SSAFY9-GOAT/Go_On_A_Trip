@@ -1,8 +1,8 @@
 package com.ssafy.goat.attraction.repository;
 
-import attraction.AttractionInfo;
-import attraction.dto.AttractionSearch;
-import util.DBConnectionUtil;
+import com.ssafy.goat.attraction.AttractionInfo;
+import com.ssafy.goat.attraction.dto.AttractionSearch;
+import com.ssafy.goat.util.DBConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
