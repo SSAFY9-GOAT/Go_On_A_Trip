@@ -1,6 +1,6 @@
 package com.ssafy.goat.trend.service;
 
-import trend.dto.TrendViewDto;
+import com.ssafy.goat.trend.dto.TrendViewDto;
 
 public interface TrendService {
 

@@ -1,7 +1,7 @@
 package com.ssafy.goat.trend.repository;
 
-import trend.Trend;
-import trend.dto.TrendViewDto;
+import com.ssafy.goat.trend.Trend;
+import com.ssafy.goat.trend.dto.TrendViewDto;
 
 import java.util.Optional;
 
