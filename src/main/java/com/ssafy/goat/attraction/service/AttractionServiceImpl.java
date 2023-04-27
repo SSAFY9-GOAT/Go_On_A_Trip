@@ -1,5 +1,9 @@
 package com.ssafy.goat.attraction.service;
 
+import com.ssafy.goat.attraction.AttractionInfo;
+import com.ssafy.goat.attraction.dto.AttractionDto;
+import com.ssafy.goat.attraction.dto.AttractionSearch;
+import com.ssafy.goat.attraction.repository.AttractionJdbcRepository;
 import com.ssafy.goat.attraction.repository.AttractionRepository;
 
 import java.util.List;
