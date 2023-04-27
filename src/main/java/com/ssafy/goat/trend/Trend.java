@@ -1,6 +1,6 @@
 package com.ssafy.goat.trend;
 
-import attraction.AttractionInfo;
+import com.ssafy.goat.attraction.AttractionInfo;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

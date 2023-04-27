@@ -1,15 +1,15 @@
 package com.ssafy.goat.trend.service;
 
-import hotplace.HotPlace;
-import hotplace.repository.HotPlaceJdbcRepository;
-import hotplace.repository.HotPlaceRepository;
-import member.Member;
-import member.repository.MemberJdbcRepository;
-import member.repository.MemberRepository;
-import trend.Trend;
-import trend.dto.TrendViewDto;
-import trend.repository.TrendJdbcRepository;
-import trend.repository.TrendRepository;
+import com.ssafy.goat.hotplace.HotPlace;
+import com.ssafy.goat.hotplace.repository.HotPlaceJdbcRepository;
+import com.ssafy.goat.hotplace.repository.HotPlaceRepository;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.repository.MemberJdbcRepository;
+import com.ssafy.goat.member.repository.MemberRepository;
+import com.ssafy.goat.trend.Trend;
+import com.ssafy.goat.trend.dto.TrendViewDto;
+import com.ssafy.goat.trend.repository.TrendJdbcRepository;
+import com.ssafy.goat.trend.repository.TrendRepository;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

@@ -2,7 +2,7 @@ package com.ssafy.goat.notion;
 
 import lombok.Builder;
 import lombok.Getter;
-import member.Member;
+import com.ssafy.goat.member.Member;
 
 import java.time.LocalDateTime;
 

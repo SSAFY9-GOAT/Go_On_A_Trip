@@ -1,9 +1,9 @@
 package com.ssafy.goat.trend.repository;
 
-import attraction.AttractionInfo;
-import trend.Trend;
-import trend.dto.TrendViewDto;
-import util.DBConnectionUtil;
+import com.ssafy.goat.attraction.AttractionInfo;
+import com.ssafy.goat.trend.Trend;
+import com.ssafy.goat.trend.dto.TrendViewDto;
+import com.ssafy.goat.util.DBConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
