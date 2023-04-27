@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static member.Authority.ADMIN;
-import static member.Authority.CLIENT;
+import static com.ssafy.goat.member.Authority.ADMIN;
+import static com.ssafy.goat.member.Authority.CLIENT;
 
 public class HotPlaceJdbcRepository implements HotPlaceRepository {
 

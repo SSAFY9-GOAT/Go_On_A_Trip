@@ -18,7 +18,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-import static common.Message.*;
+import static com.ssafy.goat.common.Message.*;
 
 @WebServlet("/hotPlace")
 @MultipartConfig(
