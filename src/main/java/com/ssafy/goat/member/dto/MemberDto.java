@@ -1,8 +1,8 @@
 package com.ssafy.goat.member.dto;
 
+import com.ssafy.goat.member.Authority;
 import lombok.Builder;
 import lombok.Data;
-import member.Authority;
 
 @Data
 public class MemberDto {
