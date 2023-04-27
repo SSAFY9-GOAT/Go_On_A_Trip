@@ -1,4 +1,4 @@
-package com.ssafy.goat.validator.hotplace;
+package com.ssafy.goat.common.validation.validator.hotplace;
 
 import com.ssafy.goat.common.validation.dto.HotPlaceRequest;
 import com.ssafy.goat.common.validation.dto.InvalidResponse;
@@ -9,16 +9,16 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class DescValidatorTest {
+class NameValidatorTest {
 
-    private final DescValidator validator = new DescValidator();
+    private final NameValidator validator = new NameValidator();
 
     @Test
-    @DisplayName("핫플레이스 설명 검증")
-    void descValidator() {
+    @DisplayName("핫플레이스 이름 검증")
+    void nameValidator() {
         //given
         HotPlaceRequest request = HotPlaceRequest.builder()
-                .desc("핫플레이스 설명")
+                .name("핫플레이스 이름")
                 .build();
 
         //when
@@ -29,11 +29,11 @@ class DescValidatorTest {
     }
 
     @Test
-    @DisplayName("핫플레이스 설명 길이 예외")
-    void desc_exception_length() {
+    @DisplayName("핫플레이스 이름 길이 예외")
+    void name_exception_length() {
         //given
         HotPlaceRequest request = HotPlaceRequest.builder()
-                .desc(getString(501))
+                .name(getString(51))
                 .build();
 
         //when

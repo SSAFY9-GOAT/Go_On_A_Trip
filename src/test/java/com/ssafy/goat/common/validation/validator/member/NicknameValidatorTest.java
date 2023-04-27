@@ -1,4 +1,4 @@
-package com.ssafy.goat.validator.member;
+package com.ssafy.goat.common.validation.validator.member;
 
 import com.ssafy.goat.common.validation.dto.InvalidResponse;
 import com.ssafy.goat.common.validation.dto.MemberRequest;

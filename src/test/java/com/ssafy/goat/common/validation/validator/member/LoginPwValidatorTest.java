@@ -1,4 +1,4 @@
-package com.ssafy.goat.validator.member;
+package com.ssafy.goat.common.validation.validator.member;
 
 import com.ssafy.goat.common.validation.dto.InvalidResponse;
 import com.ssafy.goat.common.validation.dto.MemberRequest;
@@ -11,15 +11,16 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UsernameValidatorTest {
-    private final UsernameValidator validator = new UsernameValidator();
+class LoginPwValidatorTest {
+
+    private final LoginPwValidator validator = new LoginPwValidator();
 
     @Test
-    @DisplayName("이름 검증")
-    void usernameValidator() {
+    @DisplayName("로그인 비빌번호 검증")
+    void loginIdValidator() {
         //given
         MemberRequest request = MemberRequest.builder()
-                .username("김싸피")
+                .loginPw("SSAFY1234")
                 .build();
 
         //when
@@ -30,12 +31,12 @@ class UsernameValidatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("이름 길이 예외")
-    @CsvSource({"김수한무거북이와두루미삼천갑자동방삭치치카포사리사리센타워리워리세브리깡"})
-    void exception_length(String username) {
+    @DisplayName("로그인 비빌번호 길이 예외")
+    @CsvSource({"0123", "012345678901234567890", "null", "0123456 ", " 0123456"})
+    void exception_length(String loginPw) {
         //given
         MemberRequest request = MemberRequest.builder()
-                .username(username)
+                .loginPw(loginPw)
                 .build();
 
         //when
@@ -46,12 +47,12 @@ class UsernameValidatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("이름 타입 예외")
-    @CsvSource({"mark", "김싸피1", "김 싸 피", "김싸피!"})
-    void exception_type(String username) {
+    @DisplayName("로그인 비빌번호 타입 예외")
+    @CsvSource({"SSAFY1234!", "SSAFY 1234", "비밀번호1234"})
+    void exception_type(String loginPw) {
         //given
         MemberRequest request = MemberRequest.builder()
-                .username(username)
+                .loginPw(loginPw)
                 .build();
 
         //when

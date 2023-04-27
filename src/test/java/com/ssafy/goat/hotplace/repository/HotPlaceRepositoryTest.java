@@ -1,4 +1,4 @@
-package com.ssafy.goat.repository;
+package com.ssafy.goat.hotplace.repository;
 
 import com.ssafy.goat.attraction.AttractionInfo;
 import com.ssafy.goat.attraction.repository.AttractionJdbcRepository;

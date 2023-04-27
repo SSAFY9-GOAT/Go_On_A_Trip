@@ -1,4 +1,4 @@
-package com.ssafy.goat.validator.hotplace;
+package com.ssafy.goat.common.validation.validator.hotplace;
 
 import com.ssafy.goat.common.validation.dto.HotPlaceRequest;
 import com.ssafy.goat.common.validation.dto.InvalidResponse;

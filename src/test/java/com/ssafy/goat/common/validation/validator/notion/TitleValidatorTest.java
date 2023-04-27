@@ -1,7 +1,7 @@
-package com.ssafy.goat.validator.article;
+package com.ssafy.goat.common.validation.validator.notion;
 
-import com.ssafy.goat.common.validation.dto.ArticleRequest;
 import com.ssafy.goat.common.validation.dto.InvalidResponse;
+import com.ssafy.goat.common.validation.dto.NotionRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class TitleValidatorTest {
     @DisplayName("게시물 제목 검증")
     void titleValidator() {
         //given
-        ArticleRequest request = ArticleRequest.builder()
+        NotionRequest request = NotionRequest.builder()
                 .title("게시물 제목!")
                 .build();
 
@@ -32,7 +32,7 @@ class TitleValidatorTest {
     @DisplayName("게시물 제목 길이 예외")
     void title_exception_length() {
         //given
-        ArticleRequest request = ArticleRequest.builder()
+        NotionRequest request = NotionRequest.builder()
                 .title(getString(101))
                 .build();
 

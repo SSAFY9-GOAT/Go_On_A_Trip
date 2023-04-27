@@ -1,4 +1,4 @@
-package com.ssafy.goat.validator.member;
+package com.ssafy.goat.common.validation.validator.member;
 
 import com.ssafy.goat.common.validation.dto.InvalidResponse;
 import com.ssafy.goat.common.validation.dto.MemberRequest;
@@ -11,16 +11,16 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LoginPwValidatorTest {
+class BirthValidatorTest {
 
-    private final LoginPwValidator validator = new LoginPwValidator();
+    private final BirthValidator validator = new BirthValidator();
 
     @Test
-    @DisplayName("로그인 비빌번호 검증")
-    void loginIdValidator() {
+    @DisplayName("생년월일 검증")
+    void birthValidator() {
         //given
         MemberRequest request = MemberRequest.builder()
-                .loginPw("SSAFY1234")
+                .birth("010101")
                 .build();
 
         //when
@@ -31,12 +31,12 @@ class LoginPwValidatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("로그인 비빌번호 길이 예외")
-    @CsvSource({"0123", "012345678901234567890", "null", "0123456 ", " 0123456"})
-    void exception_length(String loginPw) {
+    @DisplayName("생년월일 길이 예외")
+    @CsvSource({"9911", "20010101"})
+    void exception_length(String birth) {
         //given
         MemberRequest request = MemberRequest.builder()
-                .loginPw(loginPw)
+                .birth(birth)
                 .build();
 
         //when
@@ -47,12 +47,12 @@ class LoginPwValidatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("로그인 비빌번호 타입 예외")
-    @CsvSource({"SSAFY1234!", "SSAFY 1234", "비밀번호1234"})
-    void exception_type(String loginPw) {
+    @DisplayName("생년월일 타입 예외")
+    @CsvSource({"99.1.1", "O1O1O1"})
+    void exception_type(String birth) {
         //given
         MemberRequest request = MemberRequest.builder()
-                .loginPw(loginPw)
+                .birth(birth)
                 .build();
 
         //when

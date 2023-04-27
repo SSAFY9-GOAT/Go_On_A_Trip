@@ -1,4 +1,4 @@
-package com.ssafy.goat.repository;
+package com.ssafy.goat.tripplan.repository;
 
 import com.ssafy.goat.attraction.AttractionInfo;
 import com.ssafy.goat.member.Member;

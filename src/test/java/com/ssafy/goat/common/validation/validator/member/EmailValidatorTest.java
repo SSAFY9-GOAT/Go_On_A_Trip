@@ -1,4 +1,4 @@
-package com.ssafy.goat.validator.member;
+package com.ssafy.goat.common.validation.validator.member;
 
 import com.ssafy.goat.common.validation.dto.InvalidResponse;
 import com.ssafy.goat.common.validation.dto.MemberRequest;
@@ -11,16 +11,16 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LoginIdValidatorTest {
+class EmailValidatorTest {
 
-    private final LoginIdValidator validator = new LoginIdValidator();
+    private final EmailValidator validator = new EmailValidator();
 
     @Test
-    @DisplayName("로그인 아이디 검증")
-    void loginIdValidator() {
+    @DisplayName("이메일 검증")
+    void usernameValidator() {
         //given
         MemberRequest request = MemberRequest.builder()
-                .loginId("ssafy")
+                .email("ssafy@ssafy.com")
                 .build();
 
         //when
@@ -31,12 +31,12 @@ class LoginIdValidatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("로그인 아이디 길이 예외")
-    @CsvSource({"0123", "012345678901234567890", "null", "1234 "})
-    void exception_length(String loginId) {
+    @DisplayName("이메일 길이 예외")
+    @CsvSource({"ssafy0123456789012345678901234567890123456789@ssafy.com"})
+    void exception_length(String email) {
         //given
         MemberRequest request = MemberRequest.builder()
-                .loginId(loginId)
+                .email(email)
                 .build();
 
         //when
@@ -47,12 +47,13 @@ class LoginIdValidatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("로그인 아이디 타입 예외")
-    @CsvSource({"ssafy!", "ssafy 9", "싸피", "SSAFY"})
-    void exception_type(String loginId) {
+    @DisplayName("이메일 포멧 예외")
+    @CsvSource({"ssafyssafy.com", "ssafy@ssafycom", "ssafy@ssafy", "ssafy@.com", "@ssafy.com",
+            "ssafy@ssafy.", "ssafyssafycom", "싸피@싸피.컴", "ssafy!@ssafy.com", "ssafy@ ssafy.com"})
+    void exception_type(String email) {
         //given
         MemberRequest request = MemberRequest.builder()
-                .loginId(loginId)
+                .email(email)
                 .build();
 
         //when
