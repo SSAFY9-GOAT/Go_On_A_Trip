@@ -1,14 +1,15 @@
 package com.ssafy.goat.tripplan.repository;
 
-import attraction.AttractionInfo;
-import member.Member;
-import tripplan.DetailPlan;
-import tripplan.TripPlan;
-import tripplan.dto.DetailPlanDto;
-import tripplan.dto.PlanListDto;
-import tripplan.dto.PlanSearch;
-import tripplan.dto.TripPlanDto;
-import util.DBConnectionUtil;
+
+import com.ssafy.goat.attraction.AttractionInfo;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.tripplan.DetailPlan;
+import com.ssafy.goat.tripplan.TripPlan;
+import com.ssafy.goat.tripplan.dto.DetailPlanDto;
+import com.ssafy.goat.tripplan.dto.PlanListDto;
+import com.ssafy.goat.tripplan.dto.PlanSearch;
+import com.ssafy.goat.tripplan.dto.TripPlanDto;
+import com.ssafy.goat.util.DBConnectionUtil;
 
 import java.sql.*;
 import java.time.LocalDateTime;

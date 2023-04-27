@@ -1,6 +1,6 @@
 package com.ssafy.goat.tripplan;
 
-import attraction.AttractionInfo;
+import com.ssafy.goat.attraction.AttractionInfo;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -1,11 +1,5 @@
 package com.ssafy.goat.tripplan.repository;
 
-import tripplan.DetailPlan;
-import tripplan.TripPlan;
-import tripplan.dto.PlanListDto;
-import tripplan.dto.PlanSearch;
-import tripplan.dto.TripPlanDto;
-
 import java.util.List;
 import java.util.Optional;
 
