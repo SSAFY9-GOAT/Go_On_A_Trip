@@ -6,47 +6,33 @@ import com.ssafy.goat.article.dto.ArticleDetailDto;
 import com.ssafy.goat.article.dto.ArticleDto;
 import com.ssafy.goat.article.dto.ArticleListDto;
 import com.ssafy.goat.article.dto.ArticleSearch;
-import com.ssafy.goat.article.repository.ArticleJdbcRepository;
-import com.ssafy.goat.article.repository.ArticleQueryJdbcRepository;
 import com.ssafy.goat.article.repository.ArticleQueryRepository;
 import com.ssafy.goat.article.repository.ArticleRepository;
 import com.ssafy.goat.common.exception.ArticleException;
 import com.ssafy.goat.member.Authority;
 import com.ssafy.goat.member.Member;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 import static com.ssafy.goat.common.exception.ExceptionMessage.*;
 
+@Service
+@RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService {
 
-    private static final ArticleService articleService = new ArticleServiceImpl();
     private final ArticleRepository articleRepository;
     private final ArticleQueryRepository articleQueryRepository;
     private final MemberRepository memberRepository;
-
-    public ArticleServiceImpl() {
-        articleRepository = ArticleJdbcRepository.getArticleRepository();
-        articleQueryRepository = ArticleQueryJdbcRepository.getArticleQueryRepository();
-        memberRepository = MemberJdbcRepository.getMemberRepository();
-    }
-
-    public static ArticleService getArticleService() {
-        return articleService;
-    }
 
     @Override
     public int addArticle(Long memberId, ArticleDto articleDto) {
         Member member = findMember(memberId);
 
-        Article article = Article.builder()
-                .title(articleDto.getTitle())
-                .content(articleDto.getContent())
-                .member(member)
-                .build();
+        Article article = Article.builder().title(articleDto.getTitle()).content(articleDto.getContent()).member(member).build();
 
         return articleRepository.save(article);
     }
