@@ -5,6 +5,5 @@ import com.ssafy.goat.attraction.Sido;
 import java.util.List;
 
 public interface SidoRepository {
-
     List<Sido> findAll();
 }
