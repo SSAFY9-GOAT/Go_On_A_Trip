@@ -100,7 +100,7 @@ public class ArticleJdbcRepository implements ArticleRepository {
         PreparedStatement pstmt = null;
         try {
             conn = dbConnectionUtil.getConnection();
-            String sql = "update article set title=?, content=?, last_modified_date=? where article_id=?;";
+            String sql = "update article set title=?, content=?, last_modified_date=? where article_id=?";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, article.getTitle());
@@ -124,7 +124,7 @@ public class ArticleJdbcRepository implements ArticleRepository {
         PreparedStatement pstmt = null;
         try {
             conn = dbConnectionUtil.getConnection();
-            String sql = "update article set hit=? where article_id=?;";
+            String sql = "update article set hit=? where article_id=?";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, article.getHit());

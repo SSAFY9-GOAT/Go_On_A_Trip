@@ -5,6 +5,7 @@ import com.ssafy.goat.article.dto.ArticleDetailDto;
 import com.ssafy.goat.article.dto.ArticleListDto;
 import com.ssafy.goat.article.dto.ArticleSearch;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,9 +28,9 @@ public interface ArticleMapper {
 
     Optional<ArticleDetailDto> findDetailById(Long articleId);
 
-    List<ArticleListDto> findListByCondition(ArticleSearch condition, int pageNum, int amount);
+    List<ArticleListDto> findListByCondition(@Param("condition") ArticleSearch condition, @Param("pageNum") int pageNum, @Param("amount") int amount);
 
-    List<ArticleListDto> findListByMemberId(Long memberId, int pageNum, int amount);
+    List<ArticleListDto> findListByMemberId(@Param("memberId") Long memberId, @Param("pageNum") int pageNum, @Param("amount") int amount);
 
     int findTotalCount();
 }

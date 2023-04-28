@@ -8,7 +8,73 @@
         values (#{member.id}, #{title}, #{content})
     </insert>
 
-    <select id="findById" parameterType="long">
-        select * from article where article_id = #{articleId}
+    <select id="findById" parameterType="long" resultType="article">
+        select *
+        from article
+        where article_id = #{articleId}
+    </select>
+
+    <select id="findAll" resultType="article">
+        select *
+        from article
+    </select>
+
+    <update id="update" parameterType="article">
+        update article
+        set title=#{title},
+            content=#{content},
+            last_modified_date=now()
+        where article_id = #{id}
+    </update>
+
+
+    <update id="updateHit" parameterType="article">
+        update article
+        set hit=#{hit}
+        where article_id = #{id}
+    </update>
+
+    <delete id="remove" parameterType="long">
+        delete
+        from article
+        where article_id = #{articleId}
+    </delete>
+
+    <select id="findDetailById" parameterType="long">
+        select a.article_id, a.title, a.content, a.created_date, m.member_id, m.nickname
+        from article a
+                 join member m on a.member_id = m.member_id
+        where a.article_id = #{articleId}
+    </select>
+
+    <select id="findListByCondition">
+        select a.article_id, a.title, a.created_date
+        from article a
+        join member m
+        on a.member_id=m.member_id
+        where m.nickname like concat('%',#{condition.condition}%, '%')
+        or a.title like concat('%',#{condition.condition}%, '%')
+        or a.content like concat('%',#{condition.condition}%, '%')
+        <if test="condition.getSortCondition() == 2">
+            order by hit desc
+        </if>
+        <if test="condition.getSortCondition() == 1">
+            order by created_date desc
+        </if>
+        limit #{pageNum}, #{amount}
+    </select>
+
+    <select id="findListByMemberId">
+        select a.article_id, a.title, a.created_date
+        from article a
+                 join member m
+                      on a.member_id = m.member_id
+        where a.member_id = #{memberId}
+        order by created_date desc limit #{pageNum}, #{amount}
+    </select>
+
+    <select id="findTotalCount">
+        select count(*) as total
+        from article
     </select>
 </mapper>
