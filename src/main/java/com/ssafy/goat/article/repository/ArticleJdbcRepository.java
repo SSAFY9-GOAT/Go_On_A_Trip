@@ -1,7 +1,5 @@
 package com.ssafy.goat.article.repository;
 
-
-
 import com.ssafy.goat.article.Article;
 import com.ssafy.goat.member.Member;
 import com.ssafy.goat.util.DBConnectionUtil;
@@ -54,7 +52,7 @@ public class ArticleJdbcRepository implements ArticleRepository {
         ResultSet rs = null;
         try {
             conn = dbConnectionUtil.getConnection();
-            String sql = "select * from article where article_id = ?;";
+            String sql = "select * from article where article_id = ?";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, articleId);

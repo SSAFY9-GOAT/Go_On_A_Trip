@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/article")
-public class ArticleController extends HttpServlet {
+public class ArticleServletController extends HttpServlet {
 
     private ArticleService articleService;
 
