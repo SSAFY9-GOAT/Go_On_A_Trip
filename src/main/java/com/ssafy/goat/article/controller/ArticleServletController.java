@@ -30,7 +30,7 @@ public class ArticleServletController extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        articleService = ArticleServiceImpl.getArticleService();
+//        articleService = ArticleServiceImpl.getArticleService();
     }
 
     @Override

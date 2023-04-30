@@ -96,7 +96,7 @@ public class ArticleController {
             model.addAttribute("msg", "로그인 후 사용해주세요.");
             return "account/login";
         }
-        return "/article/editArticle";
+        return "article/editArticle";
     }
 
     @PostMapping("/edit/{articleId}")
