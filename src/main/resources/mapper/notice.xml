@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.goat.notion.mapper.NoticeMapper">
+
+    <insert id="save" parameterType="notion">
+        insert into notion(title, content, top, created_by, last_modified_by)
+        values (#{title}, #{content}, #{top}, #{createdBy.id}, #{lastModifiedBy.id})
+    </insert>
+
+    <select id="findById" parameterType="long" resultType="notion">
+        select *
+        from notion
+        where notion_id = #{notionId}
+    </select>
+
+    <select id="findAll" resultType="notion">
+        select *
+        from notion
+    </select>
+
+    <select id="findTopAll" resultType="notion">
+        select *
+        from notion
+        where top = 1
+        order by created_date desc
+    </select>
+
+    <select id="findByPaging" resultType="notion">
+        select *
+        from notion
+        where top = 0
+        order by created_date desc
+            limit #{pageNum}, #{amount}
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        select count(*) as total
+        from notion
+    </select>
+
+    <update id="update" parameterType="notion">
+        update notion
+        set title=#{title},
+            content=#{content},
+            last_modified_by=#{lastModifiedBy.id},
+            last_modified_date=#{lastModifiedDate}
+        where notion_id = #{id}
+    </update>
+
+    <delete id="remove" parameterType="long">
+        delete
+        from notion
+        where notion_id = #{notionId}
+    </delete>
+
+</mapper>
