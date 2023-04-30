@@ -22,27 +22,27 @@ public class ArticleMybatisRepository implements ArticleRepository {
 
     @Override
     public Optional<Article> findById(Long articleId) {
-        return Optional.empty();
+        return articleMapper.findById(articleId);
     }
 
     @Override
     public List<Article> findAll() {
-        return null;
+        return articleMapper.findAll();
     }
 
     @Override
     public int update(Article article) {
-        return 0;
+        return articleMapper.update(article);
     }
 
     @Override
     public int updateHit(Article article) {
-        return 0;
+        return articleMapper.updateHit(article);
     }
 
     @Override
     public int remove(Long articleId) {
-        return 0;
+        return articleMapper.remove(articleId);
     }
 
     @Override
