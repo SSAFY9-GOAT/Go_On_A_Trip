@@ -10,24 +10,25 @@ import com.ssafy.goat.trend.Trend;
 import com.ssafy.goat.trend.dto.TrendViewDto;
 import com.ssafy.goat.trend.repository.TrendJdbcRepository;
 import com.ssafy.goat.trend.repository.TrendRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class TrendServiceImpl implements TrendService {
+public class TrendServiceImplT implements TrendService {
 
+    private static final TrendService trendService = new TrendServiceImplT();
     private final TrendRepository trendRepository;
     private final MemberRepository memberRepository;
     private final HotPlaceRepository hotPlaceRepository;
 
-    private TrendServiceImpl() {
+    private TrendServiceImplT() {
         trendRepository = TrendJdbcRepository.getTrendRepository();
         memberRepository = MemberJdbcRepository.getMemberRepository();
         hotPlaceRepository = HotPlaceJdbcRepository.getHotPlaceRepository();
+    }
+
+    public static TrendService getTrendService() {
+        return trendService;
     }
 
     @Override
