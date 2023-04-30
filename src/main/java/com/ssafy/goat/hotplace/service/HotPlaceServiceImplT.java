@@ -17,19 +17,29 @@ import com.ssafy.goat.hotplace.repository.HotPlaceRepository;
 import com.ssafy.goat.member.Member;
 import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class HotPlaceServiceImpl implements HotPlaceService {
-private final HotPlaceRepository hotPlaceRepository;
-private final HotPlaceQueryRepository hotPlaceQueryRepository;
-private final MemberRepository memberRepository;
-private final AttractionRepository attractionRepository;
+public class HotPlaceServiceImplT implements HotPlaceService {
+
+  private static final HotPlaceService hotPlaceService = new HotPlaceServiceImplT();
+
+  private final HotPlaceRepository hotPlaceRepository;
+  private final HotPlaceQueryRepository hotPlaceQueryRepository;
+  private final MemberRepository memberRepository;
+  private final AttractionRepository attractionRepository;
+
+  private HotPlaceServiceImplT() {
+    hotPlaceRepository = HotPlaceJdbcRepository.getHotPlaceRepository();
+    hotPlaceQueryRepository = HotPlaceQueryJdbcRepository.getHotPlaceQueryRepository();
+    memberRepository = MemberJdbcRepository.getMemberRepository();
+    attractionRepository = AttractionJdbcRepository.getAttractionRepository();
+  }
+
+  public static HotPlaceService getHotPlaceService() {
+    return hotPlaceService;
+  }
 
   @Override
   public int addHotPlace(Long memberId, int contentId, HotPlaceDto hotPlaceDto) {
