@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.goat.trend.mapper.TrendMapper">
+    <insert id="save">
+        insert into trend(content_id)
+        values (#{contentId})
+    </insert>
+    <!--    <select id="findByContentId"></select>-->
+    <select id="findPopularByTeenage" resultType="trendViewDto">
+        select *
+        from trend t
+        join attraction_info a
+        on t.content_id = a.content_id
+        order by teenage desc limit 0, 1
+    </select>
+    <select id="findPopularByTwenty" resultType="trendViewDto">
+        select *
+        from trend t
+        join attraction_info a
+        on t.content_id = a.content_id
+        order by twenty desc limit 0, 1
+    </select>
+
+    <select id="findPopularByThirty" resultType="trendViewDto">
+        select *
+        from trend t
+        join attraction_info a
+        on t.content_id = a.content_id
+        order by thirty desc limit 0, 1
+    </select>
+    <select id="findPopularByMale" resultType="trendViewDto">
+        select *
+        from trend t
+        join attraction_info a
+        on t.content_id = a.content_id
+        order by male desc limit 0, 1
+    </select>
+    <select id="findPopularByFemale" resultType="trendViewDto">
+        select *
+        from trend t
+        join attraction_info a
+        on t.content_id = a.content_id
+        order by female desc limit 0, 1
+    </select>
+
+    <update id="update" parameterType="trend">
+        update trend
+        set teenage=#{teenage}, twenty=#{twenty}, thirty=#{thirty}, male=#{male}, female=#{female}
+        where content_id=#{contentId}
+    </update>
+</mapper>
