@@ -4,51 +4,38 @@ import com.ssafy.goat.attraction.dto.AttractionDto;
 import com.ssafy.goat.attraction.dto.AttractionSearch;
 import com.ssafy.goat.attraction.dto.GugunDto;
 import com.ssafy.goat.attraction.dto.SidoDto;
-import com.ssafy.goat.attraction.service.*;
+import com.ssafy.goat.attraction.service.AttractionService;
+import com.ssafy.goat.attraction.service.GugunService;
+import com.ssafy.goat.attraction.service.SidoService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/attraction")
-public class AttractionController extends HttpServlet {
+@Controller
+@RequestMapping("/attraction")
+@RequiredArgsConstructor
+public class AttractionController {
+    private final AttractionService attractionService;
+    private final SidoService sidoService;
+    private final GugunService gugunService;
 
-    private AttractionService attractionService;
-    private SidoService sidoService;
-    private GugunService gugunService;
-
-    @Override
-    public void init() {
-        attractionService = AttractionServiceImpl.getAttractionService();
-        sidoService = SidoServiceImpl.getSidoService();
-        gugunService = GugunServiceImpl.getGugunService();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        switch (action) {
-            case "search":
-                search(request, response);
-                break;
-        }
-    }
-
-    private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int sidoCode = getSidoCode(request);
-        int gugunCode = getGugunCode(request);
-        int contentTypeId = getContentTypeId(request);
+    @GetMapping("/search")
+    public String search(@RequestParam("sidoCode") String sidoCodeS, @RequestParam("gugunCode") String gugunCodeS, @RequestParam("contentTypeId") String contentTypeIdS, Model model){
+        int sidoCode = getSidoCode(sidoCodeS);
+        int gugunCode = getGugunCode(gugunCodeS);
+        int contentTypeId = getContentTypeId(contentTypeIdS);
 
         List<SidoDto> sidos = sidoService.findAll();
-        request.setAttribute("sidos", sidos);
+        model.addAttribute("sidos", sidos);
 
         List<GugunDto> guguns = gugunService.searchGuguns(gugunCode);
-        request.setAttribute("guguns", guguns);
+        model.addAttribute("guguns", guguns);
 
         AttractionSearch condition = AttractionSearch.builder()
                 .sidoCode(sidoCode)
@@ -57,33 +44,28 @@ public class AttractionController extends HttpServlet {
                 .build();
 
         List<AttractionDto> attractions = attractionService.searchAttraction(condition);
-        request.setAttribute("attractions", attractions);
+        model.addAttribute("attractions", attractions);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/attraction/attractionList.jsp");
-        dispatcher.forward(request, response);
+        return "attractionList";
     }
-
-    private int getSidoCode(HttpServletRequest request) {
-        String sidoCode = request.getParameter("sidoCode");
-        if (sidoCode == null) {
+    private int getSidoCode(String sidoCodeS) {
+        if (sidoCodeS == null) {
             return 1;
         }
-        return Integer.parseInt(sidoCode);
+        return Integer.parseInt(sidoCodeS);
     }
 
-    private int getGugunCode(HttpServletRequest request) {
-        String gugunCode = request.getParameter("gugunCode");
-        if (gugunCode == null) {
+    private int getGugunCode(String gugunCodeS) {
+        if (gugunCodeS == null) {
             return 1;
         }
-        return Integer.parseInt(gugunCode);
+        return Integer.parseInt(gugunCodeS);
     }
 
-    private int getContentTypeId(HttpServletRequest request) {
-        String contentTypeId = request.getParameter("contentTypeId");
-        if (contentTypeId == null) {
+    private int getContentTypeId(String contentTypeIdS) {
+        if (contentTypeIdS == null) {
             return 12;
         }
-        return Integer.parseInt(contentTypeId);
+        return Integer.parseInt(contentTypeIdS);
     }
 }

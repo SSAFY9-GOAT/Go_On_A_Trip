@@ -26,12 +26,12 @@ public class AttractionMybatisRepository implements AttractionRepository {
 
     @Override
     public List<AttractionInfo> findByTitle(String title) {
-        return null;
+        return attractionMapper.findByTitle(title);
     }
 
     @Override
     public List<AttractionInfo> findByContentIds(List<Integer> contentIds) {
-        return null;
+        return attractionMapper.findByContentIds(contentIds);
     }
 
 }
