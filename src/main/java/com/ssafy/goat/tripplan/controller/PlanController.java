@@ -1,10 +1,8 @@
 package com.ssafy.goat.tripplan.controller;
 
-
 import com.ssafy.goat.algorithm.ShortestPath;
 import com.ssafy.goat.attraction.AttractionInfo;
 import com.ssafy.goat.attraction.service.AttractionService;
-import com.ssafy.goat.attraction.service.AttractionServiceImpl;
 import com.ssafy.goat.common.Page;
 import com.ssafy.goat.common.exception.PlanException;
 import com.ssafy.goat.member.dto.LoginMember;
@@ -13,85 +11,39 @@ import com.ssafy.goat.tripplan.dto.PlanListDto;
 import com.ssafy.goat.tripplan.dto.PlanSearch;
 import com.ssafy.goat.tripplan.dto.TripPlanDto;
 import com.ssafy.goat.tripplan.service.PlanService;
-import com.ssafy.goat.tripplan.service.PlanServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/tripPlan")
-public class PlanController extends HttpServlet {
+@Controller
+@RequestMapping("/tripPlan")
+@RequiredArgsConstructor
+public class PlanController{
+    private final PlanService planService;
+    private final AttractionService attractionService;
 
-    private PlanService planService;
-    private AttractionService attractionService;
-
-//    @Override
-//    public void init() throws ServletException {
-//        planService = PlanServiceImpl.getPlanService();
-//        attractionService = AttractionServiceImpl.getAttractionService();
-//    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        switch (action) {
-            case "mvcreate":
-                doMvCreate(request, response);
-                break;
-            case "create":
-                doCreate(request, response);
-                break;
-            case "list":
-                doList(request, response);
-                break;
-            case "detail":
-                doDetail(request, response);
-                break;
-            case "add":
-                break;
-            case "deletePlan":
-                doRemovePlan(request, response);
-                break;
-            case "remove":
-                break;
-        }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-        doGet(request, response);
-    }
-
-    private void doMvCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+    @GetMapping("/mvcreate")
+    public String doMvCreate(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model){
         if (loginMember == null) {
             request.setAttribute("msg", "로그인 후 이용해주세요.");
-            forward(request, response, "/account/login.jsp");
-            return;
+            return "account/login";
         }
-        forward(request, response, "/tripplan/createPlan.jsp");
+        return "createPlan";
     }
-
-    private void doCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+    @PostMapping("/create")
+    public String doCreate(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model){
         String title = request.getParameter("planTitle");
         String[] contentList = request.getParameter("contentList").split(",");
         List<Integer> contentIdList = new ArrayList<>();
 
         if(contentList.length<2){
             request.setAttribute("msg", "경로를 2개 이상 추가해주세요");
-            forward(request, response, "/tripplan/createPlan.jsp");
-            return;
+            return "createPlan";
         }
         for (String contentId : contentList) {
             contentIdList.add(Integer.parseInt(contentId));
@@ -106,10 +58,11 @@ public class PlanController extends HttpServlet {
         for (AttractionInfo path : shortestPaths) {
             planService.addDetailPlan(loginMember.getId(), tripPlanId, path.getId());
         }
-        redirect(request, response, "/tripPlan?action=detail&tripPlanId=" + tripPlanId);
+//        model.addAttribute("tripPlanId", tripPlanId);
+        return "redirect:/tripPlan/detail";
     }
-
-    private void doList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @GetMapping("/list")
+    public String doList(HttpServletRequest request, Model model){
         String condition = request.getParameter("condition") == null ? "" : request.getParameter("condition");
 
         int pageNum = 1;
@@ -128,27 +81,23 @@ public class PlanController extends HttpServlet {
         int totalCount = planService.getTotalCount();
         Page page = new Page(pageNum, amount, totalCount);
 
-        request.setAttribute("page", page);
-        request.setAttribute("plans", plans);
-        forward(request, response, "/tripplan/tripList.jsp");
+        model.addAttribute("page", page);
+        model.addAttribute("plans", plans);
+        return "tripList";
     }
-
-    private void doDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @GetMapping("/detail")
+    public String doDetail(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model){
         Long tripPlanId = Long.parseLong(request.getParameter("tripPlanId"));
         TripPlanDto tripPlan = planService.showPlan(tripPlanId);
-        request.setAttribute("tripPlan", tripPlan);
-        forward(request, response, "/tripplan/viewPlan.jsp");
+        model.addAttribute("tripPlan", tripPlan);
+        return "viewPlan";
     }
-
-    private void doRemovePlan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+    @GetMapping("/deletePlan")
+    public String doRemovePlan(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember,  Model model){
         Long tripPlanId = Long.parseLong(request.getParameter("planId"));
-
         if (loginMember == null) {
             request.setAttribute("msg", "로그인 후 이용해주세요.");
-            forward(request, response, "/account/login.jsp");
-            return;
+            return "account/login";
         }
 
         TripPlanDto tripPlan = planService.showPlan(tripPlanId);
@@ -159,18 +108,8 @@ public class PlanController extends HttpServlet {
             planService.removeTripPlan(loginMember.getId(), tripPlanId);
         }catch (PlanException e){
             request.setAttribute("msg", "자신의 플랜만 삭제 가능합니다.");
-            forward(request, response, "/tripplan/tripList.jsp");
-            return;
+            return "tripPlan/tripList";
         }
-        redirect(request, response, "/tripPlan?action=list");
-    }
-
-    private void forward(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-        dispatcher.forward(request, response);
-    }
-
-    private void redirect(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
-        response.sendRedirect(request.getContextPath() + path);
+        return "redirect:/tripPlan/list";
     }
 }
