@@ -13,8 +13,8 @@
 
 <table>
     <tr>
-        <td align="center" valign="top" width="14.28%"><a href="https://github.com/leeyr0412"><img src="https://avatars.githubusercontent.com/u/64480162?v=4?s=100" width="100px;" alt="leeyr0412"/><br /><sub><b>이예리</b></sub></a><br />💻</td>
-        <td align="center" valign="top" width="14.28%"><a href="https://github.com/DongHyun22"><img src="https://avatars.githubusercontent.com/u/79788971?v=4?s=100" width="100px;" alt="DongHyun22"/><br /><sub><b>김동현</b></sub></a><br />💻</td>
+        <td align="center" style="min-width: 150px;"><a href="https://github.com/leeyr0412"><img src="https://avatars.githubusercontent.com/u/64480162?v=4?s=100" width="200px;" alt="leeyr0412"/><br /><sub><b>이예리</b></sub></a><br />💻</td>
+        <td align="center" style="min-width: 150px;"><a href="https://github.com/DongHyun22"><img src="https://avatars.githubusercontent.com/u/79788971?v=4?s=100" width="200px;" alt="DongHyun22"/><br /><sub><b>김동현</b></sub></a><br />💻</td>
     </tr>
 </table>
 
