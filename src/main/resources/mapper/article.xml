@@ -9,13 +9,13 @@
     </insert>
 
     <select id="findById" parameterType="long" resultType="article">
-        select *
+        select *, article_id as 'id'
         from article
         where article_id = #{articleId}
     </select>
 
     <select id="findAll" resultType="article">
-        select *
+        select *, article_id as 'id'
         from article
     </select>
 
@@ -47,7 +47,7 @@
         where a.article_id = #{articleId}
     </select>
 
-    <select id="findListByCondition">
+    <select id="findListByCondition" resultType="Article">
         select a.article_id, a.title, a.created_date
         from article a
         join member m
@@ -64,16 +64,17 @@
         limit #{pageNum}, #{amount}
     </select>
 
-    <select id="findListByMemberId">
+    <select id="findListByMemberId" resultType="Article">
         select a.article_id, a.title, a.created_date
         from article a
                  join member m
                       on a.member_id = m.member_id
         where a.member_id = #{memberId}
-        order by created_date desc limit #{pageNum}, #{amount}
+        order by created_date desc
+        limit #{pageNum}, #{amount}
     </select>
 
-    <select id="findTotalCount">
+    <select id="findTotalCount" resultType="Article">
         select count(*) as total
         from article
     </select>

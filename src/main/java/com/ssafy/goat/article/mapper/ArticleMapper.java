@@ -6,6 +6,8 @@ import com.ssafy.goat.article.dto.ArticleListDto;
 import com.ssafy.goat.article.dto.ArticleSearch;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;

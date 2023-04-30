@@ -18,6 +18,7 @@ public class Article {
     private int hit;
     private LocalDateTime createdDate;
     private LocalDateTime lastModifiedDate;
+    private Long memberId;
 
     private Member member;
 
@@ -45,5 +46,9 @@ public class Article {
 
     public void increaseHit() {
         this.hit += 1;
+    }
+
+    public void changeMember(Long memberId) {
+        this.member  = new Member(memberId);
     }
 }

@@ -20,9 +20,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NotionServiceTest {
 
-    private final NotionService notionService = NotionServiceImpl.getNotionService();
-    private final NotionRepository notionRepository = NotionJdbcRepository.getNotionRepository();
-    private final MemberRepository memberRepository = MemberJdbcRepository.getMemberRepository();
+    private  NotionService notionService;//= NotionServiceImpl.getNotionService();
+    private  NotionRepository notionRepository = NotionJdbcRepository.getNotionRepository();
+    private  MemberRepository memberRepository = MemberJdbcRepository.getMemberRepository();
 
     private Long adminId;
     private Long clientId;

@@ -37,9 +37,9 @@ public class MemberController extends HttpServlet {
 
   @Override
   public void init() {
-    memberService = MemberServiceImpl.getMemberService();
-    articleService = ArticleServiceImpl.getArticleService();
-    hotPlaceService = HotPlaceServiceImpl.getHotPlaceService();
+//    memberService = MemberServiceImpl.getMemberService();
+//    articleService = ArticleServiceImpl.getArticleService();
+//    hotPlaceService = HotPlaceServiceImpl.getHotPlaceService();
 
   }
 
