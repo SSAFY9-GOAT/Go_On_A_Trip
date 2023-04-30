@@ -11,25 +11,29 @@ import com.ssafy.goat.notion.Notion;
 import com.ssafy.goat.notion.dto.NotionDto;
 import com.ssafy.goat.notion.repository.NotionJdbcRepository;
 import com.ssafy.goat.notion.repository.NotionRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
+@RequiredArgsConstructor
 public class NotionServiceImpl implements NotionService {
 
-    private static final NotionService notionService = new NotionServiceImpl();
+//    private  final NotionService notionService = new NotionServiceImpl();
     private final NotionRepository notionRepository;
     private final MemberRepository memberRepository;
 
-    private NotionServiceImpl() {
-        notionRepository = NotionJdbcRepository.getNotionRepository();
-        memberRepository = MemberJdbcRepository.getMemberRepository();
-    }
+//    private NotionServiceImpl() {
+//        notionRepository = NotionJdbcRepository.getNotionRepository();
+//        memberRepository = MemberJdbcRepository.getMemberRepository();
+//    }
 
-    public static NotionService getNotionService() {
-        return notionService;
-    }
+//    public static NotionService getNotionService() {
+//        return notionService;
+//    }
 
 
     @Override
