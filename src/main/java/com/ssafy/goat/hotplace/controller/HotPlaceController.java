@@ -7,103 +7,58 @@ import com.ssafy.goat.hotplace.dto.HotPlaceDto;
 import com.ssafy.goat.hotplace.dto.HotPlaceListDto;
 import com.ssafy.goat.hotplace.dto.HotPlaceSearch;
 import com.ssafy.goat.hotplace.service.HotPlaceService;
-import com.ssafy.goat.hotplace.service.HotPlaceServiceImpl;
 import com.ssafy.goat.member.dto.LoginMember;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.List;
 
-import static com.ssafy.goat.common.Message.*;
+import static com.ssafy.goat.common.Message.EXPIRE_SESSION;
+import static com.ssafy.goat.common.Message.REQUEST_LOGIN;
 
-@WebServlet("/hotPlace")
-@MultipartConfig(
-        maxFileSize = 1024 * 1024 * 5,
-        maxRequestSize = 1024 * 1024 * 50
-)
-public class HotPlaceController extends HttpServlet {
+@Controller
+@RequestMapping("/hotPlace")
+@RequiredArgsConstructor
+public class HotPlaceController {
+    private final HotPlaceService hotPlaceService;
 
-    private HotPlaceService hotPlaceService;
-
-    @Override
-    public void init() throws ServletException {
-        hotPlaceService = HotPlaceServiceImpl.getHotPlaceService();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        switch (action) {
-            case "list":
-                doList(request, response);
-                break;
-            case "mvwrite":
-                doMvwrite(request, response);
-                break;
-            case "write":
-                doWrite(request, response);
-                break;
-            case "detail":
-                doDetail(request, response);
-                break;
-            case "mvedit":
-                doMvedit(request, response);
-                break;
-            case "edit":
-                doEdit(request, response);
-                break;
-            case "remove":
-                doRemove(request, response);
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-        doGet(request, response);
-    }
-
-    private void doList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @GetMapping("/list")
+    public String doList(HttpServletRequest request, Model model) {
         String name = request.getParameter("name") == null ? "" : request.getParameter("name");
         int select = Integer.parseInt(request.getParameter("select") == null ? "1" : request.getParameter("select"));
 
-        HotPlaceSearch hotPlaceSearch = HotPlaceSearch.builder()
-                .name(name)
-                .sortCondition(select)
-                .build();
+        HotPlaceSearch hotPlaceSearch = HotPlaceSearch.builder().name(name).sortCondition(select).build();
 
         List<HotPlaceListDto> hotPlaces = hotPlaceService.searchHotPlaces(hotPlaceSearch);
 
-        request.setAttribute("hotPlaces", hotPlaces);
+        model.addAttribute("hotPlaces", hotPlaces);
 
-        forward(request, response, "/hotplace/hotplaceList.jsp");
+        return "hotplaceList";
     }
 
-    private void doMvwrite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+    @GetMapping("/mvwrite")
+    public String doMvwrite(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
-            request.setAttribute("msg", REQUEST_LOGIN);
-            forward(request, response, "/account/login.jsp");
-            return;
+            model.addAttribute("msg", REQUEST_LOGIN);
+            return "account/login";
         }
-        forward(request, response, "/hotplace/addHotplace.jsp");
+        return "addHotplace";
     }
 
-    private void doWrite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+    @PostMapping("/write")
+    public String doWrite(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) throws IOException, ServletException {
         if (loginMember == null) {
             request.setAttribute("msg", EXPIRE_SESSION);
-            forward(request, response, "/account/login.jsp");
-            return;
+            return "account/login";
         }
 
         String name = request.getParameter("name");
@@ -117,26 +72,19 @@ public class HotPlaceController extends HttpServlet {
         FileStore fileStore = new FileStore();
         UploadFile uploadFile = fileStore.storeFile(part);
 
-        HotPlaceDto hotPlaceDto = HotPlaceDto.builder()
-                .name(name)
-                .visitedDate(visitedDate)
-                .contentTypeId(contentTypeId)
-                .desc(desc)
-                .uploadFile(uploadFile)
-                .build();
+        HotPlaceDto hotPlaceDto = HotPlaceDto.builder().name(name).visitedDate(visitedDate).contentTypeId(contentTypeId).desc(desc).uploadFile(uploadFile).build();
 
         int result = hotPlaceService.addHotPlace(loginMember.getId(), contentId, hotPlaceDto);
 
-        redirect(request, response, "/hotPlace?action=list");
+        return "redirect:/hotplace/list";
+
     }
 
-    private void doDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+    @GetMapping("/detail")
+    public String doDetail(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
             request.setAttribute("msg", REQUEST_LOGIN);
-            forward(request, response, "/account/login.jsp");
-            return;
+            return "account/login";
         }
 
         Long hotPlaceId = Long.parseLong(request.getParameter("hotPlaceId"));
@@ -144,36 +92,30 @@ public class HotPlaceController extends HttpServlet {
         HotPlaceDetailDto hotPlace = hotPlaceService.searchHotPlace(hotPlaceId);
         hotPlaceService.updateHit(hotPlaceId);
 
-        request.setAttribute("hotPlace", hotPlace);
-
-        forward(request, response, "/hotplace/viewHotplace.jsp");
+        model.addAttribute("hotPlace", hotPlace);
+        return "viewHotplace";
     }
 
-    private void doMvedit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+    @GetMapping("/mvedit")
+    public String doMvedit(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
             request.setAttribute("msg", REQUEST_LOGIN);
-            forward(request, response, "/account/login.jsp");
-            return;
+            return "account/login";
         }
 
         Long hotPlaceId = Long.parseLong(request.getParameter("hotPlaceId"));
 
         HotPlaceDetailDto hotPlace = hotPlaceService.searchHotPlace(hotPlaceId);
 
-        request.setAttribute("hotPlace", hotPlace);
-
-        forward(request, response, "/hotplace/editHotplace.jsp");
+        model.addAttribute("hotPlace", hotPlace);
+        return "editHotplace";
     }
 
-    private void doEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+    @PostMapping("/edit")
+    public String doEdit(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
             request.setAttribute("msg", EXPIRE_SESSION);
-            forward(request, response, "/account/login.jsp");
-            return;
+            return "account/login";
         }
 
         Long hotPlaceId = Long.parseLong(request.getParameter("hotPlaceId"));
@@ -189,31 +131,21 @@ public class HotPlaceController extends HttpServlet {
 
         int result = hotPlaceService.editHotPlace(loginMember.getId(), hotPlaceId, editHotPlace);
 
-        redirect(request, response, "/hotPlace?action=detail&hotPlaceId=" + hotPlaceId);
+        return "redirect:/hotplace/list";
     }
 
-    private void doRemove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+    @GetMapping("/remove")
+    public String doRemove(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
             request.setAttribute("msg", "로그인 후 사용해주세요.");
-            forward(request, response, "/account/login.jsp");
-            return;
+            return "account/login";
         }
 
         Long hotPlaceId = Long.parseLong(request.getParameter("hotPlaceId"));
-
         int result = hotPlaceService.removeHotPlace(hotPlaceId, loginMember.getId());
 
-        redirect(request, response, "/hotPlace?action=list");
+        return "redirect:/hotplace/list";
     }
 
-    private void forward(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-        dispatcher.forward(request, response);
-    }
 
-    private void redirect(HttpServletRequest request, HttpServletResponse response, String path) throws IOException {
-        response.sendRedirect(request.getContextPath() + path);
-    }
 }
