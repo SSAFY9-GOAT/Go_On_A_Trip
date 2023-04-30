@@ -2,31 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.goat.notion.mapper.NoticeMapper">
+    <resultMap id="notion" type="Notion">
+        <id column="notion_id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="hit" property="hit"/>
+        <result column="top" property="top"/>
+        <association property="createdBy" javaType="Member">
+            <id column="created_by" property="id"/>
+        </association>
+        <association property="lastModifiedBy" javaType="Member">
+            <id column="last_modified_by" property="id"/>
+        </association>
+    </resultMap>
 
     <insert id="save" parameterType="notion">
         insert into notion(title, content, top, created_by, last_modified_by)
         values (#{title}, #{content}, #{top}, #{createdBy.id}, #{lastModifiedBy.id})
     </insert>
 
-    <select id="findById" parameterType="long" resultType="notion">
+    <select id="findById" parameterType="long" resultMap="notion">
         select *
         from notion
         where notion_id = #{notionId}
     </select>
 
-    <select id="findAll" resultType="notion">
+    <select id="findAll" resultMap="notion">
         select *
         from notion
     </select>
 
-    <select id="findTopAll" resultType="notion">
+    <select id="findTopAll" resultMap="notion">
         select *
         from notion
         where top = 1
         order by created_date desc
     </select>
 
-    <select id="findByPaging" resultType="notion">
+    <select id="findByPaging" resultMap="notion">
         select *
         from notion
         where top = 0

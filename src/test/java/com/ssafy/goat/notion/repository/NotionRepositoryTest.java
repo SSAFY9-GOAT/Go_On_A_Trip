@@ -8,14 +8,21 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest
+@Transactional
 class NotionRepositoryTest {
 
-    private final NotionRepository notionRepository = NotionJdbcRepository.getNotionRepository();
-    private final MemberRepository memberRepository = MemberJdbcRepository.getMemberRepository();
+    @Autowired
+    private  NotionRepository notionRepository;
+    @Autowired
+    private  MemberRepository memberRepository ;//= MemberJdbcRepository.getMemberRepository();
 
     private Member member;
 
@@ -35,11 +42,11 @@ class NotionRepositoryTest {
         member = memberRepository.findByLoginId("admin").get();
     }
 
-    @AfterEach
-    void afterEach() {
-        notionRepository.clear();
-        memberRepository.clear();
-    }
+//    @AfterEach
+//    void afterEach() {
+//        notionRepository.clear();
+//        memberRepository.clear();
+//    }
 
     @Test
     @DisplayName("공지사항 저장")

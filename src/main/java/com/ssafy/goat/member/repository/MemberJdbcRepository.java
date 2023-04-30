@@ -3,6 +3,8 @@ package com.ssafy.goat.member.repository;
 import com.ssafy.goat.member.Member;
 import com.ssafy.goat.member.dto.MemberAddDto;
 import com.ssafy.goat.util.DBConnectionUtil;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -11,12 +13,14 @@ import java.util.Optional;
 import static com.ssafy.goat.member.Authority.ADMIN;
 import static com.ssafy.goat.member.Authority.CLIENT;
 
+@Repository
+//@NoArgsConstructor
 public class MemberJdbcRepository implements MemberRepository {
 
     private static final MemberRepository memberRepository = new MemberJdbcRepository();
     private final DBConnectionUtil dbConnectionUtil;
 
-    private MemberJdbcRepository() {
+    public MemberJdbcRepository() {
         dbConnectionUtil = DBConnectionUtil.getInstance();
     }
 

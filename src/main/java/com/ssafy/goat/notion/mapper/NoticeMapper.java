@@ -1,11 +1,13 @@
 package com.ssafy.goat.notion.mapper;
 
 import com.ssafy.goat.notion.Notion;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Optional;
 
+@Mapper
 public interface NoticeMapper {
     int save(Notion notion);
 

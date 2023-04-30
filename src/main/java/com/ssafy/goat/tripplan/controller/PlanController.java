@@ -32,11 +32,11 @@ public class PlanController extends HttpServlet {
     private PlanService planService;
     private AttractionService attractionService;
 
-    @Override
-    public void init() throws ServletException {
-        planService = PlanServiceImpl.getPlanService();
-        attractionService = AttractionServiceImpl.getAttractionService();
-    }
+//    @Override
+//    public void init() throws ServletException {
+//        planService = PlanServiceImpl.getPlanService();
+//        attractionService = AttractionServiceImpl.getAttractionService();
+//    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

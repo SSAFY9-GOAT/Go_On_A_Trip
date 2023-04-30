@@ -2,7 +2,7 @@ package com.ssafy.goat.article.service;
 
 import com.ssafy.goat.article.Article;
 import com.ssafy.goat.article.dto.ArticleDto;
-import com.ssafy.goat.article.repository.ArticleJdbcRepository;
+//import com.ssafy.goat.article.repository.ArticleJdbcRepository;
 import com.ssafy.goat.article.repository.ArticleRepository;
 import com.ssafy.goat.common.exception.ArticleException;
 import com.ssafy.goat.member.Member;
@@ -12,7 +12,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.ssafy.goat.common.exception.ExceptionMessage.*;
@@ -20,12 +24,18 @@ import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@SpringBootTest
+@Transactional
 class ArticleServiceTest {
 
-    private final ArticleService articleService = ArticleServiceImpl.getArticleService();
+    @Autowired
+    private ArticleService articleService ;
 
-    private final ArticleRepository articleRepository = ArticleJdbcRepository.getArticleRepository();
-    private final MemberRepository memberRepository = MemberJdbcRepository.getMemberRepository();
+    @Autowired
+    private ArticleRepository articleRepository;
+
+    @Autowired
+    private  MemberRepository memberRepository;
 
     private Long memberId;
     private Long articleId;
@@ -52,14 +62,15 @@ class ArticleServiceTest {
                 .member(findMember)
                 .build();
         articleRepository.save(article);
-        articleId = articleRepository.findAll().get(0).getId();
+        List<Article> articles = articleRepository.findAll();
+        articleId = articles.get(articles.size() - 1).getId();
     }
 
-    @AfterEach
-    void afterEach() {
-        articleRepository.clear();
-        memberRepository.clear();
-    }
+//    @AfterEach
+//    void afterEach() {
+//        articleRepository.clear();
+//        memberRepository.clear();
+//    }
 
     @Test
     @DisplayName("게시물 등록")

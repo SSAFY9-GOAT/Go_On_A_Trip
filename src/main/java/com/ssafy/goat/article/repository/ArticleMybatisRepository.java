@@ -2,6 +2,8 @@ package com.ssafy.goat.article.repository;
 
 import com.ssafy.goat.article.Article;
 import com.ssafy.goat.article.mapper.ArticleMapper;
+import com.ssafy.goat.member.Member;
+import com.ssafy.goat.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,6 +16,7 @@ import java.util.Optional;
 public class ArticleMybatisRepository implements ArticleRepository {
 
     private final ArticleMapper articleMapper;
+    private final MemberRepository memberRepository;
 
     @Override
     public int save(Article article) {
@@ -22,7 +25,17 @@ public class ArticleMybatisRepository implements ArticleRepository {
 
     @Override
     public Optional<Article> findById(Long articleId) {
-        return articleMapper.findById(articleId);
+//        Map<String, String> res = articleMapper.findById(articleId);
+//        Article.builder()
+//                .title(res.get("title"))
+//                .member(new Member(res.get("member_id")))
+        Optional<Article> findArticle = articleMapper.findById(articleId);
+        if (findArticle.isPresent()) {
+            Article article = findArticle.get();
+            article.changeMember(article.getMemberId());
+            return Optional.ofNullable(article);
+        }
+        return findArticle;
     }
 
     @Override

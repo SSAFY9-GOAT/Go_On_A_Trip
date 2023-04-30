@@ -3,19 +3,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.goat.attraction.mapper.AttractionMapper">
 
-    <select id="findById" parameterType="Integer" resultType="atttractionInfo">
+    <select id="findById" parameterType="Integer" resultType="attractionInfo">
         select *
         from attraction_info
         where content_id = #{contentId}
     </select>
 
-    <select id="findByConditions" parameterType="attractionSearch" resultType="atttractionInfo">
+    <select id="findByConditions" parameterType="attractionSearch" resultType="attractionInfo">
         select *
         from attraction_info
         where sido_code = #{sidoCode} and gugun_code = #{gugunCode} and content_type_id = #{contentTypeId}
     </select>
 
-    <select id="findByTitle" parameterType="String" resultType="atttractionInfo">
+    <select id="findByTitle" parameterType="String" resultType="attractionInfo">
         select *
         from attraction_info
         where title like concat('%',#{title}, '%')

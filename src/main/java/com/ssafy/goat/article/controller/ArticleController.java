@@ -7,7 +7,6 @@ import com.ssafy.goat.article.dto.ArticleListDto;
 import com.ssafy.goat.article.dto.ArticleSearch;
 import com.ssafy.goat.article.service.ArticleService;
 import com.ssafy.goat.common.Page;
-import com.ssafy.goat.common.validation.ArticleValidation;
 import com.ssafy.goat.common.validation.dto.ArticleRequest;
 import com.ssafy.goat.common.validation.dto.InvalidResponse;
 import com.ssafy.goat.member.dto.LoginMember;
@@ -106,14 +105,14 @@ public class ArticleController {
         String title = article.getTitle();
         String content = article.getContent();
 
-        ArticleValidation articleValidation = new ArticleValidation();
+//        ArticleValidation articleValidation = new ArticleValidation();
 
-        ArticleRequest articleRequest = ArticleRequest.builder()
-                .title(title)
-                .content(content)
-                .build();
+//        ArticleRequest articleRequest = ArticleRequest.builder()
+//                .title(title)
+//                .content(content)
+//                .build();
 
-        List<InvalidResponse> validate = articleValidation.validate(articleRequest);
+//        List<InvalidResponse> validate = articleValidation.validate(articleRequest);
 
         ArticleDto articleDto = ArticleDto.builder()
                 .title(title)

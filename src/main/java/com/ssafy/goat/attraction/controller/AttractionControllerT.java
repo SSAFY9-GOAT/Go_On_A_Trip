@@ -24,9 +24,9 @@ public class AttractionControllerT extends HttpServlet {
 
     @Override
     public void init() {
-        attractionService = AttractionServiceImpl.getAttractionService();
-        sidoService = SidoServiceImpl.getSidoService();
-        gugunService = GugunServiceImpl.getGugunService();
+//        attractionService = AttractionServiceImpl.getAttractionService();
+//        sidoService = SidoServiceImpl.getSidoService();
+//        gugunService = GugunServiceImpl.getGugunService();
     }
 
     @Override
