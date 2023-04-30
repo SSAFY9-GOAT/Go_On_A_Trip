@@ -14,19 +14,25 @@ import com.ssafy.goat.tripplan.dto.PlanSearch;
 import com.ssafy.goat.tripplan.dto.TripPlanDto;
 import com.ssafy.goat.tripplan.repository.PlanJdbcRepository;
 import com.ssafy.goat.tripplan.repository.PlanRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class PlanServiceImpl implements PlanService {
-
+public class PlanServiceImplT implements PlanService {
+    private static final PlanService planService = new PlanServiceImplT();
     private final PlanRepository planRepository;
     private final MemberRepository memberRepository;
     private final AttractionRepository attractionRepository;
+
+    private PlanServiceImplT() {
+        planRepository = PlanJdbcRepository.getPlanRepository();
+        memberRepository = MemberJdbcRepository.getMemberRepository();
+        attractionRepository = AttractionJdbcRepository.getAttractionRepository();
+    }
+
+    public static PlanService getPlanService() {
+        return planService;
+    }
 
     @Override
     public int addTripPlan(Long memberId, String title) {
