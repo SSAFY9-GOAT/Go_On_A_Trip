@@ -23,25 +23,26 @@ import java.util.List;
 @Controller
 @RequestMapping("/tripPlan")
 @RequiredArgsConstructor
-public class PlanController{
+public class PlanController {
     private final PlanService planService;
     private final AttractionService attractionService;
 
     @GetMapping("/mvcreate")
-    public String doMvCreate(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model){
+    public String doMvCreate(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
             request.setAttribute("msg", "로그인 후 이용해주세요.");
             return "account/login";
         }
         return "createPlan";
     }
+
     @PostMapping("/create")
-    public String doCreate(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model){
+    public String doCreate(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         String title = request.getParameter("planTitle");
         String[] contentList = request.getParameter("contentList").split(",");
         List<Integer> contentIdList = new ArrayList<>();
 
-        if(contentList.length<2){
+        if (contentList.length < 2) {
             request.setAttribute("msg", "경로를 2개 이상 추가해주세요");
             return "createPlan";
         }
@@ -61,8 +62,9 @@ public class PlanController{
 //        model.addAttribute("tripPlanId", tripPlanId);
         return "redirect:/tripPlan/detail";
     }
+
     @GetMapping("/list")
-    public String doList(HttpServletRequest request, Model model){
+    public String doList(HttpServletRequest request, Model model) {
         String condition = request.getParameter("condition") == null ? "" : request.getParameter("condition");
 
         int pageNum = 1;
@@ -85,15 +87,17 @@ public class PlanController{
         model.addAttribute("plans", plans);
         return "tripList";
     }
+
     @GetMapping("/detail")
-    public String doDetail(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model){
+    public String doDetail(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         Long tripPlanId = Long.parseLong(request.getParameter("tripPlanId"));
         TripPlanDto tripPlan = planService.showPlan(tripPlanId);
         model.addAttribute("tripPlan", tripPlan);
         return "viewPlan";
     }
+
     @GetMapping("/deletePlan")
-    public String doRemovePlan(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember,  Model model){
+    public String doRemovePlan(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         Long tripPlanId = Long.parseLong(request.getParameter("planId"));
         if (loginMember == null) {
             request.setAttribute("msg", "로그인 후 이용해주세요.");
@@ -106,7 +110,7 @@ public class PlanController{
                 planService.removeDetailPlan(loginMember.getId(), detailPlan.getDetailPlanId());
             }
             planService.removeTripPlan(loginMember.getId(), tripPlanId);
-        }catch (PlanException e){
+        } catch (PlanException e) {
             request.setAttribute("msg", "자신의 플랜만 삭제 가능합니다.");
             return "tripPlan/tripList";
         }

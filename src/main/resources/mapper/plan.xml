@@ -83,6 +83,7 @@
     </delete>
 
     <delete id="clear">
-        delete from detail_plan
+        delete
+        from detail_plan
     </delete>
 </mapper>

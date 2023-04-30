@@ -3,56 +3,74 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.goat.hotplace.mapper.HotplaceMapper">
     <insert id="save" parameterType="hotplace">
-        insert into hot_place(member_id, content_id, content_type_id, name, `desc`, visited_date, upload_file_name, store_file_name)
-        values (#{member.id}, #{articleId}, #{contentTypeId}, #{name}, #{desc}, #{visitedDate}, #{uploadFileName}, #{storeFileName})
+        insert into hot_place(member_id, content_id, content_type_id, name, `desc`, visited_date, upload_file_name,
+                              store_file_name)
+        values (#{member.id}, #{articleId}, #{contentTypeId}, #{name}, #{desc}, #{visitedDate}, #{uploadFileName},
+                #{storeFileName})
     </insert>
-    
+
     <select id="findById" parameterType="long" resultType="hotplace">
         select *
         from hot_place
         where hot_place_id = #{hotPlaceId}
     </select>
-    
+
     <select id="findAll" resultType="hotplace">
         select *
         from hot_place
     </select>
-    
+
     <update id="update" parameterType="hotplace">
         update hot_place
-        set name=#{name}, `desc`=#{desc}, visited_date=#{visitedDate}, last_modified_date=#{lastModifiedDate}
-        where hot_place_id=#{hotPlaceId}
+        set name=#{name},
+            `desc`=#{desc},
+            visited_date=#{visitedDate},
+            last_modified_date=#{lastModifiedDate}
+        where hot_place_id = #{hotPlaceId}
     </update>
 
     <update id="updateHit" parameterType="hotplace">
         update hot_place
         set hit=#{hit}
-        where hot_place_id=#{hotPlaceId}
+        where hot_place_id = #{hotPlaceId}
     </update>
 
     <delete id="remove" parameterType="long">
-        delete from hot_place
+        delete
+        from hot_place
         where hot_place_id = #{hotPlaceId}
     </delete>
 
     <delete id="clear">
-        delete from hot_place
+        delete
+        from hot_place
     </delete>
 
     <select id="findDetailById" parameterType="long" resultType="hotPlaceDetailDto">
-        select hp.hot_place_id, hp.visited_date, hp.name, hp.desc, hp.store_file_name,
-        m.member_id, m.nickname, a.title, a.first_image, a.addr1, a.zipcode, a.latitude, a.longitude
+        select hp.hot_place_id,
+               hp.visited_date,
+               hp.name,
+               hp.desc,
+               hp.store_file_name,
+               m.member_id,
+               m.nickname,
+               a.title,
+               a.first_image,
+               a.addr1,
+               a.zipcode,
+               a.latitude,
+               a.longitude
         from hot_place hp
-        join member m on hp.member_id=m.member_id
-        join attraction_info a on hp.content_id=a.content_id
-        where hp.hot_place_id=#{hotPlaceId}
+                 join member m on hp.member_id = m.member_id
+                 join attraction_info a on hp.content_id = a.content_id
+        where hp.hot_place_id = #{hotPlaceId}
     </select>
 
     <select id="findByMemberId" parameterType="long" resultType="hotPlaceListDto">
         select hp.hot_place_id, hp.name, hp.desc, hp.hit, hp.store_file_name, m.nickname, hp.created_date
         from hot_place hp
-        join member m
-        on hp.member_id = m.member_id
+                 join member m
+                      on hp.member_id = m.member_id
         where m.member_id = #{member.Id}
         order by hp.created_date desc
     </select>
@@ -60,18 +78,18 @@
     <select id="findFavoritesByMemberId" parameterType="map" resultType="hotPlaceListDto">
         select hp.hot_place_id, hp.name, hp.desc, hp.hit, hp.store_file_name, m.nickname, hp.created_date
         from hot_place hp
-        join favorite f
-        on hp.member_id = f.member_id
-        join member m
-        on f.member_id = m.member_id
+                 join favorite f
+                      on hp.member_id = f.member_id
+                 join member m
+                      on f.member_id = m.member_id
         where f.member_id = {member.Id}
         order by hp.created_date desc
-        limit #{pageNum}, #{amount}
+            limit #{pageNum}, #{amount}
     </select>
 
     <insert id="doFavorite" parameterType="map">
         insert into favorite(member_id, hotplace_id)
-        values ( #{member.id}, #{hotplaceId} )
+        values (#{member.id}, #{hotplaceId})
     </insert>
 
     <select id="findByCondition" parameterType="map">

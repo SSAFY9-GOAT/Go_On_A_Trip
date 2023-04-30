@@ -4,10 +4,12 @@ import com.ssafy.goat.hotplace.HotPlace;
 import com.ssafy.goat.hotplace.dto.HotPlaceDetailDto;
 import com.ssafy.goat.hotplace.dto.HotPlaceListDto;
 import com.ssafy.goat.hotplace.dto.HotPlaceSearch;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Optional;
 
+@Mapper
 public interface HotplaceMapper {
 
     int save(HotPlace hotPlace);
@@ -23,6 +25,7 @@ public interface HotplaceMapper {
     int remove(Long hotPlaceId);
 
     void clear();
+
     Optional<HotPlaceDetailDto> findDetailById(Long hotPlaceId);
 
     List<HotPlaceListDto> findByCondition(HotPlaceSearch condition);

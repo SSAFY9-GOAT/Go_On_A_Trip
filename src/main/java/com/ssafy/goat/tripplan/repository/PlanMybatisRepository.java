@@ -20,10 +20,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 public class PlanMybatisRepository implements PlanRepository {
     private final PlanMapper planMapper;
+
     @Override
     public int save(TripPlan tripPlan) {
         return planMapper.save(tripPlan);

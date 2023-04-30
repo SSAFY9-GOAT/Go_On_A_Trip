@@ -5,10 +5,12 @@ import com.ssafy.goat.tripplan.TripPlan;
 import com.ssafy.goat.tripplan.dto.PlanListDto;
 import com.ssafy.goat.tripplan.dto.PlanSearch;
 import com.ssafy.goat.tripplan.dto.TripPlanDto;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Optional;
 
+@Mapper
 public interface PlanMapper {
     int save(TripPlan tripPlan);
 
