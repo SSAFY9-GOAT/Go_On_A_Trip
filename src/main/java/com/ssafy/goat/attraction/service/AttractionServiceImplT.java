@@ -3,18 +3,25 @@ package com.ssafy.goat.attraction.service;
 import com.ssafy.goat.attraction.AttractionInfo;
 import com.ssafy.goat.attraction.dto.AttractionDto;
 import com.ssafy.goat.attraction.dto.AttractionSearch;
+import com.ssafy.goat.attraction.repository.AttractionJdbcRepository;
 import com.ssafy.goat.attraction.repository.AttractionRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
-@RequiredArgsConstructor
-public class AttractionServiceImpl implements AttractionService {
+public class AttractionServiceImplT implements AttractionService {
+
+    private static final AttractionService attractionService = new AttractionServiceImplT();
     private final AttractionRepository attractionRepository;
+
+    private AttractionServiceImplT() {
+        attractionRepository = AttractionJdbcRepository.getAttractionRepository();
+    }
+
+    public static AttractionService getAttractionService() {
+        return attractionService;
+    }
 
     @Override
     public AttractionDto searchAttraction(int contentId) {
