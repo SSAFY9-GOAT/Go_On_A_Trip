@@ -50,7 +50,7 @@
         </c:when>
       </c:choose>
       <a class="w-100 mt-3 mb-3 btn btn-lg btn-primary"
-         type="button" href="${root}/account?action=mvlogin">로그인하러가기
+         type="button" href="${root}/login">로그인하러가기
       </a>
     </div>
   </main>
