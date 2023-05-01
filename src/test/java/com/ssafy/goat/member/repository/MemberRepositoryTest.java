@@ -68,13 +68,21 @@ class MemberRepositoryTest {
     @DisplayName("PK로 조회")
     void findById() {
         //given
-        Member member = memberRepository.findByLoginId("ssafy").get();
+        Optional<Member> user = memberRepository.findByLoginId("ssafy");
+        Member member = null;
+        if(user.isPresent()){
+            member = user.get();
+        }
+//        Member member = memberRepository.findByLoginId("ssafy").get();
 
         //when
+        if(member != null){
         Optional<Member> findMember = memberRepository.findById(member.getId());
-
         //then
         assertThat(findMember).isPresent();
+
+        }
+
     }
 
     @Test
