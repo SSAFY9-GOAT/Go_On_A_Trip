@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +24,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @Transactional
 class MemberServiceTest {
 
-    private  MemberService memberService;// = MemberServiceImpl.getMemberService();
-    private  MemberRepository memberRepository;// = MemberJdbcRepository.getMemberRepository();
+    @Autowired
+    private MemberService memberService;// = MemberServiceImpl.getMemberService();
+    @Autowired
+    private MemberRepository memberRepository;// = MemberJdbcRepository.getMemberRepository();
 
     @BeforeEach
     void beforeEach() {
@@ -39,35 +42,35 @@ class MemberServiceTest {
                 .nickname("광주5반")
                 .authority(CLIENT)
                 .build());
-        memberRepository.save(Member.builder()
-                .loginId("ssafy")
-                .loginPw("12345678")
-                .username("김싸피")
-                .email("ssafy@ssafy.com")
-                .phone("01012345678")
-                .birth("010101")
-                .gender("1")
-                .nickname("광주5반")
-                .authority(CLIENT)
-                .build());
+//        memberRepository.save(Member.builder()
+//                .loginId("ssafy")
+//                .loginPw("12345678")
+//                .username("김싸피")
+//                .email("ssafy@ssafy.com")
+//                .phone("01012345678")
+//                .birth("010101")
+//                .gender("1")
+//                .nickname("광주5반")
+//                .authority(CLIENT)
+//                .build());
     }
 
-    @AfterEach
-    void afterEach() {
-        memberRepository.clear();
-    }
+//    @AfterEach
+//    void afterEach() {
+//        memberRepository.clear();
+//    }
 
     @Test
     @DisplayName("회원가입")
     void signUp() {
         //given
-        MemberAddDto memberAddDto = new MemberAddDto("ssafy9", "12345678", "김싸피", "ssafy9@ssafy.com", "01011111111",  "010101", "1", "싸피9기광주5반", CLIENT);
+        MemberAddDto memberAddDto = new MemberAddDto("ssafy9", "12345678", "김싸피", "ssafy9@ssafy.com", "01011111111", "010101", "1", "싸피9기광주5반", CLIENT);
 
         //when
         memberService.signUp(memberAddDto);
 
         //then
-        Optional<Member> findMember = memberRepository.findByLoginId("ssafy");
+        Optional<Member> findMember = memberRepository.findByLoginId("ssafy9");
         assertThat(findMember).isPresent();
     }
 
