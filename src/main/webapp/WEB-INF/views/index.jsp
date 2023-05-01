@@ -44,9 +44,20 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="./assets/img/panel_01.png" class="d-block w-100 h-25" alt="..."/>
-        <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Some representative placeholder content for the first slide.</p>
+        <div class="carousel-caption d-none d-md-block tongtong">
+<%--          <h5>First slide label</h5>--%>
+          <h1>
+            <span>G</span>
+            <span>o</span>
+            <span>O</span>
+            <span>n</span>
+            <span>A</span>
+            <span>T</span>
+            <span>r</span>
+            <span>i</span>
+            <span>p</span>
+          </h1>
+<%--          <p>Some representative placeholder content for the first slide.</p>--%>
         </div>
       </div>
       <div class="carousel-item">

@@ -9,7 +9,7 @@
 <%-- 부트스트랩 사용을 위한 코드 --%>
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-<link rel="stylesheet" href="assets/css/common.css">
+<link rel="stylesheet" href="${root}/assets/css/common.css">
 
 <%-- request 객체에 msg가 들어있을 때 해당 내용 알림창 띄우기 --%>
 <script>
