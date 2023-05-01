@@ -161,7 +161,7 @@
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered">
-    <form id="find-id-form" class="modal-content" method="post" action="${root}/account?action=findId">
+    <form id="find-id-form" class="modal-content" method="post" action="${root}/findId">
       <div class="modal-header">
         <h5 class="modal-title" id="findIdModalLabel">아이디 찾기</h5>
         <button
@@ -214,16 +214,16 @@
 </div>
 
 <script>
-    document.querySelector("#btn-find-pw").addEventListener("click", function () {
-        let form = document.querySelector("#find-pw-form");
-        form.setAttribute("action", "${root}/account?action=findPw");
-        form.submit();
-    });
-    document.querySelector("#btn-find-id").addEventListener("click", function () {
-        let form = document.querySelector("#find-id-form");
-        form.setAttribute("action", "${root}/account?action=findId");
-        form.submit();
-    });
+    <%--document.querySelector("#btn-find-pw").addEventListener("click", function () {--%>
+    <%--    let form = document.querySelector("#find-pw-form");--%>
+    <%--    form.setAttribute("action", "${root}/account?action=findPw");--%>
+    <%--    form.submit();--%>
+    <%--});--%>
+    <%--document.querySelector("#btn-find-id").addEventListener("click", function () {--%>
+    <%--    let form = document.querySelector("#find-id-form");--%>
+    <%--    form.setAttribute("action", "${root}/account?action=findId");--%>
+    <%--    form.submit();--%>
+    <%--});--%>
 </script>
 </body>
 </html>
