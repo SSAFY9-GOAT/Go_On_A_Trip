@@ -37,7 +37,7 @@
           <a id="btn-mypage" href="${root}/member?action=view" class="nav-link link-dark px-2">마이페이지</a>
         </li>
         <li class="nav-item">
-          <a id="btn-logout" href="${root}/account?action=logout" class="nav-link link-dark px-2">로그아웃</a>
+          <a id="btn-logout" href="${root}/logout" class="nav-link link-dark px-2">로그아웃</a>
         </li>
       </c:otherwise>
     </c:choose>
