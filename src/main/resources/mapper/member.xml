@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.goat.member.mapper.MemberMapper">
+
+    <insert id="save" parameterType="Member">
+        insert into member(login_id, login_pw, username, email, phone, birth, gender, nickname,
+                           nickname_last_modified_date, authority)
+        values (#{loginId}, #{loginPw}, #{username}, #{email}, #{phone}, #{birth}, #{gender}, #{nickname},
+                #{nicknameLastModifiedDate}, #{authority})
+    </insert>
+
+    <select id="findById" parameterType="long" resultType="member">
+        select *, member_id as 'id'
+        from member
+        where member_id = #{memberId}
+    </select>
+
+    <select id="findByLoginId" parameterType="string" resultType="member">
+        select *, member_id as 'id'
+        from member
+        where login_id = #{loginId}
+    </select>
+
+    <select id="findByLoginIdAndLoginPw" resultType="member">
+        select *, member_id as 'id'
+        from member
+        where login_id = #{loginId}
+          and login_pw = #{loginPw}
+    </select>
+
+    <select id="duplicateSignup" parameterType="memberAddDto" resultType="member">
+        select *, member_id as 'id'
+        from member
+        where login_id = #{loginId}
+           or email = #{email}
+           or phone = #{phone}
+           or nickname = #{nickname}
+    </select>
+
+    <select id="findByEmail" parameterType="string" resultType="member">
+        select *, member_id as 'id'
+        from member
+        where email = #{email}
+    </select>
+
+    <select id="findByPhone" parameterType="string" resultType="member">
+        select *, member_id as 'id'
+        from member
+        where phone = #{phone}
+    </select>
+
+    <select id="findByNickname" parameterType="string" resultType="member">
+        select *, member_id as 'id'
+        from member
+        where nickname = #{nickname}
+    </select>
+
+    <update id="update">
+        update member
+        set login_pw=#{member.loginPw},
+            email=#{member.email},
+            phone=#{member.phone},
+            nickname=#{member.nickname},
+            nickname_last_modified_date=#{member.nicknameLastModifiedDate},
+            last_modified_date=#{member.lastModifiedDate}
+        where member_id = #{memberId}
+    </update>
+
+    <delete id="remove" parameterType="long">
+        delete
+        from member
+        where member_id = #{memberId}
+    </delete>
+
+</mapper>
