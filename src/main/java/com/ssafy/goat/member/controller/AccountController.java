@@ -69,4 +69,11 @@ public class AccountController {
         redirectAttributes.addFlashAttribute("findId", findId);
         return "redirect:/findResult";
     }
+
+    @PostMapping("/findPw")
+    public String findPw(@RequestParam("findPwId") String id, @RequestParam("findPwPhone") String phone, @RequestParam("findPwEmail") String email, RedirectAttributes redirectAttributes){
+        String findPw = accountService.findLoginPw(id, email, phone);
+        redirectAttributes.addFlashAttribute("findPw", findPw);
+        return "redirect:/findResult";
+    }
 }

@@ -90,7 +90,7 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <%--        <form id="" >--%>
-    <form id="find-pw-form" class="modal-content" method="post" action="${root}/account?action=findPw">
+    <form id="find-pw-form" class="modal-content" method="post" action="${root}/findPw">
       <div class="modal-header">
         <h5 class="modal-title" id="findPasswordModalLabel">비밀번호 찾기</h5>
         <button
