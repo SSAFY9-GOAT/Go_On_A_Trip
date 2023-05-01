@@ -2,27 +2,33 @@ package com.ssafy.goat.notion.service;
 
 import com.ssafy.goat.common.exception.NotionException;
 import com.ssafy.goat.member.Member;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
 import com.ssafy.goat.notion.Notion;
 import com.ssafy.goat.notion.dto.NotionDto;
-import com.ssafy.goat.notion.repository.NotionJdbcRepository;
 import com.ssafy.goat.notion.repository.NotionRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.ssafy.goat.member.Authority.ADMIN;
 import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@SpringBootTest
+@Transactional
 class NotionServiceTest {
 
+    @Autowired
     private  NotionService notionService;//= NotionServiceImpl.getNotionService();
-    private  NotionRepository notionRepository = NotionJdbcRepository.getNotionRepository();
-    private  MemberRepository memberRepository = MemberJdbcRepository.getMemberRepository();
+    @Autowired
+    private  NotionRepository notionRepository;// = NotionJdbcRepository.getNotionRepository();
+    @Autowired
+    private  MemberRepository memberRepository;// = MemberJdbcRepository.getMemberRepository();
 
     private Long adminId;
     private Long clientId;

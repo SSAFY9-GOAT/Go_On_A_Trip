@@ -4,12 +4,14 @@ import com.ssafy.goat.common.exception.AccountException;
 import com.ssafy.goat.common.exception.LoginException;
 import com.ssafy.goat.member.Member;
 import com.ssafy.goat.member.dto.LoginMember;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.ssafy.goat.common.exception.ExceptionMessage.ACCOUNT_EXCEPTION;
 import static com.ssafy.goat.common.exception.ExceptionMessage.LOGIN_EXCEPTION;
@@ -17,10 +19,14 @@ import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@SpringBootTest
+@Transactional
 class AccountServiceTest {
 
-    private final AccountService accountService = AccountServiceImpl.getAccountService();
-    private final MemberRepository memberRepository = MemberJdbcRepository.getMemberRepository();
+    @Autowired
+    private AccountService accountService;// = AccountServiceImpl.getAccountService();
+    @Autowired
+    private MemberRepository memberRepository;// = MemberJdbcRepository.getMemberRepository();
 
     @BeforeEach
     void beforeEach() {

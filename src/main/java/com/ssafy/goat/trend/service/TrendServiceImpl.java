@@ -1,14 +1,11 @@
 package com.ssafy.goat.trend.service;
 
 import com.ssafy.goat.hotplace.HotPlace;
-import com.ssafy.goat.hotplace.repository.HotPlaceJdbcRepository;
 import com.ssafy.goat.hotplace.repository.HotPlaceRepository;
 import com.ssafy.goat.member.Member;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
 import com.ssafy.goat.trend.Trend;
 import com.ssafy.goat.trend.dto.TrendViewDto;
-import com.ssafy.goat.trend.repository.TrendJdbcRepository;
 import com.ssafy.goat.trend.repository.TrendRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,12 +20,6 @@ public class TrendServiceImpl implements TrendService {
     private final TrendRepository trendRepository;
     private final MemberRepository memberRepository;
     private final HotPlaceRepository hotPlaceRepository;
-
-    private TrendServiceImpl() {
-        trendRepository = TrendJdbcRepository.getTrendRepository();
-        memberRepository = MemberJdbcRepository.getMemberRepository();
-        hotPlaceRepository = HotPlaceJdbcRepository.getHotPlaceRepository();
-    }
 
     @Override
     public int increaseInfo(Long memberId, Long hotPlaceId) {

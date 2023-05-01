@@ -9,11 +9,9 @@ import com.ssafy.goat.common.validation.dto.MemberRequest;
 import com.ssafy.goat.member.Member;
 import com.ssafy.goat.member.dto.MemberAddDto;
 import com.ssafy.goat.member.dto.MemberDto;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;

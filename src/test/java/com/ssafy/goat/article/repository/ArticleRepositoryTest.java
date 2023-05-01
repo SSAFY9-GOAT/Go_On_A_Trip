@@ -2,9 +2,7 @@ package com.ssafy.goat.article.repository;
 
 import com.ssafy.goat.article.Article;
 import com.ssafy.goat.member.Member;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +21,8 @@ class ArticleRepositoryTest {
 
     @Autowired
     private  ArticleRepository articleRepository;
-    private final MemberRepository memberRepository = MemberJdbcRepository.getMemberRepository();
+    @Autowired
+    private MemberRepository memberRepository;// = MemberJdbcRepository.getMemberRepository();
 
     @BeforeEach
     void beforeEach() {

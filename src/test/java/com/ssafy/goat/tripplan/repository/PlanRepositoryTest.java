@@ -2,14 +2,16 @@ package com.ssafy.goat.tripplan.repository;
 
 import com.ssafy.goat.attraction.AttractionInfo;
 import com.ssafy.goat.member.Member;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
+import com.ssafy.goat.tripplan.DetailPlan;
+import com.ssafy.goat.tripplan.TripPlan;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import com.ssafy.goat.tripplan.DetailPlan;
-import com.ssafy.goat.tripplan.TripPlan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,10 +19,13 @@ import java.util.Optional;
 import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest
+@Transactional
 class PlanRepositoryTest {
-
-    private final PlanRepository planRepository = PlanJdbcRepository.getPlanRepository();
-    private final MemberRepository memberRepository = MemberJdbcRepository.getMemberRepository();
+    @Autowired
+    private PlanRepository planRepository;// = PlanJdbcRepository.getPlanRepository();
+    @Autowired
+    private MemberRepository memberRepository;// = MemberJdbcRepository.getMemberRepository();
     private long memberId;
 
     @BeforeEach
