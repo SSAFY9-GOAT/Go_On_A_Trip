@@ -5,18 +5,18 @@
     <insert id="save" parameterType="hotplace">
         insert into hot_place(member_id, content_id, content_type_id, name, `desc`, visited_date, upload_file_name,
                               store_file_name)
-        values (#{member.id}, #{articleId}, #{contentTypeId}, #{name}, #{desc}, #{visitedDate}, #{uploadFileName},
-                #{storeFileName})
+        values (#{member.id}, #{attractionInfo.id}, #{contentTypeId}, #{name}, #{desc}, #{visitedDate}, #{uploadFile.uploadFileName},
+                #{uploadFile.storeFileName})
     </insert>
 
     <select id="findById" parameterType="long" resultType="hotplace">
-        select *
+        select *, hot_place_id as 'id'
         from hot_place
         where hot_place_id = #{hotPlaceId}
     </select>
 
     <select id="findAll" resultType="hotplace">
-        select *
+        select *, hot_place_id as 'id'
         from hot_place
     </select>
 
@@ -24,9 +24,8 @@
         update hot_place
         set name=#{name},
             `desc`=#{desc},
-            visited_date=#{visitedDate},
-            last_modified_date=#{lastModifiedDate}
-        where hot_place_id = #{hotPlaceId}
+            visited_date=#{visitedDate}
+        where hot_place_id = #{id}
     </update>
 
     <update id="updateHit" parameterType="hotplace">
@@ -71,7 +70,7 @@
         from hot_place hp
                  join member m
                       on hp.member_id = m.member_id
-        where m.member_id = #{member.Id}
+        where m.member_id = #{memberId}
         order by hp.created_date desc
     </select>
 
@@ -82,14 +81,14 @@
                       on hp.member_id = f.member_id
                  join member m
                       on f.member_id = m.member_id
-        where f.member_id = {member.Id}
+        where f.member_id = #{memberId}
         order by hp.created_date desc
             limit #{pageNum}, #{amount}
     </select>
 
     <insert id="doFavorite" parameterType="map">
         insert into favorite(member_id, hotplace_id)
-        values (#{member.id}, #{hotplaceId})
+        values (#{memberId}, #{hotplaceId})
     </insert>
 
     <select id="findByCondition" parameterType="map">

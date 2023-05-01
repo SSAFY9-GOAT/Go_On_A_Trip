@@ -1,17 +1,18 @@
 package com.ssafy.goat.hotplace.repository;
 
 import com.ssafy.goat.attraction.AttractionInfo;
-import com.ssafy.goat.attraction.repository.AttractionJdbcRepository;
 import com.ssafy.goat.attraction.repository.AttractionRepository;
 import com.ssafy.goat.hotplace.HotPlace;
 import com.ssafy.goat.hotplace.UploadFile;
 import com.ssafy.goat.member.Member;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,11 +20,17 @@ import java.util.Optional;
 import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest
+@Transactional
 class HotPlaceRepositoryTest {
 
-    private final HotPlaceRepository hotPlaceRepository = HotPlaceJdbcRepository.getHotPlaceRepository();
-    private final MemberRepository memberRepository = MemberJdbcRepository.getMemberRepository();
-    private final AttractionRepository attractionRepository = AttractionJdbcRepository.getAttractionRepository();
+    @Autowired
+    private HotPlaceRepository hotPlaceRepository;// = HotPlaceJdbcRepository.getHotPlaceRepository();
+    @Autowired
+    private MemberRepository memberRepository;// = MemberJdbcRepository.getMemberRepository();
+    @Autowired
+    private AttractionRepository attractionRepository;// = AttractionJdbcRepository.getAttractionRepository();
+
     private Long memberId;
     private Long hotPlaceId;
 
@@ -62,11 +69,11 @@ class HotPlaceRepositoryTest {
         hotPlaceId = findHotPlace.get(0).getId();
     }
 
-    @AfterEach
-    void afterEach() {
-        hotPlaceRepository.clear();
-        memberRepository.clear();
-    }
+//    @AfterEach
+//    void afterEach() {
+//        hotPlaceRepository.clear();
+//        memberRepository.clear();
+//    }
 
     @Test
     @DisplayName("핫플레이스 저장")
@@ -100,11 +107,20 @@ class HotPlaceRepositoryTest {
     @DisplayName("핫플레이스 업데이트")
     void update() {
         //given
-        HotPlace hotPlace = hotPlaceRepository.findById(hotPlaceId).get();
-        hotPlace.editContent("new hot place name", "new hot place desc", "2023-01-01");
+        Optional<HotPlace> findById = hotPlaceRepository.findById(hotPlaceId);
+
+        HotPlace hotPlace = null;//= findById.get();
+        if (findById.isPresent()) {
+            hotPlace = findById.get();
+            System.out.println(hotPlace.getId());
+            hotPlace.editContent("new hot place name", "new hot place desc", "2023-01-01");
+        }
 
         //when
-        int result = hotPlaceRepository.update(hotPlace);
+        int result = 0;
+        if (hotPlace != null) {
+           result = hotPlaceRepository.update(hotPlace);
+        }
 
         //then
         assertThat(result).isEqualTo(1);
