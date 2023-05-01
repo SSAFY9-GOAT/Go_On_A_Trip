@@ -56,6 +56,7 @@
             <span>r</span>
             <span>i</span>
             <span>p</span>
+            <span>😍</span>
           </h1>
 <%--          <p>Some representative placeholder content for the first slide.</p>--%>
         </div>

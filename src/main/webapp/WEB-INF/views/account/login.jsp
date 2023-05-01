@@ -4,22 +4,22 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <%@ include file="/common/head.jsp" %>
+  <%@ include file="../common/head.jsp" %>
   <link href="${root}/assets/css/login.css" rel="stylesheet"/>
 </head>
 
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-  <%@include file="/common/header.jsp" %>
+  <%@include file="../common/header.jsp" %>
 </header>
 <!-- end header -->
 
 <!-- start section -->
 <div id="wrapper" class="text-center">
   <main class="form-signin w-100 m-auto">
-    <form id="login-form" method="post" action="${root}/account?action=login">
-      <img class="mb-4" src="${root}/assets/img/logo.png" alt="" width="280" height="280"/>
+    <form id="login-form" method="post" action="${root}/login">
+      <img class="mb-4" src="${root}/assets/img/logo/logo_1x1.png" alt="" width="280" height="280"/>
       <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
       <div class="form-floating">
@@ -77,7 +77,7 @@
 <!-- end section -->
 
 <!-- start footer -->
-<%@include file="/common/footer.jsp" %>
+<%@include file="../common/footer.jsp" %>
 <!-- end footer -->
 
 <!-- 비밀번호 찾기 Modal -->
