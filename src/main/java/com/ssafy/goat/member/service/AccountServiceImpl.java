@@ -4,26 +4,29 @@ import com.ssafy.goat.common.exception.AccountException;
 import com.ssafy.goat.common.exception.LoginException;
 import com.ssafy.goat.member.Member;
 import com.ssafy.goat.member.dto.LoginMember;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 import static com.ssafy.goat.common.exception.ExceptionMessage.ACCOUNT_EXCEPTION;
 import static com.ssafy.goat.common.exception.ExceptionMessage.LOGIN_EXCEPTION;
 
+@Service
+@RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
-    private static final AccountService accountService = new AccountServiceImpl();
+//    private static final AccountService accountService = new AccountServiceImpl();
     private final MemberRepository memberRepository;
 
-    private AccountServiceImpl() {
-        memberRepository = MemberJdbcRepository.getMemberRepository();
-    }
-
-    public static AccountService getAccountService() {
-        return accountService;
-    }
+//    private AccountServiceImpl() {
+//        memberRepository = MemberJdbcRepository.getMemberRepository();
+//    }
+//
+//    public static AccountService getAccountService() {
+//        return accountService;
+//    }
 
     @Override
     public LoginMember login(String loginId, String loginPw) {

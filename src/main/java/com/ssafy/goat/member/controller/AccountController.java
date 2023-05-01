@@ -18,10 +18,10 @@ public class AccountController extends HttpServlet {
 
     private AccountService accountService;
 
-    @Override
-    public void init() {
-        accountService = AccountServiceImpl.getAccountService();
-    }
+//    @Override
+//    public void init() {
+//        accountService = AccountServiceImpl.getAccountService();
+//    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
