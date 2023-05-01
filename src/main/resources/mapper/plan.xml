@@ -18,7 +18,7 @@
         where trip_plan_id = #{tripPlanId}
     </select>
 
-    <select id="findByDetailPlanId" parameterType="long" resultType="detialPlan">
+    <select id="findByDetailPlanId" parameterType="long" resultType="detailPlan">
         select *
         from detail_plan dp
                  join trip_plan tp
