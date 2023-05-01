@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <%@ include file="/common/head.jsp" %>
+  <%@ include file="../common/head.jsp" %>
   <link href="${root}/assets/css/mypage.css" rel="stylesheet"/>
 </head>
 
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-  <%@include file="/common/header.jsp" %>
+  <%@include file="../common/header.jsp" %>
 </header>
 <!-- end header -->
 
@@ -19,28 +19,28 @@
 <div class="container">
   <div class="container-fluid">
     <div class="row">
-      <%@ include file="/member/mypage/mypageNav.jsp" %>
+      <%@ include file="../member/mypage/mypageNav.jsp" %>
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ms-5">
 
         <c:choose>
           <c:when test="${currShow eq 'myPage'}">
-            <%@ include file="/member/mypage/myInfo.jsp" %>
+            <%@ include file="../member/mypage/myInfo.jsp" %>
           </c:when>
           <c:when test="${currShow eq 'modifyPw'}">
-            <%@ include file="/member/mypage/mypageChangePw.jsp" %>
+            <%@ include file="../member/mypage/mypageChangePw.jsp" %>
           </c:when>
           <c:when test="${currShow eq 'modifyNickname'}">
-            <%@ include file="/member/mypage/mypageChangeNickname.jsp" %>
+            <%@ include file="../member/mypage/mypageChangeNickname.jsp" %>
           </c:when>
           <c:when test="${currShow eq 'modifyEmail'}">
-            <%@ include file="/member/mypage/mypageChangeEmail.jsp" %>
+            <%@ include file="../member/mypage/mypageChangeEmail.jsp" %>
           </c:when>
           <c:when test="${currShow eq 'modifyTel'}">
-            <%@ include file="/member/mypage/mypageChangeTel.jsp" %>
+            <%@ include file="../member/mypage/mypageChangeTel.jsp" %>
           </c:when>
           <c:when test="${currShow eq 'deleteMember'}">
-            <%@ include file="/member/mypage/mypageDelete.jsp" %>
+            <%@ include file="../member/mypage/mypageDelete.jsp" %>
           </c:when>
           <c:otherwise>
 
@@ -55,7 +55,7 @@
 <!-- end section -->
 
 <!-- start footer -->
-<%@include file="/common/footer.jsp" %>
+<%@include file="../common/footer.jsp" %>
 <!-- end footer -->
 
 <%-- script --%>
