@@ -76,7 +76,7 @@ public class MemberServiceImpl implements MemberService {
         Member member = getMemberByMemberId(memberId);
         member.changeLoginPw(loginPw);
 
-        updateValidation(member);
+//        updateValidation(member);
 
         memberRepository.update(memberId, member);
     }

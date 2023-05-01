@@ -68,7 +68,7 @@
 
     </form>
     <div class="pt-3">
-      <a class="register" href="${root}/member?action=mvregister"
+      <a class="register" href="${root}/register"
       >아직 계정이 없으신가요?<br/>계정 만들기</a
       >
     </div>
@@ -90,7 +90,7 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <%--        <form id="" >--%>
-    <form id="find-pw-form" class="modal-content" method="post" action="${root}/account?action=findPw">
+    <form id="find-pw-form" class="modal-content" method="post" action="${root}/findPw">
       <div class="modal-header">
         <h5 class="modal-title" id="findPasswordModalLabel">비밀번호 찾기</h5>
         <button
@@ -161,7 +161,7 @@
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered">
-    <form id="find-id-form" class="modal-content" method="post" action="${root}/account?action=findId">
+    <form id="find-id-form" class="modal-content" method="post" action="${root}/findId">
       <div class="modal-header">
         <h5 class="modal-title" id="findIdModalLabel">아이디 찾기</h5>
         <button
@@ -214,16 +214,16 @@
 </div>
 
 <script>
-    document.querySelector("#btn-find-pw").addEventListener("click", function () {
-        let form = document.querySelector("#find-pw-form");
-        form.setAttribute("action", "${root}/account?action=findPw");
-        form.submit();
-    });
-    document.querySelector("#btn-find-id").addEventListener("click", function () {
-        let form = document.querySelector("#find-id-form");
-        form.setAttribute("action", "${root}/account?action=findId");
-        form.submit();
-    });
+    <%--document.querySelector("#btn-find-pw").addEventListener("click", function () {--%>
+    <%--    let form = document.querySelector("#find-pw-form");--%>
+    <%--    form.setAttribute("action", "${root}/account?action=findPw");--%>
+    <%--    form.submit();--%>
+    <%--});--%>
+    <%--document.querySelector("#btn-find-id").addEventListener("click", function () {--%>
+    <%--    let form = document.querySelector("#find-id-form");--%>
+    <%--    form.setAttribute("action", "${root}/account?action=findId");--%>
+    <%--    form.submit();--%>
+    <%--});--%>
 </script>
 </body>
 </html>

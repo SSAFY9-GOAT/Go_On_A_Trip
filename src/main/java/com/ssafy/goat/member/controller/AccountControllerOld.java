@@ -48,7 +48,6 @@ public class AccountControllerOld extends HttpServlet {
                 forward(request, response, path);
                 break;
             case "getFindResult":
-                forward(request, response, "/account/findPwResult.jsp");
                 break;
             default:
                 break;

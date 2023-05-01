@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <%@ include file="/common/head.jsp" %>
+  <%@ include file="../common/head.jsp" %>
   <link href="${root}/assets/css/login.css" rel="stylesheet"/>
 </head>
 
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-  <%@include file="/common/header.jsp" %>
+  <%@include file="../common/header.jsp" %>
 </header>
 <!-- end header -->
 
@@ -50,7 +50,7 @@
         </c:when>
       </c:choose>
       <a class="w-100 mt-3 mb-3 btn btn-lg btn-primary"
-         type="button" href="${root}/account?action=mvlogin">로그인하러가기
+         type="button" href="${root}/login">로그인하러가기
       </a>
     </div>
   </main>
@@ -110,7 +110,7 @@
 <!-- end section -->
 
 <!-- start footer -->
-<%@include file="/common/footer.jsp" %>
+<%@include file="../common/footer.jsp" %>
 <!-- end footer -->
 
 <%-- script --%>

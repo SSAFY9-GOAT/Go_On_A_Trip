@@ -8,7 +8,7 @@
                 <a class="nav-link active" aria-current="page" href="">
                     </c:if>
                     <c:if test="${currShow != 'myPage'}">
-                    <a class="nav-link " aria-current="page" href="${root}/member?action=view">
+                    <a class="nav-link " aria-current="page" href="${root}/mypage">
                         </c:if>
                         <span data-feather="home" class="align-text-bottom"></span>
                         <i class="bi bi-person"></i>
@@ -56,7 +56,7 @@
                     </c:if>
                     <c:if test="${currShow != 'modifyPw'}">
                     <a class="nav-link " aria-current="page"
-                       href="${root}/member?action=mvModifyPw">
+                       href="${root}/modifypw">
                         </c:if>
                         <span data-feather="home" class="align-text-bottom"></span>
                         <i class="bi bi-person"></i>
@@ -69,7 +69,7 @@
                     </c:if>
                     <c:if test="${currShow != 'modifyNickname'}">
                     <a class="nav-link " aria-current="page"
-                       href="${root}/member?action=mvModifyNickname">
+                       href="${root}/modifynickname">
                         </c:if>
                         <span data-feather="home" class="align-text-bottom"></span>
                         <i class="bi bi-person"></i>
@@ -82,7 +82,7 @@
                     </c:if>
                     <c:if test="${currShow != 'modifyEmail'}">
                     <a class="nav-link " aria-current="page"
-                       href="${root}/member?action=mvModifyEmail">
+                       href="${root}/modifyemail">
                         </c:if>
                         <span data-feather="home" class="align-text-bottom"></span>
                         <i class="bi bi-person"></i>
@@ -95,7 +95,7 @@
                     </c:if>
                     <c:if test="${currShow != 'modifyTel'}">
                     <a class="nav-link " aria-current="page"
-                       href="${root}/member?action=mvModifyTel">
+                       href="${root}/modifytel">
                         </c:if>
                         <span data-feather="home" class="align-text-bottom"></span>
                         <i class="bi bi-person"></i>
