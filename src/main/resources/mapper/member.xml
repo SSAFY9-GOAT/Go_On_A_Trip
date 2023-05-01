@@ -5,9 +5,9 @@
 
     <insert id="save" parameterType="Member">
         insert into member(login_id, login_pw, username, email, phone, birth, gender, nickname,
-                           nickname_last_modified_date, authority)
+                            authority)
         values (#{loginId}, #{loginPw}, #{username}, #{email}, #{phone}, #{birth}, #{gender}, #{nickname},
-                #{nicknameLastModifiedDate}, #{authority})
+                #{authority})
     </insert>
 
     <select id="findById" parameterType="long" resultType="member">
