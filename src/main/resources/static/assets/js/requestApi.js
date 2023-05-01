@@ -46,7 +46,7 @@ function searchAttraction() {
   console.log('searchAttraction');
   let attractionName = document.getElementById('attractionName').value;
 
-  const url = `http://localhost:8080/api/attraction?action=hotplace&title=${attractionName}`;
+  const url = `http://localhost:8080/api/attraction/hotplace&title=${attractionName}`;
 
   fetch(url)
       .then((response) => response.json())

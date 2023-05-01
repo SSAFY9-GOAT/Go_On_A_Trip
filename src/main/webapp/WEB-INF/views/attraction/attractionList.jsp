@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <%@ include file="/common/head.jsp" %>
+    <%@ include file="../common/head.jsp" %>
     <style>
         .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
         .wrap * {padding: 0;margin: 0;}
@@ -25,7 +25,7 @@
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-    <%@include file="/common/header.jsp" %>
+    <%@include file="../common/header.jsp" %>
 </header>
 
 <!-- end header -->
@@ -117,7 +117,7 @@
 </div>
 <!-- end right bar -->
 <!-- start footer -->
-<%@include file="/common/footer.jsp" %>
+<%@include file="../common/footer.jsp" %>
 <!-- end footer -->
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
