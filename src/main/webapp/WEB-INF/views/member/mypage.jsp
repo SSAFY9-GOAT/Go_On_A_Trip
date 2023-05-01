@@ -62,7 +62,7 @@
 <script>
     document.querySelector("#btn-change-pw").addEventListener("click", function () {
         let form = document.querySelector("#change-pw-form");
-        form.setAttribute("action", "${root}/member?action=modifyPw");
+        form.setAttribute("action", "${root}/modifypw");
         form.submit();
     });
 

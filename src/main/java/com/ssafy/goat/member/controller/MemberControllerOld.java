@@ -71,14 +71,14 @@ public class MemberControllerOld extends HttpServlet {
         path = mvMyHotplace(request, response);
         forward(request, response, path);
         break;
-      case "modifyPw":
-        path = modifyPw(request, response);
-        forward(request, response, path);
-        break;
-      case "mvModifyPw":
-        path = mvModifyPw(request, response);
-        forward(request, response, path);
-        break;
+//      case "modifyPw":
+//        path = modifyPw(request, response);
+//        forward(request, response, path);
+//        break;
+//      case "mvModifyPw":
+//        path = mvModifyPw(request, response);
+//        forward(request, response, path);
+//        break;
       case "modifyNickname":
         path = modifyNickname(request, response);
         redirect(request, response, path);
@@ -286,38 +286,38 @@ public class MemberControllerOld extends HttpServlet {
 
   }
 
-  private String mvModifyPw(HttpServletRequest request, HttpServletResponse response) {
-    HttpSession session = request.getSession();
-    session.setAttribute("currShow", "modifyPw");
-    return "/member/mypage.jsp";
-  }
+//  private String mvModifyPw(HttpServletRequest request, HttpServletResponse response) {
+//    HttpSession session = request.getSession();
+//    session.setAttribute("currShow", "modifyPw");
+//    return "/member/mypage.jsp";
+//  }
 
 
-  private String modifyPw(HttpServletRequest request, HttpServletResponse response) {
-    HttpSession session = request.getSession();
-    LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
-
-    String currPw = request.getParameter("currPw");
-    String newPw = request.getParameter("newPw");
-    String newPwCheck = request.getParameter("newPwCheck");
-
-    if (!currPw.equals(loginMember.getLoginPw())) {
-      request.setAttribute("msg", "비밀번호가 틀렸습니다.");
-      return "/member/mypage.jsp";
-    }
-    if (!newPw.equals(newPwCheck)) {
-      request.setAttribute("msg", "비밀번호가 일치하지 않습니다.");
-      return "/member/mypage.jsp";
-    }
-    if (currPw.equals(newPw)) {
-      request.setAttribute("msg", "기존 비밀번호와 같습니다.");
-      return "/member/mypage.jsp";
-    }
-
-    memberService.changePassword(loginMember.getId(), newPw);
-    request.setAttribute("msg", "비밀번호 변경이 완료되었습니다. 다시 로그인 하세요.");
-    return "/account?action=logout";
-  }
+//  private String modifyPw(HttpServletRequest request, HttpServletResponse response) {
+//    HttpSession session = request.getSession();
+//    LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+//
+//    String currPw = request.getParameter("currPw");
+//    String newPw = request.getParameter("newPw");
+//    String newPwCheck = request.getParameter("newPwCheck");
+//
+//    if (!currPw.equals(loginMember.getLoginPw())) {
+//      request.setAttribute("msg", "비밀번호가 틀렸습니다.");
+//      return "/member/mypage.jsp";
+//    }
+//    if (!newPw.equals(newPwCheck)) {
+//      request.setAttribute("msg", "비밀번호가 일치하지 않습니다.");
+//      return "/member/mypage.jsp";
+//    }
+//    if (currPw.equals(newPw)) {
+//      request.setAttribute("msg", "기존 비밀번호와 같습니다.");
+//      return "/member/mypage.jsp";
+//    }
+//
+//    memberService.changePassword(loginMember.getId(), newPw);
+//    request.setAttribute("msg", "비밀번호 변경이 완료되었습니다. 다시 로그인 하세요.");
+//    return "/account?action=logout";
+//  }
 
 //  private String viewMypage(HttpServletRequest request, HttpServletResponse response) {
 //    HttpSession session = request.getSession();
