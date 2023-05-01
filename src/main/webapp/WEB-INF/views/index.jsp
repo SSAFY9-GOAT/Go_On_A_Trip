@@ -100,12 +100,21 @@
 
 <!-- start section2 -->
 <div class="container px-4 py-5 text-center" id="featured-3">
-  <h2>수많은 여행객을 위한<br/><strong>국내 1위 여행지 서비스 Enjoy Trip!</strong></h2>
+  <h2><strong>Go</strong> on A<br/><strong>Trip!</strong></h2>
   <div class="mt-5">
     <p>
-      지역별 관광지 및 숙박 등 편리한 <strong>관광지 조회</strong>가 가능하고,<br/>맛집 등
-      유용한 <strong>음식 정보</strong>를 접할 수 있으며,<br/>수많은 여행객들과 소통하는
-      <strong>커뮤니티</strong>를 이용할 수 있습니다.
+      푸른 언덕에 배낭을 메고
+      황금빛 태양 축제를 여는
+      광야를 향해서 계곡을 향해서<br>
+      먼 동이 트는 이른 아침에
+      도시의 소음 수 많은 사람
+      빌딩 숲 속을 벗어나봐요<br>
+      메아리 소리가 들려오는
+      계곡 속의 흐르는 물 찾아
+      그곳으로 <strong>여행을 떠나요</strong>
+<%--      지역별 관광지 및 숙박 등 편리한 <strong>관광지 조회</strong>가 가능하고,<br/>맛집 등--%>
+<%--      유용한 <strong>음식 정보</strong>를 접할 수 있으며,<br/>수많은 여행객들과 소통하는--%>
+<%--      <strong>커뮤니티</strong>를 이용할 수 있습니다.--%>
     </p>
   </div>
   <div class="row g-4 py-5 row-cols-1 row-cols-lg-5">
