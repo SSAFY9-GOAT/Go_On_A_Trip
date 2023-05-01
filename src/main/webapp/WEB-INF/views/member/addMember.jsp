@@ -17,7 +17,7 @@
 <!-- end header -->
 
 <!-- start section -->
-<form id="container" method='post' action="${root}/member?action=register">
+<form id="container" method='post' action="${root}/register">
   <h2>회원 가입</h2>
   <div class="input">
     <div class="label">

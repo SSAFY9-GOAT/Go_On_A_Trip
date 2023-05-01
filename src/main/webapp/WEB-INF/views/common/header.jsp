@@ -26,7 +26,7 @@
     <c:choose>
       <c:when test="${empty userinfo}">
         <li class="nav-item">
-          <a href="${root}/account/login" id="btn-mv-login" class="nav-link link-dark px-2">로그인</a>
+          <a href="${root}/login" id="btn-mv-login" class="nav-link link-dark px-2">로그인</a>
         </li>
         <li class="nav-item">
           <a href="${root}/register" id="btn-mv-join" class="nav-link link-dark px-2">회원가입</a>
