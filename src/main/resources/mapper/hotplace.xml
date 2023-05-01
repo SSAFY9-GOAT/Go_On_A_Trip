@@ -91,7 +91,7 @@
         values (#{memberId}, #{hotplaceId})
     </insert>
 
-    <select id="findByCondition" parameterType="map">
+    <select id="findByCondition" parameterType="hotPlaceSearch" resultType="hotPlaceListDto">
         select hp.hot_place_id, hp.name, hp.desc, hp.hit, hp.store_file_name, m.nickname, hp.created_date
         from hot_place hp
         join member m

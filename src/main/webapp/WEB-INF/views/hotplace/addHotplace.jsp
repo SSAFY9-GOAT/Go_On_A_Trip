@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <%@ include file="/common/head.jsp" %>
+  <%@ include file="../common/head.jsp" %>
   <style>
       .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
       .wrap * {padding: 0;margin: 0;}
@@ -25,7 +25,7 @@
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-  <%@include file="/common/header.jsp" %>
+  <%@include file="../common/header.jsp" %>
 </header>
 <!-- end header -->
 
@@ -58,7 +58,7 @@
       </form>
       <div id="map" style="width: 100%; height: 500px"></div>
     </div>
-    <form class="col col-6" action="${root}/hotPlace?action=write" method="post" enctype="multipart/form-data">
+    <form class="col col-6" action="${root}/hotPlace/write" method="post" enctype="multipart/form-data">
       <input type="hidden" id='contentId' name="contentId" value="-1">
       <input type="hidden" id='contentTypeId' name="contentTypeId" value="-1">
       <div class="mb-3">
@@ -101,7 +101,7 @@
 <%-- end section --%>
 
 <!-- start footer -->
-<%@include file="/common/footer.jsp" %>
+<%@include file="../common/footer.jsp" %>
 <!-- end footer -->
 <script type="text/javascript" src="${root}/assets/js/requestApi.js"></script>
 <script type="text/javascript"

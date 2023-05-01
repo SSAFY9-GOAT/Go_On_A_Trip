@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <%@ include file="/common/head.jsp" %>
+  <%@ include file="../common/head.jsp" %>
 </head>
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-  <%@include file="/common/header.jsp" %>
+  <%@include file="../common/header.jsp" %>
 </header>
 <!-- end header -->
 
@@ -17,7 +17,7 @@
 <main class="p-3 mb-3 border-bottom container-sm">
   <div class="container-sm">
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <form class="row g-3" method="get" action="${root}/hotPlace?action=list">
+      <form class="row g-3" method="get" action="${root}/hotPlace/list">
         <input type="hidden" name="action" value="list">
         <div class="col-auto">
           <input type="text" class="form-control" id="name" name="name" placeholder="작성자, 제목, 내용">
@@ -31,7 +31,7 @@
         </div>
         <div class="col-auto">
           <button type="submit" class="btn btn-secondary mb-3">검색</button>
-          <button type="button" class="btn btn-primary mb-3" onclick="location.href='/hotPlace?action=mvwrite'">글쓰기</button>
+          <button type="button" class="btn btn-primary mb-3" onclick="location.href='/hotPlace/mvwrite'">글쓰기</button>
         </div>
       </form>
     </div>
@@ -47,9 +47,9 @@
                 <div class="text-end">
                   조회수 : ${hotPlace.hit} | 작성자 : ${hotPlace.nickname}
                 </div>
-                <button type="button" class="btn btn-primary" onclick="location.href='/hotPlace?action=detail&hotPlaceId=${hotPlace.hotPlaceId}'">더보기</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='/hotPlace?action=mvedit&hotPlaceId=${hotPlace.hotPlaceId}'">수정</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='/member?action=favorite&hotPlaceId=${hotPlace.hotPlaceId}'">담기</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/hotPlace/detail&hotPlaceId=${hotPlace.hotPlaceId}'">더보기</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/hotPlace/mvedit&hotPlaceId=${hotPlace.hotPlaceId}'">수정</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/member/favorite&hotPlaceId=${hotPlace.hotPlaceId}'">담기</button>
               </div>
               <div class="card-footer">
                 <small class="text-body-secondary">${hotPlace.createdDate}</small>
@@ -64,7 +64,7 @@
 <%-- end section --%>
 
 <!-- start footer -->
-<%@include file="/common/footer.jsp" %>
+<%@include file="../common/footer.jsp" %>
 <!-- end footer -->
 </body>
 </html>

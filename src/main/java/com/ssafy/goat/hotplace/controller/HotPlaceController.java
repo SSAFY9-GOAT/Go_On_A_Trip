@@ -42,7 +42,7 @@ public class HotPlaceController {
 
         model.addAttribute("hotPlaces", hotPlaces);
 
-        return "hotplaceList";
+        return "hotplace/hotplaceList";
     }
 
     @GetMapping("/mvwrite")
@@ -51,13 +51,13 @@ public class HotPlaceController {
             model.addAttribute("msg", REQUEST_LOGIN);
             return "account/login";
         }
-        return "addHotplace";
+        return "hotplace/addHotplace";
     }
 
     @PostMapping("/write")
     public String doWrite(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) throws IOException, ServletException {
         if (loginMember == null) {
-            request.setAttribute("msg", EXPIRE_SESSION);
+            model.addAttribute("msg", EXPIRE_SESSION);
             return "account/login";
         }
 
@@ -76,6 +76,7 @@ public class HotPlaceController {
 
         int result = hotPlaceService.addHotPlace(loginMember.getId(), contentId, hotPlaceDto);
 
+
         return "redirect:/hotplace/list";
 
     }
@@ -83,7 +84,7 @@ public class HotPlaceController {
     @GetMapping("/detail")
     public String doDetail(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
-            request.setAttribute("msg", REQUEST_LOGIN);
+            model.addAttribute("msg", REQUEST_LOGIN);
             return "account/login";
         }
 
@@ -93,13 +94,13 @@ public class HotPlaceController {
         hotPlaceService.updateHit(hotPlaceId);
 
         model.addAttribute("hotPlace", hotPlace);
-        return "viewHotplace";
+        return "hotplace/viewHotplace";
     }
 
     @GetMapping("/mvedit")
     public String doMvedit(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
-            request.setAttribute("msg", REQUEST_LOGIN);
+            model.addAttribute("msg", REQUEST_LOGIN);
             return "account/login";
         }
 
@@ -108,13 +109,13 @@ public class HotPlaceController {
         HotPlaceDetailDto hotPlace = hotPlaceService.searchHotPlace(hotPlaceId);
 
         model.addAttribute("hotPlace", hotPlace);
-        return "editHotplace";
+        return "hotplace/editHotplace";
     }
 
     @PostMapping("/edit")
     public String doEdit(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
-            request.setAttribute("msg", EXPIRE_SESSION);
+            model.addAttribute("msg", EXPIRE_SESSION);
             return "account/login";
         }
 
@@ -137,7 +138,7 @@ public class HotPlaceController {
     @GetMapping("/remove")
     public String doRemove(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
-            request.setAttribute("msg", "로그인 후 사용해주세요.");
+            model.addAttribute("msg", "로그인 후 사용해주세요.");
             return "account/login";
         }
 
