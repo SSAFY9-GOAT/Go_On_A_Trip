@@ -30,10 +30,10 @@ public class HotPlaceControllerT extends HttpServlet {
 
     private HotPlaceService hotPlaceService;
 
-    @Override
-    public void init() throws ServletException {
-        hotPlaceService = HotPlaceServiceImpl.getHotPlaceService();
-    }
+//    @Override
+//    public void init() throws ServletException {
+//        hotPlaceService = HotPlaceServiceImpl.getHotPlaceService();
+//    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
