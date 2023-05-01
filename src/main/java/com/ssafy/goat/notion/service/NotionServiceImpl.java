@@ -5,7 +5,6 @@ import com.ssafy.goat.common.validation.NotionValidation;
 import com.ssafy.goat.common.validation.dto.NotionRequest;
 import com.ssafy.goat.member.Authority;
 import com.ssafy.goat.member.Member;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
 import com.ssafy.goat.notion.Notion;
 import com.ssafy.goat.notion.dto.NotionDto;

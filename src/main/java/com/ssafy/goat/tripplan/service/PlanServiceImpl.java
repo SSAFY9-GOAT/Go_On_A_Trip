@@ -5,7 +5,6 @@ import com.ssafy.goat.attraction.repository.AttractionJdbcRepository;
 import com.ssafy.goat.attraction.repository.AttractionRepository;
 import com.ssafy.goat.common.exception.PlanException;
 import com.ssafy.goat.member.Member;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
 import com.ssafy.goat.tripplan.DetailPlan;
 import com.ssafy.goat.tripplan.TripPlan;
