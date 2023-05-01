@@ -68,7 +68,7 @@
 
     </form>
     <div class="pt-3">
-      <a class="register" href="${root}/member?action=mvregister"
+      <a class="register" href="${root}/register"
       >아직 계정이 없으신가요?<br/>계정 만들기</a
       >
     </div>
