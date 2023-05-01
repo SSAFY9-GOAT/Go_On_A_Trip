@@ -4,6 +4,9 @@
 <html lang="ko">
 <head>
   <%@ include file="common/head.jsp" %>
+  <style>
+
+  </style>
 </head>
 
 <body>
