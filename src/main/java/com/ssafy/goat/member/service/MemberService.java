@@ -2,7 +2,9 @@ package com.ssafy.goat.member.service;
 
 import com.ssafy.goat.member.dto.MemberAddDto;
 import com.ssafy.goat.member.dto.MemberDto;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public interface MemberService {
 
     int signUp(MemberAddDto memberAddDto);

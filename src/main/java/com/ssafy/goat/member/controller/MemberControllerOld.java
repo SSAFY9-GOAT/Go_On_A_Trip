@@ -2,7 +2,6 @@ package com.ssafy.goat.member.controller;
 
 import com.ssafy.goat.article.dto.ArticleListDto;
 import com.ssafy.goat.article.service.ArticleService;
-import com.ssafy.goat.article.service.ArticleServiceImpl;
 import com.ssafy.goat.common.Page;
 import com.ssafy.goat.common.exception.SignUpException;
 import com.ssafy.goat.common.validation.SignUpValidation;
@@ -10,12 +9,10 @@ import com.ssafy.goat.common.validation.dto.InvalidResponse;
 import com.ssafy.goat.common.validation.dto.MemberRequest;
 import com.ssafy.goat.hotplace.dto.HotPlaceListDto;
 import com.ssafy.goat.hotplace.service.HotPlaceService;
-import com.ssafy.goat.hotplace.service.HotPlaceServiceImpl;
 import com.ssafy.goat.member.dto.LoginMember;
 import com.ssafy.goat.member.dto.MemberAddDto;
 import com.ssafy.goat.member.dto.MemberDto;
 import com.ssafy.goat.member.service.MemberService;
-import com.ssafy.goat.member.service.MemberServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,8 +24,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/member")
-public class MemberController extends HttpServlet {
+//@WebServlet("/member")
+public class MemberControllerOld extends HttpServlet {
 
   private MemberService memberService;
   private ArticleService articleService;

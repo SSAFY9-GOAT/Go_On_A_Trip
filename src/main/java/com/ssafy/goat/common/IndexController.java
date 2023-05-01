@@ -16,10 +16,10 @@ public class IndexController extends HttpServlet {
 
     private TrendService trendService;
 
-    @Override
-    public void init() throws ServletException {
-        trendService = TrendServiceImpl.getTrendService();
-    }
+//    @Override
+//    public void init() throws ServletException {
+//        trendService = TrendServiceImpl.getTrendService();
+//    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

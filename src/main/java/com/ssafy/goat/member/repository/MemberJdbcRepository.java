@@ -13,7 +13,7 @@ import java.util.Optional;
 import static com.ssafy.goat.member.Authority.ADMIN;
 import static com.ssafy.goat.member.Authority.CLIENT;
 
-@Repository
+//@Repository
 //@NoArgsConstructor
 public class MemberJdbcRepository implements MemberRepository {
 

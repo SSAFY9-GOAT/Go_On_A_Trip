@@ -10,6 +10,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -17,10 +19,12 @@ import static com.ssafy.goat.member.Authority.CLIENT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@SpringBootTest
+@Transactional
 class MemberServiceTest {
 
-    private final MemberService memberService = MemberServiceImpl.getMemberService();
-    private final MemberRepository memberRepository = MemberJdbcRepository.getMemberRepository();
+    private  MemberService memberService;// = MemberServiceImpl.getMemberService();
+    private  MemberRepository memberRepository;// = MemberJdbcRepository.getMemberRepository();
 
     @BeforeEach
     void beforeEach() {

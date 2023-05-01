@@ -33,7 +33,7 @@ public class PlanMybatisRepository implements PlanRepository {
 
     @Override
     public int save(DetailPlan detailPlan) {
-        return planMapper.save(detailPlan);
+        return planMapper.saveDetailPlan(detailPlan);
     }
 
     @Override

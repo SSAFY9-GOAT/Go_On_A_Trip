@@ -11,23 +11,28 @@ import com.ssafy.goat.member.dto.MemberAddDto;
 import com.ssafy.goat.member.dto.MemberDto;
 import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-    private static final MemberService memberService = new MemberServiceImpl();
+//    private static final MemberService memberService = new MemberServiceImpl();
     private final MemberRepository memberRepository;
 
-    private MemberServiceImpl() {
-        memberRepository = MemberJdbcRepository.getMemberRepository();
-    }
+//    private MemberServiceImpl() {
+//        memberRepository = MemberJdbcRepository.getMemberRepository();
+//    }
 
-    public static MemberService getMemberService() {
-        return memberService;
-    }
+//    public static MemberService getMemberService() {
+//        return memberService;
+//    }
 
     @Override
     public int signUp(MemberAddDto memberAddDto) {
