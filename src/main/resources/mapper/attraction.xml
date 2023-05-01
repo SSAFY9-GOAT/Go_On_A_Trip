@@ -4,24 +4,24 @@
 <mapper namespace="com.ssafy.goat.attraction.mapper.AttractionMapper">
 
     <select id="findById" parameterType="Integer" resultType="attractionInfo">
-        select *
+        select *, content_id as 'id'
         from attraction_info
         where content_id = #{contentId}
     </select>
 
     <select id="findByConditions" parameterType="attractionSearch" resultType="attractionInfo">
-        select *
+        select *, content_id as 'id'
         from attraction_info
         where sido_code = #{sidoCode} and gugun_code = #{gugunCode} and content_type_id = #{contentTypeId}
     </select>
 
     <select id="findByTitle" parameterType="String" resultType="attractionInfo">
-        select *
+        select *, content_id as 'id'
         from attraction_info
         where title like concat('%',#{title}, '%')
     </select>
     <select id="findByContentIds">
-        select *
+        select *, content_id as 'id'
         from attraction_info
         where content_id in
         <foreach collection="list" item="item" open="(" close=")" separator=",">
@@ -34,7 +34,7 @@
         where sido_code = #{sidoCode}
     </select>
     <select id="findAll">
-        select *
+        select sido_code as 'code', sido_name as 'name'
         from sido
     </select>
 
