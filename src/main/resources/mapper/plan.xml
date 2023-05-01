@@ -7,7 +7,7 @@
         values (#{memberId}, #{title})
     </insert>
 
-    <insert id="save" parameterType="detailPlan">
+    <insert id="saveDetailPlan" parameterType="detailPlan">
         insert into detail_plan (trip_plan_id, content_id)
         values (#{tripPlanId}, #{contentId})
     </insert>

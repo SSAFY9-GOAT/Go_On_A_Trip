@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface PlanMapper {
     int save(TripPlan tripPlan);
 
-    int save(DetailPlan detailPlan);
+    int saveDetailPlan(DetailPlan detailPlan);
 
     Optional<TripPlan> findById(Long tripPlanId);
 
