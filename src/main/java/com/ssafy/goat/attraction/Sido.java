@@ -2,8 +2,10 @@ package com.ssafy.goat.attraction;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class Sido {
 
     private Integer code;

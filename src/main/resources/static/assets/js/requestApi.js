@@ -26,7 +26,7 @@ function createAttraction(response) {
 }
 
 function getSigunguCode(sidoCode) {
-  const url = `http://localhost:8080/api/attraction/gugun&sidoCode=${sidoCode}`;
+  const url = `http://localhost:8080/api/attraction/gugun?sidoCode=${sidoCode}`;
 
   fetch(url)
     .then((response) => response.json())
@@ -46,10 +46,10 @@ function searchAttraction() {
   console.log('searchAttraction');
   let attractionName = document.getElementById('attractionName').value;
 
-  const url = `http://localhost:8080/api/attraction/hotplace&title=${attractionName}`;
+  const url = `http://localhost:8080/api/attraction/hotplace?title=${attractionName}`;
 
   fetch(url)
-      .then((response) => response.json())
+      // .then((response) => response.json())
       .then((response) => createButton(response));
 
   function createButton(response) {

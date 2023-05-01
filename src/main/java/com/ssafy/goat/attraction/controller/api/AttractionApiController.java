@@ -1,5 +1,6 @@
 package com.ssafy.goat.attraction.controller.api;
 
+import com.ssafy.goat.attraction.AttractionInfo;
 import com.ssafy.goat.attraction.dto.AttractionDto;
 import com.ssafy.goat.attraction.dto.AttractionSearch;
 import com.ssafy.goat.attraction.dto.GugunDto;
@@ -48,14 +49,15 @@ public class AttractionApiController{
                 .build();
 
         List<AttractionDto> attractions = attractionService.searchAttraction(condition);
-        if(attractions != null && !attractions.isEmpty())
-            return new ResponseEntity<List<AttractionDto>>(attractions, HttpStatus.OK);
+        if(attractions != null && !attractions.isEmpty()) {
+            return new ResponseEntity<>(attractions, HttpStatus.OK);
+        }
         else
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping(value = "/hotplace")
-    public ResponseEntity<?> doSearchHotPlace(@PathVariable("title") String title){
+    public ResponseEntity<?> doSearchHotPlace(@PathVariable(value = "title", required = false) String title){
         List<AttractionDto> attractions = attractionService.searchAttraction(title);
 
         if(attractions != null && !attractions.isEmpty())
