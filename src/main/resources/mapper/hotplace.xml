@@ -31,7 +31,7 @@
     <update id="updateHit" parameterType="hotplace">
         update hot_place
         set hit=#{hit}
-        where hot_place_id = #{hotPlaceId}
+        where hot_place_id = #{id}
     </update>
 
     <delete id="remove" parameterType="long">

@@ -1,7 +1,6 @@
 package com.ssafy.goat.hotplace.service;
 
 import com.ssafy.goat.attraction.AttractionInfo;
-import com.ssafy.goat.attraction.repository.AttractionJdbcRepository;
 import com.ssafy.goat.attraction.repository.AttractionRepository;
 import com.ssafy.goat.common.exception.HotPlaceException;
 import com.ssafy.goat.hotplace.HotPlace;
@@ -10,12 +9,9 @@ import com.ssafy.goat.hotplace.dto.HotPlaceDetailDto;
 import com.ssafy.goat.hotplace.dto.HotPlaceDto;
 import com.ssafy.goat.hotplace.dto.HotPlaceListDto;
 import com.ssafy.goat.hotplace.dto.HotPlaceSearch;
-import com.ssafy.goat.hotplace.repository.HotPlaceJdbcRepository;
-import com.ssafy.goat.hotplace.repository.HotPlaceQueryJdbcRepository;
 import com.ssafy.goat.hotplace.repository.HotPlaceQueryRepository;
 import com.ssafy.goat.hotplace.repository.HotPlaceRepository;
 import com.ssafy.goat.member.Member;
-import com.ssafy.goat.member.repository.MemberJdbcRepository;
 import com.ssafy.goat.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
