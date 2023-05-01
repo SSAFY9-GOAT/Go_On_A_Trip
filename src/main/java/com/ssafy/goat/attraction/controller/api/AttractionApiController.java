@@ -26,8 +26,8 @@ public class AttractionApiController{
     private final GugunService gugunService;
 
     @GetMapping(value = "/gugun")
-    public ResponseEntity<?> doGugun(@PathVariable("sidoCode") String sidoCodeS){
-        int sidoCode = Integer.parseInt(sidoCodeS);
+    public ResponseEntity<?> doGugun(HttpServletRequest request){
+        int sidoCode = Integer.parseInt(request.getParameter("sidoCode"));
         List<GugunDto> guguns = gugunService.searchGuguns(sidoCode);
         if(guguns!=null && !guguns.isEmpty())
             return new ResponseEntity<List<GugunDto>>(guguns, HttpStatus.OK);
@@ -36,10 +36,10 @@ public class AttractionApiController{
     }
 
     @GetMapping(value = "/search")
-    public ResponseEntity<?> doSearch(Model model){
-        int sidoCode = Integer.parseInt((String) model.getAttribute("sidoCode"));
-        int gugunCode = Integer.parseInt((String) model.getAttribute("gugunCode"));
-        int contentTypeId = Integer.parseInt((String) model.getAttribute("contentTypeId"));
+    public ResponseEntity<?> doSearch(HttpServletRequest request, Model model){
+        int sidoCode = Integer.parseInt(request.getParameter("sidoCode"));
+        int gugunCode = Integer.parseInt(request.getParameter("gugunCode"));
+        int contentTypeId = Integer.parseInt(request.getParameter("contentTypeId"));
 
         AttractionSearch condition = AttractionSearch.builder()
                 .sidoCode(sidoCode)

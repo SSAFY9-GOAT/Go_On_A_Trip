@@ -26,10 +26,10 @@ public class AttractionController {
     private final GugunService gugunService;
 
     @GetMapping("/search")
-    public String search(@RequestParam("sidoCode") String sidoCodeS, @RequestParam("gugunCode") String gugunCodeS, @RequestParam("contentTypeId") String contentTypeIdS, Model model){
-        int sidoCode = getSidoCode(sidoCodeS);
-        int gugunCode = getGugunCode(gugunCodeS);
-        int contentTypeId = getContentTypeId(contentTypeIdS);
+    public String search(HttpServletRequest request, Model model){
+        int sidoCode = getSidoCode(request);
+        int gugunCode = getGugunCode(request);
+        int contentTypeId = getContentTypeId(request);
 
         List<SidoDto> sidos = sidoService.findAll();
         model.addAttribute("sidos", sidos);
@@ -46,26 +46,29 @@ public class AttractionController {
         List<AttractionDto> attractions = attractionService.searchAttraction(condition);
         model.addAttribute("attractions", attractions);
 
-        return "attractionList";
+        return "attraction/attractionList";
     }
-    private int getSidoCode(String sidoCodeS) {
-        if (sidoCodeS == null) {
+    private int getSidoCode(HttpServletRequest request) {
+        String sidoCode = request.getParameter("sidoCode");
+        if (sidoCode == null) {
             return 1;
         }
-        return Integer.parseInt(sidoCodeS);
+        return Integer.parseInt(sidoCode);
     }
 
-    private int getGugunCode(String gugunCodeS) {
-        if (gugunCodeS == null) {
+    private int getGugunCode(HttpServletRequest request) {
+        String gugunCode = request.getParameter("gugunCode");
+        if (gugunCode == null) {
             return 1;
         }
-        return Integer.parseInt(gugunCodeS);
+        return Integer.parseInt(gugunCode);
     }
 
-    private int getContentTypeId(String contentTypeIdS) {
-        if (contentTypeIdS == null) {
+    private int getContentTypeId(HttpServletRequest request) {
+        String contentTypeId = request.getParameter("contentTypeId");
+        if (contentTypeId == null) {
             return 12;
         }
-        return Integer.parseInt(contentTypeIdS);
+        return Integer.parseInt(contentTypeId);
     }
 }

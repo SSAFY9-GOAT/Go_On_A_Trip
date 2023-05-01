@@ -147,7 +147,7 @@
         const gugunCode = document.getElementById("gugunCode").value;
         const contentTypeId = document.getElementById("contentTypeId").value;
 
-        const url = 'http://localhost:8080/api/attraction?action=search&sidoCode=' + sidoCode + '&gugunCode=' + gugunCode + '&contentTypeId=' + contentTypeId;
+        const url = 'http://localhost:8080/api/attraction/search&sidoCode=' + sidoCode + '&gugunCode=' + gugunCode + '&contentTypeId=' + contentTypeId;
         fetch(url)
           .then((response) => response.json())
           .then((response) => {marker(response), setCenter(response), createAttraction(response)});

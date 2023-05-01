@@ -26,7 +26,7 @@ function createAttraction(response) {
 }
 
 function getSigunguCode(sidoCode) {
-  const url = `http://localhost:8080/api/attraction?action=gugun&sidoCode=${sidoCode}`;
+  const url = `http://localhost:8080/api/attraction/gugun&sidoCode=${sidoCode}`;
 
   fetch(url)
     .then((response) => response.json())

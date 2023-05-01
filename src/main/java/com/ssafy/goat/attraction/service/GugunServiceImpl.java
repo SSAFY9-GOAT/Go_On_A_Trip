@@ -18,6 +18,7 @@ public class GugunServiceImpl implements GugunService {
     @Override
     public List<GugunDto> searchGuguns(int sidoCode) {
         List<Gugun> findGuguns = gugunRepository.findBySidoCode(sidoCode);
+
         return findGuguns.stream()
                 .map(gugun -> new GugunDto(gugun.getCode(), gugun.getName()))
                 .collect(Collectors.toList());

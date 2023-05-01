@@ -28,13 +28,13 @@
             #{item}
         </foreach>
     </select>
-    <select id="findBySidoCode">
-        select *
+    <select id="findBySidoCode" parameterType="Integer" resultType="gugun">
+        select *, gugun_code as 'code', gugun_name as 'name'
         from gugun
-        where sido_code = #{sidoCode}
+        where sido_code = #{sido.code}
     </select>
-    <select id="findAll">
-        select sido_code as 'code', sido_name as 'name'
+    <select id="findAll" resultType="sido">
+        select *, sido_code as 'code', sido_name as 'name'
         from sido
     </select>
 
