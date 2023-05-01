@@ -92,7 +92,7 @@ public class MemberServiceImpl implements MemberService {
 
         member.changeEmail(email);
 
-        updateValidation(member);
+//        updateValidation(member);
 
         memberRepository.update(memberId, member);
     }
@@ -108,7 +108,7 @@ public class MemberServiceImpl implements MemberService {
 
         member.changePhone(phone);
 
-        updateValidation(member);
+//        updateValidation(member);
 
         memberRepository.update(memberId, member);
     }
@@ -128,7 +128,7 @@ public class MemberServiceImpl implements MemberService {
 
         member.changeNickname(nickname);
 
-        updateValidation(member);
+//        updateValidation(member);
 
         memberRepository.update(memberId, member);
     }

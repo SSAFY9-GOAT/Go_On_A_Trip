@@ -4,6 +4,7 @@ import com.ssafy.goat.member.dto.LoginMember;
 import com.ssafy.goat.member.dto.MemberDto;
 import com.ssafy.goat.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
@@ -55,14 +58,17 @@ public class MemberController {
 
         if (!currPw.equals(loginMember.getLoginPw())) {
             model.addAttribute("msg", "비밀번호가 틀렸습니다.");
+            model.addAttribute("currShow", "modifyPw");
             return "member/mypage";
         }
         if (!newPw.equals(newPwCheck)) {
             model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+            model.addAttribute("currShow", "modifyPw");
             return "member/mypage";
         }
         if (currPw.equals(newPw)) {
             model.addAttribute("msg", "기존 비밀번호와 같습니다.");
+            model.addAttribute("currShow", "modifyPw");
             return "member/mypage";
         }
 
@@ -70,5 +76,42 @@ public class MemberController {
         redirectAttributes.addFlashAttribute("msg", "비밀번호 변경이 완료되었습니다. 다시 로그인 하세요.");
 //        model.addAttribute("msg", "비밀번호 변경이 완료되었습니다. 다시 로그인 하세요.");
         return "redirect:/logout";
+    }
+
+    @GetMapping("/modifynickname")
+    public String modifyNickname(Model model, HttpSession session) {
+        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+        MemberDto dto = memberService.myPage(loginMember.getId());
+        model.addAttribute("currShow", "modifyNickname");
+        model.addAttribute("loginUserDto", dto);
+        return "member/mypage";
+    }
+
+    @PostMapping("/modifynickname")
+    public String modifyNickname(@RequestParam("currNickname") String currNickname, @RequestParam("newNickname") String newNickname, @RequestParam("pwCheck") String pwCheck, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+
+//        log.debug("currPw = "+currPw);
+//        log.debug("currPw = "+currPw);
+//        log.debug("currPw = "+currPw);
+
+        if (!pwCheck.equals(loginMember.getLoginPw())) {
+            model.addAttribute("msg", "비밀번호가 틀렸습니다.");
+            model.addAttribute("currShow", "modifyNickname");
+            model.addAttribute("currNickname", currNickname);
+            return "member/mypage";
+        }
+        if (currNickname.equals(newNickname)) {
+            model.addAttribute("msg", "기존 닉네임과 같습니다.");
+            model.addAttribute("currShow", "modifyNickname");
+            model.addAttribute("currNickname", currNickname);
+            return "member/mypage";
+        }
+
+        memberService.changeNickname(loginMember.getId(), newNickname);
+        redirectAttributes.addFlashAttribute("msg", "닉네임 변경이 완료되었습니다. ");
+        model.addAttribute("currShow", "modifyNickname");
+//        model.addAttribute("msg", "비밀번호 변경이 완료되었습니다. 다시 로그인 하세요.");
+        return "member/mypage";
     }
 }

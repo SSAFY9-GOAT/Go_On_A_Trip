@@ -68,18 +68,18 @@
 
     document.querySelector("#btn-change-nickname").addEventListener("click", function () {
         let form = document.querySelector("#change-nickname-form");
-        form.setAttribute("action", "${root}/member?action=modifyNickname");
+        form.setAttribute("action", "${root}/modifynickname");
         form.submit();
     });
 
     document.querySelector("#btn-change-email").addEventListener("click", function () {
         let form = document.querySelector("#change-email-form");
-        form.setAttribute("action", "${root}/member?action=modifyEmail");
+        form.setAttribute("action", "${root}/modifyemail");
         form.submit();
     });
     document.querySelector("#btn-change-tel").addEventListener("click", function () {
         let form = document.querySelector("#change-tel-form");
-        form.setAttribute("action", "${root}/member?action=modifyTel");
+        form.setAttribute("action", "${root}/modifytel");
         form.submit();
     });
     document.querySelector("#btn-delete-member").addEventListener("click", function () {

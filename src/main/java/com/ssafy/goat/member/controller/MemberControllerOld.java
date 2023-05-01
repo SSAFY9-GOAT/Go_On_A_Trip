@@ -79,14 +79,14 @@ public class MemberControllerOld extends HttpServlet {
 //        path = mvModifyPw(request, response);
 //        forward(request, response, path);
 //        break;
-      case "modifyNickname":
-        path = modifyNickname(request, response);
-        redirect(request, response, path);
-        break;
-      case "mvModifyNickname":
-        path = mvModifyNickname(request, response);
-        forward(request, response, path);
-        break;
+//      case "modifyNickname":
+//        path = modifyNickname(request, response);
+//        redirect(request, response, path);
+//        break;
+//      case "mvModifyNickname":
+//        path = mvModifyNickname(request, response);
+//        forward(request, response, path);
+//        break;
       case "modifyEmail":
         path = modifyEmail(request, response);
         redirect(request, response, path);
@@ -255,11 +255,11 @@ public class MemberControllerOld extends HttpServlet {
     return "/member/mypage.jsp";
   }
 
-  private String mvModifyNickname(HttpServletRequest request, HttpServletResponse response) {
-    HttpSession session = request.getSession();
-    session.setAttribute("currShow", "modifyNickname");
-    return "/member/mypage.jsp";
-  }
+//  private String mvModifyNickname(HttpServletRequest request, HttpServletResponse response) {
+//    HttpSession session = request.getSession();
+//    session.setAttribute("currShow", "modifyNickname");
+//    return "/member/mypage.jsp";
+//  }
 
   private String modifyNickname(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
