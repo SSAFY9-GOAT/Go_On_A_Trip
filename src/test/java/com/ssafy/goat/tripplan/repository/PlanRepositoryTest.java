@@ -72,12 +72,14 @@ class PlanRepositoryTest {
     void addDetailPlan() {
         //given
         Optional<Member> findMember = memberRepository.findById(memberId);
+
         planRepository.save(TripPlan.builder()
                 .title("trip plan title")
                 .member(findMember.get())
                 .build());
         List<TripPlan> findTripPlans = planRepository.findAllByMemberId(memberId);
         TripPlan tripPlan = findTripPlans.get(0);
+        System.out.println(tripPlan.getId());
         DetailPlan detailPlan = DetailPlan.builder()
                 .tripPlan(tripPlan)
                 .attractionInfo(new AttractionInfo(125405))

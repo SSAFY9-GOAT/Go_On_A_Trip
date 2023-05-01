@@ -3,10 +3,12 @@ package com.ssafy.goat.notion;
 import lombok.Builder;
 import lombok.Getter;
 import com.ssafy.goat.member.Member;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
+@NoArgsConstructor
 public class Notion {
 
     private Long id;

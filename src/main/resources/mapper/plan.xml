@@ -4,16 +4,16 @@
 <mapper namespace="com.ssafy.goat.tripplan.mapper.PlanMapper">
     <insert id="save" parameterType="tripPlan">
         insert into trip_plan (member_id, title)
-        values (#{memberId}, #{title})
+        values (#{member.id}, #{title})
     </insert>
 
     <insert id="saveDetailPlan" parameterType="detailPlan">
         insert into detail_plan (trip_plan_id, content_id)
-        values (#{tripPlanId}, #{contentId})
+        values (#{tripPlan.id}, #{attractionInfo.id})
     </insert>
 
     <select id="findById" parameterType="long" resultType="tripPlan">
-        select *
+        select *, trip_plan_id as 'id'
         from trip_plan
         where trip_plan_id = #{tripPlanId}
     </select>
@@ -27,7 +27,7 @@
     </select>
 
     <select id="findAllByMemberId" parameterType="long" resultType="tripPlan">
-        select *
+        select *, trip_plan_id as 'id'
         from trip_plan
         where member_id = #{memberId}
     </select>
@@ -63,10 +63,10 @@
         from trip_plan
     </select>
 
-    <update id="updateTripPlan" parameterType="map">
+    <update id="updateTripPlan">
         update trip_plan
-        set title=#{title},
-            last_modified_date=#{lastModifiedDate}
+        set title=#{tripPlan.title},
+            last_modified_date=#{tripPlan.lastModifiedDate}
         where trip_plan_id = #{tripPlanId}
     </update>
 

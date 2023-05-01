@@ -6,6 +6,7 @@ import com.ssafy.goat.tripplan.dto.PlanListDto;
 import com.ssafy.goat.tripplan.dto.PlanSearch;
 import com.ssafy.goat.tripplan.dto.TripPlanDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +31,7 @@ public interface PlanMapper {
 
     int findTotalCount();
 
-    int updateTripPlan(Long tripPlanId, TripPlan tripPlan);
+    int updateTripPlan(@Param("tripPlanId") Long tripPlanId, @Param("tripPlan") TripPlan tripPlan);
 
     int removeTripPlan(Long tripPlanId);
 

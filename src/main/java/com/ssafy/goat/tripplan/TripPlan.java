@@ -3,10 +3,12 @@ package com.ssafy.goat.tripplan;
 import com.ssafy.goat.member.Member;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
+@NoArgsConstructor
 public class TripPlan {
 
     private Long id;
