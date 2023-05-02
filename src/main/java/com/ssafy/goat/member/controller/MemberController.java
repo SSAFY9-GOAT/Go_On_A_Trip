@@ -129,25 +129,32 @@ public class MemberController {
     }
 
     @PostMapping("/modifyemail")
-    public String modifyEmail(@RequestParam("currNickname") String currNickname, @RequestParam("newNickname") String newNickname, @RequestParam("pwCheck") String pwCheck, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
-        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+    public String modifyEmail(
+            @RequestParam("currEmail") String currEmail,
+            @RequestParam("newEmail") String newEmail,
+            @RequestParam("pwCheck") String pwCheck,
+            @SessionAttribute(name = "userinfo") LoginMember loginMember,
+            HttpSession session,
+            Model model,
+            RedirectAttributes redirectAttributes) {
+//        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
 
         if (!pwCheck.equals(loginMember.getLoginPw())) {
             model.addAttribute("msg", "비밀번호가 틀렸습니다.");
-            model.addAttribute("currShow", "modifyNickname");
-            model.addAttribute("currNickname", currNickname);
+            session.setAttribute("currShow", "modifyEmail");
+            model.addAttribute("currEmail", currEmail);
             return "member/mypage";
         }
-        if (currNickname.equals(newNickname)) {
-            model.addAttribute("msg", "기존 닉네임과 같습니다.");
-            model.addAttribute("currShow", "modifyNickname");
-            model.addAttribute("currNickname", currNickname);
+        if (currEmail.equals(newEmail)) {
+            model.addAttribute("msg", "기존 이메일과 같습니다.");
+            session.setAttribute("currShow", "modifyEmail");
+            model.addAttribute("currEmail", currEmail);
             return "member/mypage";
         }
 
-        memberService.changeNickname(loginMember.getId(), newNickname);
-        redirectAttributes.addFlashAttribute("msg", "닉네임 변경이 완료되었습니다. ");
-        model.addAttribute("currShow", "modifyNickname");
+        memberService.changeEmail(loginMember.getId(), newEmail);
+        model.addAttribute("msg", "이메일 변경이 완료되었습니다. ");
+        model.addAttribute("currShow", "modifyEmail");
 //        model.addAttribute("msg", "비밀번호 변경이 완료되었습니다. 다시 로그인 하세요.");
         return "member/mypage";
     }
