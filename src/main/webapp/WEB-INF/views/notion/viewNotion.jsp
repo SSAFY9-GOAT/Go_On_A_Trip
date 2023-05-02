@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <%@ include file="/common/head.jsp" %>
+  <%@ include file="../common/head.jsp" %>
 </head>
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-  <%@include file="/common/header.jsp" %>
+  <%@include file="../common/header.jsp" %>
 </header>
 <!-- end header -->
 
@@ -30,17 +30,17 @@
     </div>
   </div>
   <hr>
-  <c:if test="${authority eq 'ADMIN'}">
+  <c:if test="${userinfo.authority eq 'ADMIN'}">
     <div class='notion-footer mt-5 '>
-      <a class='btn btn-outline-success' href="/notion?action=mvmodify&notionId=${notion.id}">수정하기</a>
-      <button class='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#notificationDeleteModal">삭제하기
-      </button>
+      <a class='btn btn-outline-success' href="/notion/${notion.id}/modify">수정하기</a>
+      <a class='btn btn-outline-danger' href="/notion/${notion.id}/remove">삭제하기
+      </a>
     </div>
   </c:if>
 
   <div class='m-auto container-sm justify-content-center align-content-center'>
     <div class='row justify-content-end'>
-      <a href='${root}/notion?action=list' type='button' class='col-1 btn btn-outline-info'>목록으로</a>
+      <a href='${root}/notion/list' type='button' class='col-1 btn btn-outline-info'>목록으로</a>
     </div>
   </div>
   <!-- end section -->
@@ -88,7 +88,7 @@
 <%-- 삭제 모달 --%>
 
 <!-- start footer -->
-<%@include file="/common/footer.jsp" %>
+<%@include file="../common/footer.jsp" %>
 <!-- end footer -->
 </body>
 </html>
