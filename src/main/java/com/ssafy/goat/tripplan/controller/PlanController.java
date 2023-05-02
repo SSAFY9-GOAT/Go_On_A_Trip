@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -40,6 +41,8 @@ public class PlanController {
     public String doCreate(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         String title = request.getParameter("planTitle");
         String[] contentList = request.getParameter("contentList").split(",");
+        for(String s : contentList)
+            System.out.println(s);
         List<Integer> contentIdList = new ArrayList<>();
 
         if (contentList.length < 2) {
@@ -60,7 +63,7 @@ public class PlanController {
             planService.addDetailPlan(loginMember.getId(), tripPlanId, path.getId());
         }
 //        model.addAttribute("tripPlanId", tripPlanId);
-        return "redirect:/tripPlan/detail/${tripPlanId}";
+        return "redirect:/tripPlan/detail/" + tripPlanId;
     }
 
     @GetMapping("/list")
