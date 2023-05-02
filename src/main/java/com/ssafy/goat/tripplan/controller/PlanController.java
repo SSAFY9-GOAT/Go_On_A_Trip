@@ -27,13 +27,13 @@ public class PlanController {
     private final PlanService planService;
     private final AttractionService attractionService;
 
-    @GetMapping("/mvcreate")
+    @GetMapping("/create")
     public String doMvCreate(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
             request.setAttribute("msg", "로그인 후 이용해주세요.");
             return "account/login";
         }
-        return "createPlan";
+        return "tripplan/createPlan";
     }
 
     @PostMapping("/create")
@@ -44,7 +44,7 @@ public class PlanController {
 
         if (contentList.length < 2) {
             request.setAttribute("msg", "경로를 2개 이상 추가해주세요");
-            return "createPlan";
+            return "tripplan/createPlan";
         }
         for (String contentId : contentList) {
             contentIdList.add(Integer.parseInt(contentId));
@@ -60,7 +60,7 @@ public class PlanController {
             planService.addDetailPlan(loginMember.getId(), tripPlanId, path.getId());
         }
 //        model.addAttribute("tripPlanId", tripPlanId);
-        return "redirect:/tripPlan/detail";
+        return "redirect:/tripPlan/detail/${tripPlanId}";
     }
 
     @GetMapping("/list")
@@ -79,28 +79,28 @@ public class PlanController {
                 .condition(condition)
                 .build();
 
-        List<PlanListDto> plans = planService.searchPlans(planSearch, pageNum, amount);
+        List<PlanListDto> plans = planService.searchPlans(planSearch, (pageNum - 1)*amount, amount);
         int totalCount = planService.getTotalCount();
         Page page = new Page(pageNum, amount, totalCount);
 
         model.addAttribute("page", page);
         model.addAttribute("plans", plans);
-        return "tripList";
+        return "tripplan/tripList";
     }
 
-    @GetMapping("/detail")
+    @GetMapping("/detail/tripPlanId")
     public String doDetail(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         Long tripPlanId = Long.parseLong(request.getParameter("tripPlanId"));
         TripPlanDto tripPlan = planService.showPlan(tripPlanId);
         model.addAttribute("tripPlan", tripPlan);
-        return "viewPlan";
+        return "tripplan/viewPlan";
     }
 
-    @GetMapping("/deletePlan")
+    @GetMapping("/deletePlan/tripPlanId")
     public String doRemovePlan(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         Long tripPlanId = Long.parseLong(request.getParameter("planId"));
         if (loginMember == null) {
-            request.setAttribute("msg", "로그인 후 이용해주세요.");
+            model.addAttribute("msg", "로그인 후 이용해주세요.");
             return "account/login";
         }
 

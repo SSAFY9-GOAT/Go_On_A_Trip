@@ -4,13 +4,13 @@
 <html lang="ko">
 <head>
   <link href="/assets/css/travelplan.css" rel="stylesheet">
-  <%@ include file="/common/head.jsp" %>
+  <%@ include file="../common/head.jsp" %>
 </head>
 
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-  <%@include file="/common/header.jsp" %>
+  <%@include file="../common/header.jsp" %>
 </header>
 <!-- end header -->
 
@@ -33,7 +33,7 @@
                 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=92031818da3bea1d2a0cd22686ab48ea"></script>
       </div>
       <div class="col-4">
-        <form id="planDetail" method="post" action="${root}/tripPlan?action=deletePlan&tripPlanId=${tripPlan.tripPlanId}">
+        <form id="planDetail" method="post" action="${root}/tripPlan/delete/${tripPlan.tripPlanId}">
           <input type="hidden" id="planId" name="planId" value="${tripPlan.tripPlanId}">
           <div class="input-group mb-3">
             <span class="input-group-text" >제목</span>
@@ -64,9 +64,9 @@
 <!-- end section -->
 
 <!-- start footer -->
-<%@include file="/common/footer.jsp" %>
+<%@include file="../common/footer.jsp" %>
 <!-- end footer -->
-<script src='/assets/js/travelplan.js'></script>
+<script src='${root}/static/assets/js/travelplan.js'></script>
 <script>
   // var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
   <c:forEach items="${tripPlan.detailPlans}" var="detailPlan">

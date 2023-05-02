@@ -40,15 +40,15 @@
         where tp.trip_plan_id = #{tripPlanId}
     </select>
 
-    <select id="findByCondition" parameterType="map" resultType="planListDto">
+    <select id="findByCondition" resultType="planListDto">
         select *
         from trip_plan tp
                  join member m
                       on tp.member_id = m.member_id
-        where tp.title like concat('%', #{condition}, '%')
-           or m.nickname like concat('%', #{condition}, '%')
+        where tp.title like concat('%', #{condition.condition}, '%')
+           or m.nickname like concat('%', #{condition.condition}, '%')
         order by tp.created_date desc
-            limit ${(pageNum - 1) * amount}, #{amount}
+            limit #{pageNum}, #{amount}
     </select>
 
     <select id="findByMemberId" parameterType="long" resultType="long">

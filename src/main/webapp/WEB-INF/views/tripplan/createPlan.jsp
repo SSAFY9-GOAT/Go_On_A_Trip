@@ -4,13 +4,13 @@
 <html lang="ko">
 <head>
     <link href="/assets/css/travelplan.css" rel="stylesheet">
-    <%@ include file="/common/head.jsp" %>
+    <%@ include file="../common/head.jsp" %>
 </head>
 
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-    <%@include file="/common/header.jsp" %>
+    <%@include file="../common/header.jsp" %>
 </header>
 <!-- end header -->
 
@@ -53,7 +53,7 @@
                         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=92031818da3bea1d2a0cd22686ab48ea"></script>
             </div>
             <div class="col-4">
-                <form id="planList" method="post" action="${root}/tripPlan?action=create">
+                <form id="planList" method="post" action="${root}/tripPlan/create">
                     <input type="hidden" id="contentList" name="contentList" value="">
                     <div class="input-group mb-3">
                         <span class="input-group-text" >제목</span>
@@ -98,9 +98,9 @@
 <!-- end section -->
 
 <!-- start footer -->
-<%@include file="/common/footer.jsp" %>
+<%@include file="../common/footer.jsp" %>
 <!-- end footer -->
-<script src='${root}/assets/js/travelplan.js?testNm=3'></script>
+<script src='${root}/assets/js/travelplan.js'></script>
 <script>
     // var container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
     // var options = {
