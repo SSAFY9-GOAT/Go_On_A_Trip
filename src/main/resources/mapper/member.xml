@@ -4,8 +4,8 @@
 <mapper namespace="com.ssafy.goat.member.mapper.MemberMapper">
 
     <insert id="save" parameterType="Member">
-        insert into member(login_id, login_pw, username, email, phone, birth, gender, nickname)
-        values (#{loginId}, #{loginPw}, #{username}, #{email}, #{phone}, #{birth}, #{gender}, #{nickname})
+        insert into member(login_id, login_pw, username, email, phone, birth, gender, nickname, authority)
+        values (#{loginId}, #{loginPw}, #{username}, #{email}, #{phone}, #{birth}, #{gender}, #{nickname}, 'CLIENT')
     </insert>
 
     <select id="findById" parameterType="long" resultType="member">

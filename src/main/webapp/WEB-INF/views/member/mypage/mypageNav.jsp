@@ -104,7 +104,7 @@
             </li>
 
             <li class="nav-item mt-5">
-                <a class="nav-link text-danger" href="${root}/member?action=mvwithdrawal">
+                <a class="nav-link text-danger" href="${root}/withdrawal">
                     <span data-feather="shopping-cart" class="align-text-bottom"></span>
                     회원탈퇴
                 </a>

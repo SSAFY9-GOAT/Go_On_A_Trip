@@ -47,16 +47,16 @@
         <div class="carousel-caption d-none d-md-block tongtong pt-5">
 <%--          <h5>First slide label</h5>--%>
           <h1 class="pt-5">
-            <span><img src="${root}/assets/img/goat/goat1.png" width="200px"></span>
+            <span><img src="${root}/assets/img/goat/goat1.png" width="100px"></span>
 <%--            <span></span>--%>
+            <span>G</span>
+<%--            <span><img src="${root}/assets/img/goat/goat2.png" width="80px"></span>--%>
+            <span>O</span>
+            <span>A</span>
+<%--            <span><img src="${root}/assets/img/goat/goat1.png" width="100px"></span>--%>
+            <span>T</span>
 <%--            <span></span>--%>
-            <span><img src="${root}/assets/img/goat/goat2.png" width="160px"></span>
-<%--            <span></span>--%>
-<%--            <span></span>--%>
-            <span><img src="${root}/assets/img/goat/goat1.png" width="200px"></span>
-<%--            <span></span>--%>
-<%--            <span></span>--%>
-            <span><img src="${root}/assets/img/goat/goat2.png" width="160px"></span>
+            <span><img src="${root}/assets/img/goat/goat2.png" width="80px"></span>
           </h1>
 <%--          <p>Some representative placeholder content for the first slide.</p>--%>
         </div>

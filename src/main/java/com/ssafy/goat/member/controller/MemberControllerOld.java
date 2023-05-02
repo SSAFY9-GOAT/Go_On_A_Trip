@@ -103,10 +103,10 @@ public class MemberControllerOld extends HttpServlet {
         path = mvModifyTel(request, response);
         forward(request, response, path);
         break;
-      case "mvwithdrawal":
-        path = mvwithdrawal(request, response);
-        forward(request, response, path);
-        break;
+//      case "mvwithdrawal":
+//        path = mvwithdrawal(request, response);
+//        forward(request, response, path);
+//        break;
       case "withdrawal":
         doWithdrawal(request, response);
         break;

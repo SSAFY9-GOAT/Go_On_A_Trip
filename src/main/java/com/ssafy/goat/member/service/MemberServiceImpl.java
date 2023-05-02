@@ -137,9 +137,9 @@ public class MemberServiceImpl implements MemberService {
     public void withdrawal(Long memberId, String loginPw) {
         Member member = getMemberByMemberId(memberId);
 
-        if (!member.getLoginPw().equals(loginPw)) {
-            throw new WithdrawalException();
-        }
+//        if (!member.getLoginPw().equals(loginPw)) {
+//            throw new WithdrawalException();
+//        }
 
         memberRepository.remove(memberId);
 

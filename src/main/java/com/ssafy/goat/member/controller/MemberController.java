@@ -114,4 +114,21 @@ public class MemberController {
 //        model.addAttribute("msg", "비밀번호 변경이 완료되었습니다. 다시 로그인 하세요.");
         return "member/mypage";
     }
+
+    @GetMapping("/withdrawal")
+    public String withdrawal(HttpSession session){
+        session.setAttribute("currShow","deleteMember");
+        return "member/mypage";
+    }
+
+    @PostMapping("/withdrawal")
+    public String withdrawal(HttpSession session, Model model){
+        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+        if(loginMember == null){
+            return "redirect:/";
+        }
+        String loginPw = (String) model.getAttribute("pw");
+        memberService.withdrawal(loginMember.getId(), loginPw);
+        return "redirect:/logout";
+    }
 }

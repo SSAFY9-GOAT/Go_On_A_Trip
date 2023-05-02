@@ -84,7 +84,7 @@
     });
     document.querySelector("#btn-delete-member").addEventListener("click", function () {
         let form = document.querySelector("#delete-member-form");
-        form.setAttribute("action", "${root}/member?action=withdrawal");
+        form.setAttribute("action", "${root}/withdrawal");
         form.submit();
     });
 </script>
