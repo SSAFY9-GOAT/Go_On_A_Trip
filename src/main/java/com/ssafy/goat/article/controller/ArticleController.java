@@ -31,7 +31,7 @@ public class ArticleController {
             model.addAttribute("msg", "로그인 후 사용해주세요.");
             return "account/login";
         }
-        return "addArticle";
+        return "article/addArticle";
     }
 
     @PostMapping("/write")
@@ -66,7 +66,7 @@ public class ArticleController {
                 .sortCondition(sortCondition)
                 .build();
 
-        List<ArticleListDto> articles = articleService.searchArticles(articleSearch, pageNum, amount);
+        List<ArticleListDto> articles = articleService.searchArticles(articleSearch, (pageNum-1)*amount, amount);
         int totalCount = articleService.getTotalCount();
         Page page = new Page(pageNum, amount, totalCount);
 
@@ -89,30 +89,24 @@ public class ArticleController {
         return "/article/viewArticle";
     }
 
-    @GetMapping("/edit")
-    public String edit(@SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
+    @GetMapping("/edit/{articleId}")
+    public String edit(@SessionAttribute(name = "userinfo") LoginMember loginMember, @PathVariable Long articleId, Model model) {
         if (loginMember == null) {
             model.addAttribute("msg", "로그인 후 사용해주세요.");
             return "account/login";
         }
+        ArticleDetailDto articleDetailDto = articleService.searchArticle(articleId);
+        model.addAttribute("article", articleDetailDto);
         return "article/editArticle";
     }
 
-    @PostMapping("/edit/{articleId}")
-    public String edit(@SessionAttribute(name = "userinfo") LoginMember loginMember, @PathVariable Long articleId, Model model) {
+    @PostMapping("/edit")
+    public String edit(@SessionAttribute(name = "userinfo") LoginMember loginMember, ArticleDetailDto articleDetailDto) {
 
-        ArticleDetailDto article = (ArticleDetailDto) model.getAttribute("article");
-        String title = article.getTitle();
-        String content = article.getContent();
 
-//        ArticleValidation articleValidation = new ArticleValidation();
-
-//        ArticleRequest articleRequest = ArticleRequest.builder()
-//                .title(title)
-//                .content(content)
-//                .build();
-
-//        List<InvalidResponse> validate = articleValidation.validate(articleRequest);
+        long articleId = articleDetailDto.getArticleId();
+        String title = articleDetailDto.getTitle();
+        String content = articleDetailDto.getContent();
 
         ArticleDto articleDto = ArticleDto.builder()
                 .title(title)
@@ -120,7 +114,7 @@ public class ArticleController {
                 .build();
 
         articleService.editArticle(articleId, loginMember.getId(), articleDto);
-
+//
         return "redirect:/article/detail/" + articleId;
     }
 
