@@ -33,7 +33,7 @@ public class NotionController {
         }
 
         List<NotionDto> topNotions = notionService.searchTopNotions();
-        List<NotionDto> notions = notionService.searchNotions(pageNum, amount);
+        List<NotionDto> notions = notionService.searchNotions((pageNum-1)*amount, amount);
         int totalCount = notionService.getTotalCount();
         Page page = new Page(pageNum, amount, totalCount);
 
@@ -103,5 +103,16 @@ public class NotionController {
 
         notionService.editNotion(notionId, loginMember.getId(), notionDto);
         return "redirect:/notion/"+notionId;
+    }
+
+    @GetMapping("/{notionId}/remove")
+    public String remove(@SessionAttribute(name = "userinfo") LoginMember loginMember, @PathVariable Long notionId, Model model){
+        if (loginMember == null) {
+            model.addAttribute("msg", "로그인 후 사용해주세요.");
+            return "account/login";
+        }
+
+        notionService.removeNotion(notionId, loginMember.getId());
+        return "redirect:/notion/list";
     }
 }
