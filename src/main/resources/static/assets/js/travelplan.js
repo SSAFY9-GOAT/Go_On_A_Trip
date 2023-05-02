@@ -79,10 +79,9 @@ function getAreaCode() {
 var contentList = [];
 
 function addPlan(response) {
-    console.log(response);
     let item = response;
     let content = "";
-    contentList.push(item.contentId);
+    contentList.push(item.id);
     content = document.getElementById("plan").innerHTML;
     content += `
     <tr>
@@ -91,16 +90,10 @@ function addPlan(response) {
         <input type="hidden" name="latitude" value="${item.latitude}">
         <input type="hidden" name="longitude" value="${item.longitude}">
     </tr>`;
-
     document.getElementById("plan").innerHTML = content;
     document.getElementById("contentList").setAttribute("value",contentList);
+    console.log(contentList)
 }
-
-document.querySelector("#createPlan").addEventListener("click", function (){
-    let form = document.querySelector("#planList");
-    form.setAttribute("action", "${root}/tripPlan?action=create");
-    form.submit();
-});
 
 function addLoc(x, y, contentid) {
     var clickPosition = new kakao.maps.LatLng(x, y);
