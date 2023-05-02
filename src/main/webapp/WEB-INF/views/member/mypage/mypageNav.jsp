@@ -32,7 +32,7 @@
                     </c:if>
                     <c:if test="${currShow != 'myHotplace'}">
                     <a class="nav-link " aria-current="page"
-                       href="${root}/member/myHotplace">
+                       href="${root}/myHotPlace">
                         </c:if>
                         <span data-feather="shopping-cart" class="align-text-bottom"></span>
                         내가 등록한 핫플레이스
