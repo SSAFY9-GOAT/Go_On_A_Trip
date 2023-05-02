@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <%@ include file="/common/head.jsp" %>
+    <%@ include file="../../common/head.jsp" %>
 </head>
 </head>
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-    <%@include file="/common/header.jsp" %>
+    <%@include file="../../common/header.jsp" %>
 </header>
 <!-- end header -->
 
@@ -22,14 +22,19 @@
                 <c:forEach items="${hotPlaces}" var="hotPlace">
                     <div class="col-4" style="width: 300px">
                         <div class="card h-100">
-                            <img src="${root}/assets/store/${hotPlace.storeFileName}" class="card-img-top" alt="...">
+                            <div class="position-relative" >
+                                <img src="${root}/assets/img/userUpload/${hotPlace.storeFileName}" class="card-img-top"
+                                     alt="..." style="width: 100%; height: 300px; object-fit:cover;">
+
+                            </div>
+<%--                            <img src="${root}/assets/img/userUpload/${hotPlace.storeFileName}" class="card-img-top" alt="...">--%>
                             <div class="card-body">
                                 <h5 class="card-title">${hotPlace.name}</h5>
                                 <p class="card-text text-truncate">${hotPlace.desc}</p>
                                 <div class="text-end">
                                     조회수 : ${hotPlace.hit} | 작성자 : ${hotPlace.nickname}
                                 </div>
-                                <button type="button" class="btn btn-primary" onclick="location.href='/hotPlace?action=detail&hotPlaceId=${hotPlace.hotPlaceId}'">더보기</button>
+                                <a type="button" class="btn btn-primary" href="/hotPlace/${hotPlace.hotPlaceId}">더보기</a>
                             </div>
                             <div class="card-footer">
                                 <small class="text-body-secondary">${hotPlace.createdDate}</small>
@@ -44,7 +49,7 @@
 <%-- end section --%>
 
 <!-- start footer -->
-<%@include file="/common/footer.jsp" %>
+<%@include file="../../common/footer.jsp" %>
 <!-- end footer -->
 
 </body>

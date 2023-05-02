@@ -78,7 +78,7 @@
         select hp.hot_place_id, hp.name, hp.desc, hp.hit, hp.store_file_name, m.nickname, hp.created_date
         from hot_place hp
                  join favorite f
-                      on hp.member_id = f.member_id
+                      on hp.hot_place_id = f.hotplace_id
                  join member m
                       on f.member_id = m.member_id
         where f.member_id = #{memberId}
@@ -88,7 +88,7 @@
 
     <insert id="doFavorite" parameterType="map">
         insert into favorite(member_id, hotplace_id)
-        values (#{memberId}, #{hotplaceId})
+        values (#{memberId}, #{hotPlaceId})
     </insert>
 
     <select id="findByCondition" parameterType="hotPlaceSearch" resultType="hotPlaceListDto">

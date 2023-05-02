@@ -60,13 +60,13 @@ public class MemberControllerOld extends HttpServlet {
         path = mvMyArticle(request, response);
         forward(request, response, path);
         break;
-      case "mvMyFavorite":
-        path = mvMyFavorite(request, response);
-        forward(request, response, path);
-        break;
-      case "favorite":
-        doFavorite(request, response);
-        break;
+//      case "mvMyFavorite":
+//        path = mvMyFavorite(request, response);
+//        forward(request, response, path);
+//        break;
+//      case "favorite":
+//        doFavorite(request, response);
+//        break;
       case "myHotplace":
         path = mvMyHotplace(request, response);
         forward(request, response, path);

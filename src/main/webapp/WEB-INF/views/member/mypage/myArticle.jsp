@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <%@ include file="/common/head.jsp" %>
+    <%@ include file="../../common/head.jsp" %>
 </head>
 
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-    <%@include file="/common/header.jsp" %>
+    <%@include file="../../common/header.jsp" %>
 </header>
 
 
@@ -70,6 +70,6 @@
     </div>
 </main>
 
-<%@include file="/common/footer.jsp" %>
+<%@include file="../../common/footer.jsp" %>
 </body>
 </html>
