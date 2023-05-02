@@ -172,4 +172,13 @@ public class MemberController {
 
         return "redirect:/myFavorite";
     }
+
+    @GetMapping("/myHotPlace")
+    public String myHotPlace(
+            @SessionAttribute(name = "userinfo") LoginMember loginMember,
+            Model model){
+        List<HotPlaceListDto> hotPlaces = hotPlaceService.searchHotPlaces(loginMember.getId());
+        model.addAttribute("hotPlaces", hotPlaces);
+        return "member/mypage/myHotplace";
+    }
 }
