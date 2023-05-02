@@ -54,7 +54,7 @@ function searchAttraction() {
       .then((response) => createButton(response));
 
   function createButton(response) {
-    let items = response.data;
+    let items = response;
     let content = "";
     items.forEach(function (item) {
       content += `<button type="button" data-bs-dismiss="modal" aria-label="Close" class="w-100 btn btn-outline-dark text-start mb-3" onclick="selectAttraction('${item.id}', '${item.contentTypeId}', '${item.title}', '${item.addr1}', '${item.zipcode}', '${item.firstImage}', '${item.latitude}', '${item.longitude}')">

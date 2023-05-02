@@ -17,6 +17,9 @@
 <!-- end header -->
 
 <!-- start section1 -->
+<div>
+  <img src="${root}/assets/img/index/main.jpg" class="d-block w-100 h-25" alt="..."/>
+</div>
 <div class="container">
   <div id="carouselExampleCaptions" class="carousel slide">
     <div class="carousel-indicators">

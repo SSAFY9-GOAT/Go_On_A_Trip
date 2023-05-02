@@ -61,7 +61,8 @@ public class AttractionApiController {
     }
 
     @GetMapping(value = "/hotplace")
-    public ResponseEntity<?> doSearchHotPlace(@PathVariable(value = "title", required = false) String title) {
+    public ResponseEntity<?> doSearchHotPlace(@RequestParam String title) {
+        log.debug("title = "+title);
         List<AttractionDto> attractions = attractionService.searchAttraction(title);
 
         if (attractions != null && !attractions.isEmpty())
