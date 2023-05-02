@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <%@ include file="/common/head.jsp" %>
+  <%@ include file="../common/head.jsp" %>
 </head>
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-  <%@include file="/common/header.jsp" %>
+  <%@include file="../common/header.jsp" %>
 </header>
 <!-- end header -->
 
@@ -32,14 +32,14 @@
 
   <c:if test="${isMine}">
   <div class='notion-footer mt-5 '>
-    <a class='btn btn-outline-success' href="${root}/article?action=mvedit&articleId=${article.articleId}">수정하기</a>
-    <button class='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#articleDeleteModal">삭제하기</button>
+    <a class='btn btn-outline-success' href="${root}/article/edit/${article.articleId}">수정하기</a>
+    <a class='btn btn-outline-danger' href="${root}/article/${article.articleId}/remove">삭제하기</a>
   </div>
   </c:if>
 
   <div class='m-5 m-auto p-lg-5 container-sm justify-content-center align-content-center'>
     <div class='row justify-content-end'>
-      <a href='${root}/article?action=list' type='button' class='col-1 btn btn-outline-info'>목록으로</a>
+      <a href='${root}/article/list' type='button' class='col-1 btn btn-outline-info'>목록으로</a>
     </div>
   </div>
   <!-- end section -->
@@ -57,9 +57,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-danger" data-bs-target="#DeleteConfirmModal"
+          <a type="button" class="btn btn-danger" data-bs-target="#DeleteConfirmModal"
                   data-bs-toggle="modal" data-bs-dismiss="modal">삭제하기
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -87,7 +87,7 @@
 </div>
 <!-- start footer -->
 
-<%@include file="/common/footer.jsp" %>
+<%@include file="../common/footer.jsp" %>
 <!-- end footer -->
 </body>
 </html>

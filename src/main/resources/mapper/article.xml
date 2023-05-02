@@ -40,21 +40,21 @@
         where article_id = #{articleId}
     </delete>
 
-    <select id="findDetailById" parameterType="long">
-        select a.article_id, a.title, a.content, a.created_date, m.member_id, m.nickname
+    <select id="findDetailById" parameterType="long" resultType="articleDetailDto">
+        select a.article_id as 'id', a.title, a.content, a.created_date, m.member_id, m.nickname
         from article a
                  join member m on a.member_id = m.member_id
         where a.article_id = #{articleId}
     </select>
 
-    <select id="findListByCondition" resultType="Article">
-        select a.article_id, a.title, a.created_date
+    <select id="findListByCondition" resultType="articleListDto">
+        select a.article_id as 'id', a.title, a.created_date
         from article a
         join member m
         on a.member_id=m.member_id
-        where m.nickname like concat('%',#{condition.condition}%, '%')
-        or a.title like concat('%',#{condition.condition}%, '%')
-        or a.content like concat('%',#{condition.condition}%, '%')
+        where m.nickname like concat('%',#{condition.condition}, '%')
+        or a.title like concat('%',#{condition.condition}, '%')
+        or a.content like concat('%',#{condition.condition}, '%')
         <if test="condition.getSortCondition() == 2">
             order by hit desc
         </if>
@@ -64,8 +64,8 @@
         limit #{pageNum}, #{amount}
     </select>
 
-    <select id="findListByMemberId" resultType="Article">
-        select a.article_id, a.title, a.created_date
+    <select id="findListByMemberId" resultType="articleListDto">
+        select a.article_id as 'id', a.title, a.created_date
         from article a
                  join member m
                       on a.member_id = m.member_id
@@ -74,7 +74,7 @@
         limit #{pageNum}, #{amount}
     </select>
 
-    <select id="findTotalCount" resultType="Article">
+    <select id="findTotalCount" resultType="Integer">
         select count(*) as total
         from article
     </select>
