@@ -2,6 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.goat.tripplan.mapper.PlanMapper">
+
+    <resultMap id="tripPlan" type="tripPlanDto">
+        <id column="trip_plan_id" property="id"/>
+        <result column="title" property="title"/>
+        <collection property="detailPlans" ofType="DetailPlanDto" javaType="List">
+            <id column="detail_plan_id" property="id"/>
+            <result column="title" property="title"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="detailPlan" type="DetailPlan">
+        <id column="detail_plan_id" property="id"/>
+        <association property="attractionInfo" javaType="AttractionInfo">
+            <result column="title" property="title"/>
+            <result column="longitude" property="longitude"/>
+            <result column="latitude" property="latitude"/>
+        </association>
+    </resultMap>
+
+
     <insert id="save" parameterType="tripPlan">
         insert into trip_plan (member_id, title)
         values (#{member.id}, #{title})
@@ -18,6 +38,14 @@
         where trip_plan_id = #{tripPlanId}
     </select>
 
+    <select id="findByTripPlanId" resultMap="detailPlan">
+        select *, detail_plan_id as 'id'
+        from detail_plan dp
+        join attraction_info ai
+        on dp.content_id = ai.content_id
+        where trip_plan_id = #{tripPlanId}
+    </select>
+
     <select id="findByDetailPlanId" parameterType="long" resultType="detailPlan">
         select *
         from detail_plan dp
@@ -26,13 +54,14 @@
         where detail_plan_id = #{detailPlanId}
     </select>
 
+
     <select id="findAllByMemberId" parameterType="long" resultType="tripPlan">
         select *, trip_plan_id as 'id'
         from trip_plan
         where member_id = #{memberId}
     </select>
 
-    <select id="findAllByTripPlanId" parameterType="long" resultType="tripPlanDto">
+    <select id="findAllByTripPlanId" parameterType="long" resultMap="tripPlan">
         select *
         from trip_plan tp
                  left outer join detail_plan dp on tp.trip_plan_id = dp.trip_plan_id
@@ -56,6 +85,7 @@
         from trip_plan
         where member_id = #{memberId}
         order by created_date desc
+        limit 1
     </select>
 
     <select id="findTotalCount" resultType="Integer">

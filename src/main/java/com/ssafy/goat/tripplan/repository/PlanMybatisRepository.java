@@ -42,6 +42,11 @@ public class PlanMybatisRepository implements PlanRepository {
     }
 
     @Override
+    public List<DetailPlan> findByTripPlanId(Long tripPlanId) {
+        return planMapper.findByTripPlanId(tripPlanId);
+    }
+
+    @Override
     public Optional<DetailPlan> findByDetailPlanId(Long detailPlanId) {
         return planMapper.findByDetailPlanId(detailPlanId);
     }

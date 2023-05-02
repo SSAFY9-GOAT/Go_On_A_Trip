@@ -15,7 +15,9 @@ public interface PlanRepository {
 
     int save(DetailPlan detailPlan);
 
-    Optional<TripPlan> findById(Long tripPlanId);
+    Optional<TripPlan> findById(Long TripPlanDto);
+
+    List<DetailPlan> findByTripPlanId(Long tripPlanId);
 
     Optional<DetailPlan> findByDetailPlanId(Long detailPlanId);
 

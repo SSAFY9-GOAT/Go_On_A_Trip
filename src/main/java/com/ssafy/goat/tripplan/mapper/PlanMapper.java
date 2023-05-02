@@ -19,6 +19,9 @@ public interface PlanMapper {
 
     Optional<TripPlan> findById(Long tripPlanId);
 
+
+    List<DetailPlan> findByTripPlanId(Long tripPlanId);
+
     Optional<DetailPlan> findByDetailPlanId(Long detailPlanId);
 
     List<TripPlan> findAllByMemberId(Long memberId);

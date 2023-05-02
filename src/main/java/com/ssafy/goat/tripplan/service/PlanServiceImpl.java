@@ -8,6 +8,7 @@ import com.ssafy.goat.member.Member;
 import com.ssafy.goat.member.repository.MemberRepository;
 import com.ssafy.goat.tripplan.DetailPlan;
 import com.ssafy.goat.tripplan.TripPlan;
+import com.ssafy.goat.tripplan.dto.DetailPlanDto;
 import com.ssafy.goat.tripplan.dto.PlanListDto;
 import com.ssafy.goat.tripplan.dto.PlanSearch;
 import com.ssafy.goat.tripplan.dto.TripPlanDto;
@@ -17,7 +18,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -55,9 +58,9 @@ public class PlanServiceImpl implements PlanService {
         }
 
         TripPlan tripPlan = findTripPlan.get();
-        if (!tripPlan.getMember().getId().equals(memberId)) {
-            throw new PlanException();
-        }
+//        if (!tripPlan.getMember().getId().equals(memberId)) {
+//            throw new PlanException();
+//        }
 
         DetailPlan detailPlan = DetailPlan.builder()
                 .tripPlan(tripPlan)
@@ -85,7 +88,24 @@ public class PlanServiceImpl implements PlanService {
 
     @Override
     public TripPlanDto showPlan(Long tripPlanId) {
-        return planRepository.findAllByTripPlanId(tripPlanId);
+        TripPlan tripPlan = planRepository.findById(tripPlanId)
+                .orElseThrow(NoSuchElementException::new);
+
+        List<DetailPlanDto> detailPlans = planRepository.findByTripPlanId(tripPlanId).stream()
+                .map(detailPlan -> DetailPlanDto.builder()
+                        .detailPlanId(detailPlan.getId())
+                        .title(detailPlan.getAttractionInfo().getTitle())
+                        .longitude(detailPlan.getAttractionInfo().getLongitude())
+                        .latitude(detailPlan.getAttractionInfo().getLatitude())
+                        .build()
+                )
+                .collect(Collectors.toList());
+
+        return TripPlanDto.builder()
+                .tripPlanId(tripPlan.getId())
+                .title(tripPlan.getTitle())
+                .detailPlans(detailPlans)
+                .build();
     }
 
     @Override

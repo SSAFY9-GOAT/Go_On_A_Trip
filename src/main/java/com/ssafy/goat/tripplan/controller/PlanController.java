@@ -41,8 +41,6 @@ public class PlanController {
     public String doCreate(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         String title = request.getParameter("planTitle");
         String[] contentList = request.getParameter("contentList").split(",");
-        for(String s : contentList)
-            System.out.println(s);
         List<Integer> contentIdList = new ArrayList<>();
 
         if (contentList.length < 2) {
@@ -91,9 +89,8 @@ public class PlanController {
         return "tripplan/tripList";
     }
 
-    @GetMapping("/detail/tripPlanId")
-    public String doDetail(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
-        Long tripPlanId = Long.parseLong(request.getParameter("tripPlanId"));
+    @GetMapping("/detail/{tripPlanId}")
+    public String doDetail(HttpServletRequest request, @PathVariable long tripPlanId, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         TripPlanDto tripPlan = planService.showPlan(tripPlanId);
         model.addAttribute("tripPlan", tripPlan);
         return "tripplan/viewPlan";

@@ -95,6 +95,11 @@ public class PlanJdbcRepository implements PlanRepository {
     }
 
     @Override
+    public List<DetailPlan> findByTripPlanId(Long tripPlanId) {
+        return null;
+    }
+
+    @Override
     public Optional<DetailPlan> findByDetailPlanId(Long detailPlanId) {
         Connection conn = null;
         PreparedStatement pstmt = null;

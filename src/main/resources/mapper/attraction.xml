@@ -20,7 +20,7 @@
         from attraction_info
         where title like concat('%',#{title}, '%')
     </select>
-    <select id="findByContentIds">
+    <select id="findByContentIds" parameterType="Integer" resultType="attractionInfo">
         select *, content_id as 'id'
         from attraction_info
         where content_id in
