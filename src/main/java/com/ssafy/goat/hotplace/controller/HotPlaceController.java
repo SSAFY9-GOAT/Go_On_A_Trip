@@ -69,23 +69,6 @@ public class HotPlaceController {
             return "account/login";
         }
 
-//        String name = (String) model.getAttribute("name");
-        log.debug("name = " + name);
-//        String visitedDate = (String) model.getAttribute("visitedDate");
-        log.debug("visitedDate = " + visitedDate);
-//        String contentTypeIdStr = (String) model.getAttribute("contentTypeId");
-//        log.debug("contentTypeIdStr = " + contentTypeIdStr);
-//        int contentTypeId = -1;
-//        if(contentTypeIdStr != null) {
-//            contentTypeId = Integer.parseInt(contentTypeIdStr);
-//        }
-        log.debug("contentTypeId = " + contentTypeId);
-
-//        String desc = (String) model.getAttribute("desc");
-//        int contentId = Integer.parseInt((String) model.getAttribute("contentId"));
-
-//        Part part = (Part) model.getAttribute("hotplaceImg");
-
         FileStore fileStore = new FileStore();
         UploadFile uploadFile = fileStore.storeFile(part);
 
@@ -98,14 +81,15 @@ public class HotPlaceController {
 
     }
 
-    @GetMapping("/detail")
-    public String doDetail(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
+    @GetMapping("/{hotPlaceId}")
+    public String doDetail(
+            @PathVariable Long hotPlaceId,
+            @SessionAttribute(name = "userinfo") LoginMember loginMember,
+            Model model) {
         if (loginMember == null) {
             model.addAttribute("msg", REQUEST_LOGIN);
             return "account/login";
         }
-
-        Long hotPlaceId = Long.parseLong(request.getParameter("hotPlaceId"));
 
         HotPlaceDetailDto hotPlace = hotPlaceService.searchHotPlace(hotPlaceId);
         hotPlaceService.updateHit(hotPlaceId);

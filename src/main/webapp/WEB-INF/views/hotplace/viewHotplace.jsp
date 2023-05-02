@@ -4,53 +4,58 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <%@ include file="../common/head.jsp" %>
-  <link href="${root}/assets/css/kakaomap.css" rel="stylesheet"/>
+    <%@ include file="../common/head.jsp" %>
+    <link href="${root}/assets/css/kakaomap.css" rel="stylesheet"/>
 </head>
 <body>
 <!-- start header -->
 <header class="border-bottom py-3 mb-4">
-  <%@include file="../common/header.jsp" %>
+    <%@include file="../common/header.jsp" %>
 </header>
 <!-- end header -->
 
 <%-- start section --%>
 <!-- start section -->
 <main class="container">
-  <!-- start album -->
-  <div class="row">
-    <div class="col text-end">
-      <div id="map" style="width: 100%; height: 500px"></div>
-    </div>
-    <div class="col col-6">
-      <div class="mb-3">
-        <img src="${root}/assets/store/${hotPlace.storeFileName}" class="img-fluid w-100 h-25" alt="...">
-      </div>
-      <div class="mb-3 row g-3">
-        <div class="col-md-6">
-          <label for="nickname" class="form-label">작성자</label>
-          <input type="text" class="form-control" id="nickname" name="nickname" value="${hotPlace.nickname}" disabled>
+    <!-- start album -->
+
+    <div class="row">
+
+        <div class="col text-end">
+            <div id="map" style="width: 100%; height: 730px"></div>
         </div>
-        <div class="col-md-6">
-          <label for="visitedDate" class="form-label">방문 날짜</label>
-          <input type="text" class="form-control" id="visitedDate" name="visitedDate" value="${hotPlace.visitedDate}" disabled>
+        <div class="col col-6">
+            <div class="mb-3" align="center">
+                <img src="${root}/assets/img/userUpload/${hotPlace.storeFileName}" class="img-fluid   col-md-4"
+                     alt="..." style="width: auto; height: 370px;">
+            </div>
+            <div class="mb-3 row g-3">
+                <div class="col-md-6">
+                    <label for="nickname" class="form-label">작성자</label>
+                    <input type="text" class="form-control" id="nickname" name="nickname" value="${hotPlace.nickname}"
+                           disabled>
+                </div>
+                <div class="col-md-6">
+                    <label for="visitedDate" class="form-label">방문 날짜</label>
+                    <input type="text" class="form-control" id="visitedDate" name="visitedDate"
+                           value="${hotPlace.visitedDate}" disabled>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">핫플레이스 이름</label>
+                <input type="text" class="form-control" id="name" name="name" value="${hotPlace.name}" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="desc" class="form-label">핫플레이스 설명</label>
+                <textarea class="form-control" id="desc" rows="5" disabled>${hotPlace.desc}</textarea>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                <a class="btn btn-secondary" type="button" href="${root}/hotPlace/list">목록</a>
+            </div>
+            </form>
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="name" class="form-label">핫플레이스 이름</label>
-        <input type="text" class="form-control" id="name" name="name" value="${hotPlace.name}" disabled>
-      </div>
-      <div class="mb-3">
-        <label for="desc" class="form-label">핫플레이스 설명</label>
-        <textarea class="form-control" id="desc" rows="10" disabled>${hotPlace.desc}</textarea>
-      </div>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-        <button class="btn btn-secondary" type="button">목록</button>
-      </div>
-      </form>
     </div>
-  </div>
-  <!-- end album -->
+    <!-- end album -->
 </main>
 
 <!-- start footer -->
@@ -74,31 +79,31 @@
 
     // 지도에 마커를 표시합니다
     var marker = new kakao.maps.Marker({
-      map: map,
-      position: new kakao.maps.LatLng(latitude, longitude)
+        map: map,
+        position: new kakao.maps.LatLng(latitude, longitude)
     });
 
     var content = '<div class="wrap">' +
-            '    <div class="info">' +
-            '        <div class="title">${hotPlace.title}</div>' +
-            '        <div class="body">' +
-            '            <div class="img">' +
-            '                <img src="${hotPlace.firstImage}" width="73" height="70">' +
-            '           </div>' +
-            '            <div class="desc">' +
-            '                <div class="ellipsis">${hotPlace.addr1}</div>' +
-            '                <div class="jibun ellipsis">(우) ${hotPlace.zipcode}</div>' +
-            '            </div>' +
-            '        </div>' +
-            '    </div>' +
-            '</div>';
+        '    <div class="info">' +
+        '        <div class="title">${hotPlace.title}</div>' +
+        '        <div class="body">' +
+        '            <div class="img">' +
+        '                <img src="${hotPlace.firstImage}" width="73" height="70">' +
+        '           </div>' +
+        '            <div class="desc">' +
+        '                <div class="ellipsis">${hotPlace.addr1}</div>' +
+        '                <div class="jibun ellipsis">(우) ${hotPlace.zipcode}</div>' +
+        '            </div>' +
+        '        </div>' +
+        '    </div>' +
+        '</div>';
 
     // 마커 위에 커스텀오버레이를 표시합니다
     // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
     var overlay = new kakao.maps.CustomOverlay({
-      content: content,
-      map: map,
-      position: marker.getPosition()
+        content: content,
+        map: map,
+        position: marker.getPosition()
     });
 
     var moveLatLon = new kakao.maps.LatLng(latitude, longitude);
