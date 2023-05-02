@@ -31,7 +31,7 @@
         </div>
         <div class="col-auto">
           <button type="submit" class="btn btn-secondary mb-3">검색</button>
-          <button type="button" class="btn btn-primary mb-3" onclick="location.href='/hotPlace/mvwrite'">글쓰기</button>
+          <a type="button" class="btn btn-primary mb-3" href="${root}/hotPlace/write">글쓰기</a>
         </div>
       </form>
     </div>

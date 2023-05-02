@@ -9,15 +9,14 @@ import com.ssafy.goat.hotplace.dto.HotPlaceSearch;
 import com.ssafy.goat.hotplace.service.HotPlaceService;
 import com.ssafy.goat.member.dto.LoginMember;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.List;
@@ -28,6 +27,7 @@ import static com.ssafy.goat.common.Message.REQUEST_LOGIN;
 @Controller
 @RequestMapping("/hotPlace")
 @RequiredArgsConstructor
+@Slf4j
 public class HotPlaceController {
     private final HotPlaceService hotPlaceService;
 
@@ -45,8 +45,8 @@ public class HotPlaceController {
         return "hotplace/hotplaceList";
     }
 
-    @GetMapping("/mvwrite")
-    public String doMvwrite(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
+    @GetMapping("/write")
+    public String write(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
         if (loginMember == null) {
             model.addAttribute("msg", REQUEST_LOGIN);
             return "account/login";
@@ -55,19 +55,36 @@ public class HotPlaceController {
     }
 
     @PostMapping("/write")
-    public String doWrite(HttpServletRequest request, @SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) throws IOException, ServletException {
+    public String doWrite(
+            @RequestParam String name,
+            @RequestParam String visitedDate,
+            @RequestParam int contentTypeId,
+            @RequestParam String desc,
+            @RequestParam int contentId,
+            @RequestParam("hotplaceImg") Part part,
+            @SessionAttribute(name = "userinfo") LoginMember loginMember,
+            Model model) throws IOException {
         if (loginMember == null) {
             model.addAttribute("msg", EXPIRE_SESSION);
             return "account/login";
         }
 
-        String name = request.getParameter("name");
-        String visitedDate = request.getParameter("visitedDate");
-        int contentTypeId = Integer.parseInt(request.getParameter("contentTypeId"));
-        String desc = request.getParameter("desc");
-        int contentId = Integer.parseInt(request.getParameter("contentId"));
+//        String name = (String) model.getAttribute("name");
+        log.debug("name = " + name);
+//        String visitedDate = (String) model.getAttribute("visitedDate");
+        log.debug("visitedDate = " + visitedDate);
+//        String contentTypeIdStr = (String) model.getAttribute("contentTypeId");
+//        log.debug("contentTypeIdStr = " + contentTypeIdStr);
+//        int contentTypeId = -1;
+//        if(contentTypeIdStr != null) {
+//            contentTypeId = Integer.parseInt(contentTypeIdStr);
+//        }
+        log.debug("contentTypeId = " + contentTypeId);
 
-        Part part = request.getPart("hotplaceImg");
+//        String desc = (String) model.getAttribute("desc");
+//        int contentId = Integer.parseInt((String) model.getAttribute("contentId"));
+
+//        Part part = (Part) model.getAttribute("hotplaceImg");
 
         FileStore fileStore = new FileStore();
         UploadFile uploadFile = fileStore.storeFile(part);
@@ -77,7 +94,7 @@ public class HotPlaceController {
         int result = hotPlaceService.addHotPlace(loginMember.getId(), contentId, hotPlaceDto);
 
 
-        return "redirect:/hotplace/list";
+        return "redirect:/hotPlace/list";
 
     }
 
