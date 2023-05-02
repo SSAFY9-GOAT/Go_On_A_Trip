@@ -48,15 +48,18 @@
                                 <div class="text-end">
                                     조회수 : ${hotPlace.hit} | 작성자 : ${hotPlace.nickname}
                                 </div>
-                                <button type="button" class="btn btn-primary"
-                                        onclick="location.href='/hotPlace/${hotPlace.hotPlaceId}'">더보기
-                                </button>
-                                <button type="button" class="btn btn-primary"
-                                        onclick="location.href='/hotPlace/mvedit&hotPlaceId=${hotPlace.hotPlaceId}'">수정
-                                </button>
-                                <button type="button" class="btn btn-primary"
-                                        onclick="location.href='/member/favorite&hotPlaceId=${hotPlace.hotPlaceId}'">담기
-                                </button>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-primary"
+                                            onclick="location.href='/hotPlace/${hotPlace.hotPlaceId}'">더보기
+                                    </button>
+                                        <%--                                <button type="button" class="btn btn-primary"--%>
+                                        <%--                                        onclick="location.href='/hotPlace/mvedit&hotPlaceId=${hotPlace.hotPlaceId}'">수정--%>
+                                        <%--                                </button>--%>
+                                    <button type="button" class="btn btn-primary"
+                                            onclick="location.href='/member/favorite&hotPlaceId=${hotPlace.hotPlaceId}'">
+                                        담기
+                                    </button>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <small class="text-body-secondary">${hotPlace.createdDate}</small>
