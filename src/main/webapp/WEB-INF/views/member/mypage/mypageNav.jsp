@@ -20,7 +20,7 @@
                 <a class="nav-link active" aria-current="page" href="#">
                     </c:if>
                     <c:if test="${currShow != 'myArticle'}">
-                    <a class="nav-link " aria-current="page" href="${root}/member/myArticle">
+                    <a class="nav-link " aria-current="page" href="${root}/myArticle">
                         </c:if>
                         <span data-feather="file" class="align-text-bottom"></span>
                         내가 쓴 게시물

@@ -1,5 +1,7 @@
 package com.ssafy.goat.member.controller;
 
+import com.ssafy.goat.article.dto.ArticleListDto;
+import com.ssafy.goat.article.service.ArticleService;
 import com.ssafy.goat.common.Page;
 import com.ssafy.goat.hotplace.dto.HotPlaceListDto;
 import com.ssafy.goat.hotplace.service.HotPlaceService;
@@ -26,6 +28,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final HotPlaceService hotPlaceService;
+    private final ArticleService articleService;
 
     @GetMapping("/mypage")
     public String myPage(HttpSession session, Model model) {
@@ -116,16 +119,49 @@ public class MemberController {
         return "member/mypage";
     }
 
+    @GetMapping("/modifyemail")
+    public String modifyEmail(Model model, HttpSession session) {
+        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+        MemberDto dto = memberService.myPage(loginMember.getId());
+        model.addAttribute("currShow", "modifyEmail");
+        model.addAttribute("loginUserDto", dto);
+        return "member/mypage";
+    }
+
+    @PostMapping("/modifyemail")
+    public String modifyEmail(@RequestParam("currNickname") String currNickname, @RequestParam("newNickname") String newNickname, @RequestParam("pwCheck") String pwCheck, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+
+        if (!pwCheck.equals(loginMember.getLoginPw())) {
+            model.addAttribute("msg", "비밀번호가 틀렸습니다.");
+            model.addAttribute("currShow", "modifyNickname");
+            model.addAttribute("currNickname", currNickname);
+            return "member/mypage";
+        }
+        if (currNickname.equals(newNickname)) {
+            model.addAttribute("msg", "기존 닉네임과 같습니다.");
+            model.addAttribute("currShow", "modifyNickname");
+            model.addAttribute("currNickname", currNickname);
+            return "member/mypage";
+        }
+
+        memberService.changeNickname(loginMember.getId(), newNickname);
+        redirectAttributes.addFlashAttribute("msg", "닉네임 변경이 완료되었습니다. ");
+        model.addAttribute("currShow", "modifyNickname");
+//        model.addAttribute("msg", "비밀번호 변경이 완료되었습니다. 다시 로그인 하세요.");
+        return "member/mypage";
+    }
+
     @GetMapping("/withdrawal")
-    public String withdrawal(HttpSession session){
-        session.setAttribute("currShow","deleteMember");
+    public String withdrawal(HttpSession session) {
+        session.setAttribute("currShow", "deleteMember");
         return "member/mypage";
     }
 
     @PostMapping("/withdrawal")
-    public String withdrawal(HttpSession session, Model model){
+    public String withdrawal(HttpSession session, Model model) {
         LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
-        if(loginMember == null){
+        if (loginMember == null) {
             return "redirect:/";
         }
         String loginPw = (String) model.getAttribute("pw");
@@ -139,7 +175,7 @@ public class MemberController {
             @RequestParam(defaultValue = "1") int pageNum,
             @RequestParam(defaultValue = "10") int amount,
             Model model,
-            HttpSession session){
+            HttpSession session) {
 
         Long memberId = loginMember.getId();
 
@@ -158,17 +194,11 @@ public class MemberController {
     public String myFavorite(
             @SessionAttribute(name = "userinfo") LoginMember loginMember,
             @RequestParam Long hotPlaceId,
-            Model model,
-            HttpSession session){
-        log.debug("hot 좋아요 아이디"+hotPlaceId);
+            HttpSession session) {
+        log.debug("hot 좋아요 아이디" + hotPlaceId);
 
-//        HttpSession session = request.getSession();
-//        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
         Long memberId = loginMember.getId();
         hotPlaceService.doFavorite(memberId, hotPlaceId); //insert
-
-//        String path = "/member?action=mvMyFavorite";
-
 
         return "redirect:/myFavorite";
     }
@@ -176,9 +206,31 @@ public class MemberController {
     @GetMapping("/myHotPlace")
     public String myHotPlace(
             @SessionAttribute(name = "userinfo") LoginMember loginMember,
-            Model model){
+            Model model) {
         List<HotPlaceListDto> hotPlaces = hotPlaceService.searchHotPlaces(loginMember.getId());
         model.addAttribute("hotPlaces", hotPlaces);
         return "member/mypage/myHotplace";
+    }
+
+    @GetMapping("/myArticle")
+    public String myArticle(
+            @SessionAttribute(name = "userinfo") LoginMember loginMember,
+            HttpSession session,
+            Model model) {
+
+        int pageNum = 1;
+        int amount = 10;
+
+        Long memberId = loginMember.getId();
+
+        List<ArticleListDto> articles = articleService.searchMyArticles(memberId, pageNum, amount);
+        int totalCount = articleService.getTotalCount();
+        Page page = new Page(pageNum, amount, totalCount);
+
+        model.addAttribute("page", page);
+        model.addAttribute("articles", articles);
+
+        session.setAttribute("currShow", "myArticle");
+        return "member/mypage/myArticle";
     }
 }

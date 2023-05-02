@@ -56,10 +56,10 @@ public class MemberControllerOld extends HttpServlet {
 //        path = viewMypage(request, response);
 //        forward(request, response, path);
 //        break;
-      case "myArticle":
-        path = mvMyArticle(request, response);
-        forward(request, response, path);
-        break;
+//      case "myArticle":
+//        path = mvMyArticle(request, response);
+//        forward(request, response, path);
+//        break;
 //      case "mvMyFavorite":
 //        path = mvMyFavorite(request, response);
 //        forward(request, response, path);
@@ -67,10 +67,10 @@ public class MemberControllerOld extends HttpServlet {
 //      case "favorite":
 //        doFavorite(request, response);
 //        break;
-      case "myHotplace":
-        path = mvMyHotplace(request, response);
-        forward(request, response, path);
-        break;
+//      case "myHotplace":
+//        path = mvMyHotplace(request, response);
+//        forward(request, response, path);
+//        break;
 //      case "modifyPw":
 //        path = modifyPw(request, response);
 //        forward(request, response, path);
@@ -107,9 +107,9 @@ public class MemberControllerOld extends HttpServlet {
 //        path = mvwithdrawal(request, response);
 //        forward(request, response, path);
 //        break;
-      case "withdrawal":
-        doWithdrawal(request, response);
-        break;
+//      case "withdrawal":
+//        doWithdrawal(request, response);
+//        break;
     }
   }
 
