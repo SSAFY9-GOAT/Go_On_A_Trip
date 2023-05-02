@@ -59,7 +59,7 @@
                                         <%--                                        onclick="location.href='/hotPlace/mvedit&hotPlaceId=${hotPlace.hotPlaceId}'">수정--%>
                                         <%--                                </button>--%>
                                     <button type="button" class="btn btn-primary"
-                                            onclick="location.href='/member/favorite&hotPlaceId=${hotPlace.hotPlaceId}'">
+                                            onclick="location.href='/likeHotPlace?hotPlaceId=${hotPlace.hotPlaceId}'">
                                         담기
                                     </button>
                                 </div>

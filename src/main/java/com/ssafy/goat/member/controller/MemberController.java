@@ -153,4 +153,23 @@ public class MemberController {
         session.setAttribute("currShow", "favorite");
         return "member/mypage/myFavorite";
     }
+
+    @GetMapping("/likeHotPlace")
+    public String myFavorite(
+            @SessionAttribute(name = "userinfo") LoginMember loginMember,
+            @RequestParam Long hotPlaceId,
+            Model model,
+            HttpSession session){
+        log.debug("hot 좋아요 아이디"+hotPlaceId);
+
+//        HttpSession session = request.getSession();
+//        LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
+        Long memberId = loginMember.getId();
+        hotPlaceService.doFavorite(memberId, hotPlaceId); //insert
+
+//        String path = "/member?action=mvMyFavorite";
+
+
+        return "redirect:/myFavorite";
+    }
 }
