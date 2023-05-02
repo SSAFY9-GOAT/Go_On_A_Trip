@@ -70,16 +70,16 @@ public class AttractionApiController {
         else return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "/tripPlan")
-    public ResponseEntity<?> doSearchAttraction(@PathVariable("contentId") String contentId) {
+    @GetMapping(value = "/tripPlan/{contentId}")
+    public ResponseEntity<?> doSearchAttraction(@PathVariable String contentId) {
         AttractionDto attraction = attractionService.searchAttraction(Integer.parseInt(contentId));
 
         if (attraction != null) return new ResponseEntity<AttractionDto>(attraction, HttpStatus.OK);
         else return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "/tripPlanList")
-    public ResponseEntity<?> doTripPlanList(@PathVariable("title") String title) {
+    @GetMapping(value = "/tripPlanList/{title}")
+    public ResponseEntity<?> doTripPlanList(@PathVariable String title) {
         List<AttractionDto> attractions = attractionService.searchAttraction(title);
 
         if (attractions != null && !attractions.isEmpty())

@@ -38,12 +38,12 @@
 ></script>
 <%--header 컨트롤--%>
 <script>
-  document.querySelector("#btn-mv-join").addEventListener("click",function (){
-    location.href = "${root}/member?action=mvregister";
-  });
-  document.querySelector("#btn-mv-login").addEventListener("click",function (){
-    console.log("로그인 클릭")
-    location.href = "${root}/account?action=mvlogin";
-  });
+  <%--document.querySelector("#btn-mv-join").addEventListener("click",function (){--%>
+  <%--  location.href = "${root}/member?action=mvregister";--%>
+  <%--});--%>
+  <%--document.querySelector("#btn-mv-login").addEventListener("click",function (){--%>
+  <%--  console.log("로그인 클릭")--%>
+  <%--  location.href = "${root}/account?action=mvlogin";--%>
+  <%--});--%>
 </script>
 <%--<script src="./assets/js/common.js"></script>--%>

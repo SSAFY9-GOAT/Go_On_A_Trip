@@ -24,14 +24,14 @@ const serviceKey =
 function getTourList() {
     const keyword = document.getElementById("keyword").value;
 
-    const url = `http://localhost:8080/api/attraction?action=tripPlanList&title=${keyword}`;
+    const url = `http://localhost:8080/api/attraction/tripPlanList/${keyword}`;
     fetch(url)
         .then((response) => response.json())
         .then((response) => createTour(response));
 }
 
 function createTour(response) {
-    let items = response.data;
+    let items = response;
     let content = "";
     items.forEach(function (item) {
         if (!item.firstImage) {
@@ -79,36 +79,36 @@ function getAreaCode() {
 var contentList = [];
 
 function addPlan(response) {
-    let items = response.data;
-
+    console.log(response);
+    let item = response;
     let content = "";
-    content = document.getElementById("plan").innerHTML
-    items.forEach(function (item) {
-        contentList.push(item.contentId);
-        content += `
+    contentList.push(item.contentId);
+    content = document.getElementById("plan").innerHTML;
+    content += `
     <tr>
         <td>${item.title}</td>
         <input type="hidden" name="contentId" value="${item.contentId}">
         <input type="hidden" name="latitude" value="${item.latitude}">
         <input type="hidden" name="longitude" value="${item.longitude}">
     </tr>`;
-    });
+
     document.getElementById("plan").innerHTML = content;
     document.getElementById("contentList").setAttribute("value",contentList);
 }
 
-// document.querySelector("#createPlan").addEventListener("click", function (){
-//     let form = document.querySelector("#planList");
-//     form.setAttribute("action", "${root}/tripPlan?action=create");
-//     form.submit();
-// });
+document.querySelector("#createPlan").addEventListener("click", function (){
+    let form = document.querySelector("#planList");
+    form.setAttribute("action", "${root}/tripPlan?action=create");
+    form.submit();
+});
 
 function addLoc(x, y, contentid) {
     var clickPosition = new kakao.maps.LatLng(x, y);
-    const url = "http://localhost:8080/api/attraction?action=tripPlan&contentId=" + contentid;
+    const url = "http://localhost:8080/api/attraction/tripPlan/" + contentid;
+
     fetch(url)
         .then((response) => response.json())
-        .then((data) => addPlan(data));
+        .then((response) => addPlan(response));
 
 
     // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
@@ -162,6 +162,26 @@ function addLoc(x, y, contentid) {
         var distance = Math.round(clickLine.getLength());
         displayCircleDot(clickPosition, distance);
     }
+
+    // function addPlan(response) {
+    //     console.log(response.data);
+    //     let items = response;
+    //
+    //     let content = "";
+    //     content = document.getElementById("plan").innerHTML;
+    //     items.forEach(function (item) {
+    //         contentList.push(item.contentId);
+    //         content += `
+    // <tr>
+    //     <td>${item.title}</td>
+    //     <input type="hidden" name="contentId" value="${item.contentId}">
+    //     <input type="hidden" name="latitude" value="${item.latitude}">
+    //     <input type="hidden" name="longitude" value="${item.longitude}">
+    // </tr>`;
+    //     });
+    //     document.getElementById("plan").innerHTML = content;
+    //     document.getElementById("contentList").setAttribute("value",contentList);
+    // }
 }
 
 
