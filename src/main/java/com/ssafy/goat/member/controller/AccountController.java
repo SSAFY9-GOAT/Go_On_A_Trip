@@ -40,7 +40,12 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public String login(HttpSession session, Model model, @RequestParam("userId") String userId, @RequestParam("userPassword") String userPwd) {
+    public String login(
+            HttpSession session,
+            Model model,
+            @RequestParam(defaultValue = "/") String redirectURL,
+            @RequestParam("userId") String userId,
+            @RequestParam("userPassword") String userPwd) {
         LoginMember loginMember = accountService.login(userId, userPwd);
         if (loginMember != null) {
             session.setAttribute("userinfo", loginMember);

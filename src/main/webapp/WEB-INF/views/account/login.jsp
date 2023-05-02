@@ -18,7 +18,7 @@
 <!-- start section -->
 <div id="wrapper" class="text-center">
   <main class="form-signin w-100 m-auto">
-    <form id="login-form" method="post" action="${root}/login">
+    <form id="login-form" method="post">
       <img class="mb-4" src="${root}/assets/img/logo/logo_1x1.png" alt="" width="280" height="280"/>
       <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
