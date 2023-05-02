@@ -156,7 +156,7 @@
 
     function setCenter(response) {
         // 이동할 위도 경도 위치를 생성합니다
-        let attraction = response.data[0];
+        let attraction = response[0];
         var moveLatLon = new kakao.maps.LatLng(attraction.latitude, attraction.longitude);
 
         // 지도 중심을 이동 시킵니다
@@ -164,7 +164,7 @@
     }
 
     function marker(response) {
-        let attractions = response.data;
+        let attractions = response;
 
         var positions = [];
         attractions.forEach(function (attraction) {

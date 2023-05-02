@@ -1,5 +1,5 @@
 function createAttraction(response) {
-  let items = response.data;
+  let items = response;
   let content = "";
 
   items.forEach(function (item) {
@@ -26,14 +26,15 @@ function createAttraction(response) {
 }
 
 function getSigunguCode(sidoCode) {
-  const url = `http://localhost:8080/api/attraction/gugun?sidoCode=${sidoCode}`;
+  const url = `http://localhost:8080/api/attraction/gugun/${sidoCode}`;
 
   fetch(url)
-    .then((response) => response.json())
-    .then((response) => createSigunguCode(response));
+      .then((response) => response.json())
+      .then((list) => createSigunguCode(list));
 
   function createSigunguCode(response) {
     let items = response.data;
+    console.log(items)
     let content = "";
     items.forEach(function (item) {
       content += `<option value="${item.code}">${item.name}</option>`
@@ -49,7 +50,7 @@ function searchAttraction() {
   const url = `http://localhost:8080/api/attraction/hotplace?title=${attractionName}`;
 
   fetch(url)
-      // .then((response) => response.json())
+      .then((response) => response.json())
       .then((response) => createButton(response));
 
   function createButton(response) {

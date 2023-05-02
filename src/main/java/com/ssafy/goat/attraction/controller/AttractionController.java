@@ -8,6 +8,7 @@ import com.ssafy.goat.attraction.service.AttractionService;
 import com.ssafy.goat.attraction.service.GugunService;
 import com.ssafy.goat.attraction.service.SidoService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/attraction")
 @RequiredArgsConstructor
+@Slf4j
 public class AttractionController {
     private final AttractionService attractionService;
     private final SidoService sidoService;
