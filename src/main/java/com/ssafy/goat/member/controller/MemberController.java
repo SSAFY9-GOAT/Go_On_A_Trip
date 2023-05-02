@@ -1,5 +1,8 @@
 package com.ssafy.goat.member.controller;
 
+import com.ssafy.goat.common.Page;
+import com.ssafy.goat.hotplace.dto.HotPlaceListDto;
+import com.ssafy.goat.hotplace.service.HotPlaceService;
 import com.ssafy.goat.member.dto.LoginMember;
 import com.ssafy.goat.member.dto.MemberDto;
 import com.ssafy.goat.member.service.MemberService;
@@ -10,10 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,6 +25,7 @@ import javax.servlet.http.HttpSession;
 public class MemberController {
 
     private final MemberService memberService;
+    private final HotPlaceService hotPlaceService;
 
     @GetMapping("/mypage")
     public String myPage(HttpSession session, Model model) {
@@ -91,10 +96,6 @@ public class MemberController {
     public String modifyNickname(@RequestParam("currNickname") String currNickname, @RequestParam("newNickname") String newNickname, @RequestParam("pwCheck") String pwCheck, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         LoginMember loginMember = (LoginMember) session.getAttribute("userinfo");
 
-//        log.debug("currPw = "+currPw);
-//        log.debug("currPw = "+currPw);
-//        log.debug("currPw = "+currPw);
-
         if (!pwCheck.equals(loginMember.getLoginPw())) {
             model.addAttribute("msg", "비밀번호가 틀렸습니다.");
             model.addAttribute("currShow", "modifyNickname");
@@ -130,5 +131,26 @@ public class MemberController {
         String loginPw = (String) model.getAttribute("pw");
         memberService.withdrawal(loginMember.getId(), loginPw);
         return "redirect:/logout";
+    }
+
+    @GetMapping("/myFavorite")
+    public String myFavorite(
+            @SessionAttribute(name = "userinfo") LoginMember loginMember,
+            @RequestParam(defaultValue = "1") int pageNum,
+            @RequestParam(defaultValue = "10") int amount,
+            Model model,
+            HttpSession session){
+
+        Long memberId = loginMember.getId();
+
+        List<HotPlaceListDto> favorites = hotPlaceService.searchFavorites(memberId, pageNum, amount);
+        int totalCount = favorites.size();
+        Page page = new Page(pageNum, amount, totalCount);
+
+        model.addAttribute("page", page);
+        model.addAttribute("favorites", favorites);
+
+        session.setAttribute("currShow", "favorite");
+        return "member/mypage/myFavorite";
     }
 }

@@ -40,8 +40,11 @@
                 <c:forEach items="${hotPlaces}" var="hotPlace">
                     <div class="col-4" style="width: 300px">
                         <div class="card h-100">
-                            <img src="${root}/assets/img/userUpload/${hotPlace.storeFileName}" class="card-img-top"
-                                 alt="...">
+                            <div class="position-relative" >
+                                <img src="${root}/assets/img/userUpload/${hotPlace.storeFileName}" class="card-img-top"
+                                     alt="..." style="width: 100%; height: 300px; object-fit:cover;">
+
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">${hotPlace.name}</h5>
                                 <p class="card-text text-truncate">${hotPlace.desc}</p>

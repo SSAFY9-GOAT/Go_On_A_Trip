@@ -20,7 +20,7 @@
                 <a class="nav-link active" aria-current="page" href="#">
                     </c:if>
                     <c:if test="${currShow != 'myArticle'}">
-                    <a class="nav-link " aria-current="page" href="${root}/member?action=myArticle">
+                    <a class="nav-link " aria-current="page" href="${root}/member/myArticle">
                         </c:if>
                         <span data-feather="file" class="align-text-bottom"></span>
                         내가 쓴 게시물
@@ -32,7 +32,7 @@
                     </c:if>
                     <c:if test="${currShow != 'myHotplace'}">
                     <a class="nav-link " aria-current="page"
-                       href="${root}/member?action=myHotplace">
+                       href="${root}/member/myHotplace">
                         </c:if>
                         <span data-feather="shopping-cart" class="align-text-bottom"></span>
                         내가 등록한 핫플레이스
@@ -44,7 +44,7 @@
                     </c:if>
                     <c:if test="${currShow != 'myFavorite'}">
                     <a class="nav-link " aria-current="page"
-                       href="${root}/member?action=mvMyFavorite">
+                       href="${root}/myFavorite">
                         </c:if>
                         <span data-feather="shopping-cart" class="align-text-bottom"></span>
                         내가 좋아요 누른 핫플레이스
