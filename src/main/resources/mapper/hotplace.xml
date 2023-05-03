@@ -16,6 +16,12 @@
         where hot_place_id = #{hotPlaceId}
     </select>
 
+    <select id="findContentIdById" parameterType="long" resultType="integer">
+        select content_id
+        from hot_place
+        where hot_place_id = #{hotPlaceId}
+    </select>
+
     <select id="findAll" resultType="hotplace">
         select *, hot_place_id as 'id'
         from hot_place

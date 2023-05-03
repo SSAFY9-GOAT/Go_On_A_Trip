@@ -11,6 +11,8 @@ public interface HotPlaceRepository {
 
     Optional<HotPlace> findById(Long hotPlaceId);
 
+    int findContentIdById(Long hotPlaceId);
+
     List<HotPlace> findAll();
 
     int update(HotPlace hotPlace);

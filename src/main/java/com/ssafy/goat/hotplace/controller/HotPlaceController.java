@@ -77,6 +77,7 @@ public class HotPlaceController {
         HotPlaceDto hotPlaceDto = HotPlaceDto.builder().name(name).visitedDate(visitedDate).contentTypeId(contentTypeId).desc(desc).uploadFile(uploadFile).build();
 
         int result = hotPlaceService.addHotPlace(loginMember.getId(), contentId, hotPlaceDto);
+//        int saveResult = trendService.increaseInfo(loginMember.getId(),hotPlaceDto.getId());
 
 
         return "redirect:/hotPlace/list";

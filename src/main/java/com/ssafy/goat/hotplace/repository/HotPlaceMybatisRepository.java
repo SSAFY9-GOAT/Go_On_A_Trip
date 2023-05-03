@@ -33,6 +33,11 @@ public class HotPlaceMybatisRepository implements HotPlaceRepository {
     }
 
     @Override
+    public int findContentIdById(Long hotPlaceId) {
+        return hotplaceMapper.findContentIdById(hotPlaceId);
+    }
+
+    @Override
     public List<HotPlace> findAll() {
         return hotplaceMapper.findAll();
     }

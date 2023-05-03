@@ -1,5 +1,6 @@
 package com.ssafy.goat.trend.service;
 
+import com.ssafy.goat.attraction.AttractionInfo;
 import com.ssafy.goat.hotplace.HotPlace;
 import com.ssafy.goat.hotplace.repository.HotPlaceRepository;
 import com.ssafy.goat.member.Member;
@@ -8,6 +9,7 @@ import com.ssafy.goat.trend.Trend;
 import com.ssafy.goat.trend.dto.TrendViewDto;
 import com.ssafy.goat.trend.repository.TrendRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,6 +17,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TrendServiceImpl implements TrendService {
 
     private final TrendRepository trendRepository;
@@ -42,17 +45,36 @@ public class TrendServiceImpl implements TrendService {
         birth += member.getBirth();
         birth = birth.substring(0, 4);
 
-        HotPlace hotPlace = findHotPlace.get();
-        System.out.printf(hotPlace.getName());
-        Integer contentId = hotPlace.getAttractionInfo().getId();
+//        HotPlace hotPlace = findHotPlace.get();
+//        Integer contentId = hotPlace.getAttractionInfo().getId();
+        Integer contentId = hotPlaceRepository.findContentIdById(hotPlaceId);
+        log.debug("contentId : " + contentId);
 
         Optional<Trend> findTrend = trendRepository.findByContentId(contentId);
+//        log.debug("contentId : " + trend.getContent());
         if (!findTrend.isPresent()) {
+            log.debug("이거 실행 되나?????");
             trendRepository.save(contentId);
             findTrend = trendRepository.findByContentId(contentId);
+//            trendRepository.
+//            findTrend = trendRepository.findByContentId(contentId);
         }
+        log.debug("쌓여있니?????");
+        Trend getTrend = findTrend.get();
+        Trend trend = Trend.builder()
+                .id(getTrend.getId())
+                .content(new AttractionInfo(contentId))
+                .teenage(getTrend.getTeenage())
+                .twenty(getTrend.getTwenty())
+                .thirty(getTrend.getThirty())
+                .male(getTrend.getMale())
+                .female(getTrend.getFemale())
+                .build();
+//        log.debug("contentId : " + trend.getContent().getId());
+//        log.debug("teenage : " + trend.getTeenage());
+//        log.debug("getThirty : " + trend.getThirty());
+//        log.debug("getFemale : " + trend.getFemale());
 
-        Trend trend = findTrend.get();
         if (isMale(gender)) {
             trend.increaseMale();
         } else {
@@ -68,7 +90,7 @@ public class TrendServiceImpl implements TrendService {
             case 2:
                 trend.increaseTwenty();
                 break;
-            case 3:
+            default:
                 trend.increaseThirty();
                 break;
         }
