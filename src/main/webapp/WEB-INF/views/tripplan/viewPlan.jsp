@@ -66,12 +66,13 @@
 <!-- start footer -->
 <%@include file="../common/footer.jsp" %>
 <!-- end footer -->
-<script src='${root}/static/assets/js/travelplan.js'></script>
+<script src='${root}/assets/js/travelplan.js'></script>
 <script>
   // var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
   <c:forEach items="${tripPlan.detailPlans}" var="detailPlan">
   var x = ${detailPlan.latitude};
   var y = ${detailPlan.longitude};
+  console.log(x,y);
     var clickPosition = new kakao.maps.LatLng(x, y);
   // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
   if (!drawingFlag) {
