@@ -29,9 +29,9 @@ public class TrendServiceImpl implements TrendService {
         }
 
         Optional<HotPlace> findHotPlace = hotPlaceRepository.findById(hotPlaceId);
-        if (!findHotPlace.isPresent()) {
-            throw new RuntimeException();
-        }
+//        if (!findHotPlace.isPresent()) {
+//            throw new RuntimeException();
+//        }
 
         Member member = findMember.get();
         String birth = "20";
@@ -43,6 +43,7 @@ public class TrendServiceImpl implements TrendService {
         birth = birth.substring(0, 4);
 
         HotPlace hotPlace = findHotPlace.get();
+        System.out.printf(hotPlace.getName());
         Integer contentId = hotPlace.getAttractionInfo().getId();
 
         Optional<Trend> findTrend = trendRepository.findByContentId(contentId);

@@ -8,6 +8,7 @@ import com.ssafy.goat.hotplace.dto.HotPlaceListDto;
 import com.ssafy.goat.hotplace.dto.HotPlaceSearch;
 import com.ssafy.goat.hotplace.service.HotPlaceService;
 import com.ssafy.goat.member.dto.LoginMember;
+import com.ssafy.goat.trend.service.TrendService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,7 @@ import static com.ssafy.goat.common.Message.REQUEST_LOGIN;
 @Slf4j
 public class HotPlaceController {
     private final HotPlaceService hotPlaceService;
+    private final TrendService trendService;
 
     @GetMapping("/list")
     public String doList(HttpServletRequest request, Model model) {
@@ -93,6 +95,7 @@ public class HotPlaceController {
 
         HotPlaceDetailDto hotPlace = hotPlaceService.searchHotPlace(hotPlaceId);
         hotPlaceService.updateHit(hotPlaceId);
+        trendService.increaseInfo(loginMember.getId(), hotPlaceId);
 
         model.addAttribute("hotPlace", hotPlace);
         return "hotplace/viewHotplace";
