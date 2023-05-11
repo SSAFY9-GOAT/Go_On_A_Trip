@@ -10,7 +10,10 @@ import com.ssafy.goat.common.Page;
 import com.ssafy.goat.common.validation.dto.ArticleRequest;
 import com.ssafy.goat.common.validation.dto.InvalidResponse;
 import com.ssafy.goat.member.dto.LoginMember;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,33 +22,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+//@RestController
 @RequestMapping("/article")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.DELETE })
 public class ArticleController {
     private final ArticleService articleService;
 
-    @GetMapping("/write")
-    public String write(@SessionAttribute(name = "userinfo") LoginMember loginMember, Model model) {
-        if (loginMember == null) {
-            model.addAttribute("msg", "로그인 후 사용해주세요.");
-            return "account/login";
-        }
-        return "article/addArticle";
-    }
-
     @PostMapping("/write")
-    public String write(@SessionAttribute(name = "userinfo") LoginMember loginMember, @Valid AddArticleRequest request, Model model) {
-        if (loginMember == null) {
-            model.addAttribute("msg", "로그인 후 사용해주세요.");
-            return "account/login";
-        }
+    @ApiOperation(value = "게시글을 작성한다.")
+    public ResponseEntity<?> write(
+            @RequestBody AddArticleRequest request,
+
+            @SessionAttribute(name = "userinfo") LoginMember loginMember,
+//            @Valid AddArticleRequest request,
+            Model model) {
+//        if (loginMember == null) {
+//            model.addAttribute("msg", "로그인 후 사용해주세요.");
+//            return "account/login";
+//        }
         ArticleDto articleDto = ArticleDto.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
                 .build();
-        articleService.addArticle(loginMember.getId(), articleDto);
-        return "redirect:/article/list";
+        int result = articleService.addArticle(loginMember.getId(), articleDto);
+        return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
+//        return "redirect:/article/list";
     }
 
     @GetMapping("/list")
@@ -90,7 +93,8 @@ public class ArticleController {
     }
 
     @GetMapping("/edit/{articleId}")
-    public String edit(@SessionAttribute(name = "userinfo") LoginMember loginMember, @PathVariable Long articleId, Model model) {
+    public String edit(@SessionAttribute(name = "userinfo") LoginMember loginMember,
+                       @PathVariable Long articleId, Model model) {
         if (loginMember == null) {
             model.addAttribute("msg", "로그인 후 사용해주세요.");
             return "account/login";
@@ -101,7 +105,8 @@ public class ArticleController {
     }
 
     @PostMapping("/edit")
-    public String edit(@SessionAttribute(name = "userinfo") LoginMember loginMember, ArticleDetailDto articleDetailDto) {
+    public String edit(@SessionAttribute(name = "userinfo") LoginMember loginMember,
+                       ArticleDetailDto articleDetailDto) {
 
 
         long articleId = articleDetailDto.getArticleId();
