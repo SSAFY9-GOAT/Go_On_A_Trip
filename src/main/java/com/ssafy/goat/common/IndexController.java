@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/")
+//@RequestMapping("/")
 @RequiredArgsConstructor
 public class IndexController extends HttpServlet {
 
@@ -30,7 +30,7 @@ public class IndexController extends HttpServlet {
 //        trendService = TrendServiceImpl.getTrendService();
 //    }
 
-    @GetMapping
+//    @GetMapping
     public String goIndex(Model model){
         TrendViewDto teenage = trendService.popularByTeenage();
         TrendViewDto twenty = trendService.popularByTwenty();

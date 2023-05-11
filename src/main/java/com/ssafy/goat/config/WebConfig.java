@@ -19,11 +19,11 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginCheckInterceptor())
-                .order(1)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/", "/article/list", "/assets/**", "/attraction/**","/login/**",
-                        "/hotPlace/list", "/register","/notion/**","/tripPlan/list", "/api/attraction/**",
-                        "/css/**", "/file/**", "/icon/**", "/img/**", "/js/**");
+//        registry.addInterceptor(new LoginCheckInterceptor())
+//                .order(1)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/", "/article/list", "/assets/**", "/attraction/**","/login/**",
+//                        "/hotPlace/list", "/register","/notion/**","/tripPlan/list", "/api/attraction/**",
+//                        "/css/**", "/file/**", "/icon/**", "/img/**", "/js/**");
     }
 }
