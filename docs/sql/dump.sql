@@ -1,10 +1,10 @@
 -- member data
-insert into member(member_id, login_id, login_pw, username, email, phone, birth, gender, nickname,
-                   nickname_last_modified_date, authority)
-values (1, 'ssafy1', 'ssafy1', '임우택', 'ssafy1@ssafy.com', '01011111111', '010101', '1', '코코', '20230101', 'ADMIN'),
-       (2, 'ssafy2', 'ssafy2', '이예리', 'ssafy2@ssafy.com', '01022222222', '010102', '2', '리온', '20230101', 'CLIENT'),
-       (3, 'ssafy3', 'ssafy3', '정유빈', 'ssafy3@ssafy.com', '01033333333', '010103', '2', '삼성', '20230101', 'CLIENT'),
-       (4, 'ssafy4', 'ssafy4', '김동현', 'ssafy4@ssafy.com', '01033134433', '010103', '1', '도넛', '20230101', 'CLIENT');
+insert into member(member_id, login_id, login_pw, username, email, phone, birth, birthyear, gender, nickname,
+                   nickname_last_modified_date, authority, sns_id)
+values (1, 'ssafy1', 'ssafy1', '임우택', 'ssafy1@ssafy.com', '01011111111', '0101', '1998', 'M', '코코', '20210101', 'ADMIN', '-1'),
+       (2, 'ssafy2', 'ssafy2', '이예리', 'ssafy2@ssafy.com', '01022222222', '0412', '1998', 'F', '리온', '20210101', 'CLIENT', '-1'),
+       (3, 'ssafy3', 'ssafy3', '정유빈', 'ssafy3@ssafy.com', '01033333333', '0103', '1999', 'F', '삼성', '20210101', 'CLIENT', '-1'),
+       (4, 'ssafy4', 'ssafy4', '김동현', 'ssafy4@ssafy.com', '01033134433', '0103', '1998', 'M', '도넛', '20210101', 'CLIENT', '-1');
 
 -- notion data
 insert into notion(notion_id, title, content, top, created_by, last_modified_by)
