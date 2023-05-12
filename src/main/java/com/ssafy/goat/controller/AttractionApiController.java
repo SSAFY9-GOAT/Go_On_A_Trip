@@ -1,4 +1,4 @@
-package com.ssafy.goat.attraction.controller.api;
+package com.ssafy.goat.controller;
 
 import com.ssafy.goat.attraction.AttractionInfo;
 import com.ssafy.goat.attraction.dto.AttractionDto;
